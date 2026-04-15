@@ -41,6 +41,7 @@ export function getCategoryLabel(
     "diving-spot": { en: "Diving Spots", ko: "\ub2e4\uc774\ube59 \ud3ec\uc778\ud2b8" },
     recipe: { en: "Diver's Kitchen", ko: "\ub2e4\uc774\ubc84 \uc2dd\ub2e8" },
     workout: { en: "Training Tips", ko: "\ud2b8\ub808\uc774\ub2dd" },
+    video: { en: "Video", ko: "\uc601\uc0c1" },
   };
   return labels[category]?.[lang] ?? category;
 }
@@ -58,6 +59,7 @@ export function getCategoryColor(category: Category): string {
     "diving-spot": "bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200",
     recipe: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
     workout: "bg-lime-100 text-lime-800 dark:bg-lime-900 dark:text-lime-200",
+    video: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
   };
   return colors[category] ?? "";
 }

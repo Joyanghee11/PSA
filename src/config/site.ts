@@ -17,5 +17,6 @@ export const siteConfig = {
     { slug: "diving-spot", label: { en: "Diving Spots", ko: "다이빙 포인트" } },
     { slug: "recipe", label: { en: "Diver's Kitchen", ko: "다이버 식단" } },
     { slug: "workout", label: { en: "Training Tips", ko: "트레이닝" } },
+    { slug: "video", label: { en: "Video", ko: "영상" } },
   ],
 } as const;

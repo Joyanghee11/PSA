@@ -9,7 +9,8 @@ export type Category =
   | "people"
   | "diving-spot"
   | "recipe"
-  | "workout";
+  | "workout"
+  | "video";
 
 export type Lang = "ko" | "en";
 
