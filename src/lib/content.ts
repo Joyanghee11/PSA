@@ -73,6 +73,33 @@ export function searchArticles(query: string, lang: Lang): Article[] {
   });
 }
 
+export function getAllArticlesIncludingDrafts(): Article[] {
+  const files = walkDir(CONTENT_DIR);
+  const articles: Article[] = [];
+  for (const file of files) {
+    const article = readJsonFile(file);
+    if (article) {
+      articles.push(article);
+    }
+  }
+  return articles.sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
+}
+
+export function deleteArticle(slug: string): boolean {
+  const files = walkDir(CONTENT_DIR);
+  for (const file of files) {
+    const article = readJsonFile(file);
+    if (article && article.slug === slug) {
+      fs.unlinkSync(file);
+      return true;
+    }
+  }
+  return false;
+}
+
 export function writeArticle(article: Article): void {
   const date = new Date(article.publishedAt);
   const year = date.getFullYear().toString();
