@@ -63,9 +63,10 @@ export async function POST(request: Request) {
     await writeArticleToBlob(article);
     return NextResponse.json({ success: true, slug }, { status: 201 });
   } catch (error) {
-    console.error("[Admin API] POST error:", error);
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("[Admin API] POST error:", message);
     return NextResponse.json(
-      { error: "Failed to create article" },
+      { error: `Failed to create article: ${message}` },
       { status: 500 }
     );
   }
