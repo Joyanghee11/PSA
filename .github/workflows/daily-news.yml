@@ -1,0 +1,48 @@
+name: Daily Freediving News Pipeline
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # 6 AM UTC daily
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  generate-news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run news pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MAX_ARTICLES: '10'
+        run: npx tsx scripts/run-pipeline.ts
+
+      - name: Check for new articles
+        id: check-changes
+        run: |
+          if [ -n "$(git status --porcelain content/)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push new articles
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "PSA News Bot"
+          git config user.email "bot@psa-news.vercel.app"
+          git add content/
+          git commit -m "feat: add daily freediving news articles $(date +%Y-%m-%d)"
+          git push
