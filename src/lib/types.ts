@@ -6,7 +6,10 @@ export type Category =
   | "equipment"
   | "science"
   | "environment"
-  | "people";
+  | "people"
+  | "diving-spot"
+  | "recipe"
+  | "workout";
 
 export type Lang = "ko" | "en";
 

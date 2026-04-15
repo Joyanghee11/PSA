@@ -14,5 +14,8 @@ export const siteConfig = {
     { slug: "science", label: { en: "Science", ko: "과학" } },
     { slug: "environment", label: { en: "Environment", ko: "환경" } },
     { slug: "people", label: { en: "People", ko: "인물" } },
+    { slug: "diving-spot", label: { en: "Diving Spots", ko: "다이빙 포인트" } },
+    { slug: "recipe", label: { en: "Diver's Kitchen", ko: "다이버 식단" } },
+    { slug: "workout", label: { en: "Training Tips", ko: "트레이닝" } },
   ],
 } as const;

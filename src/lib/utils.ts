@@ -38,8 +38,11 @@ export function getCategoryLabel(
     science: { en: "Science", ko: "\uacfc\ud559" },
     environment: { en: "Environment", ko: "\ud658\uacbd" },
     people: { en: "People", ko: "\uc778\ubb3c" },
+    "diving-spot": { en: "Diving Spots", ko: "\ub2e4\uc774\ube59 \ud3ec\uc778\ud2b8" },
+    recipe: { en: "Diver's Kitchen", ko: "\ub2e4\uc774\ubc84 \uc2dd\ub2e8" },
+    workout: { en: "Training Tips", ko: "\ud2b8\ub808\uc774\ub2dd" },
   };
-  return labels[category][lang];
+  return labels[category]?.[lang] ?? category;
 }
 
 export function getCategoryColor(category: Category): string {
@@ -52,6 +55,9 @@ export function getCategoryColor(category: Category): string {
     science: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200",
     environment: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200",
     people: "bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200",
+    "diving-spot": "bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200",
+    recipe: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
+    workout: "bg-lime-100 text-lime-800 dark:bg-lime-900 dark:text-lime-200",
   };
-  return colors[category];
+  return colors[category] ?? "";
 }
