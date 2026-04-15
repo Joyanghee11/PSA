@@ -1,8 +1,12 @@
 import fs from "fs";
 import path from "path";
+import { list, put, del } from "@vercel/blob";
 import type { Article, Category, Lang } from "./types";
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "articles");
+const BLOB_PREFIX = "content/articles/";
+
+// --- Local file helpers (for build-time / static generation) ---
 
 function readJsonFile(filePath: string): Article | null {
   try {
@@ -27,30 +31,86 @@ function walkDir(dir: string): string[] {
   return files;
 }
 
-export function getAllArticles(): Article[] {
+function getLocalArticles(): Article[] {
   const files = walkDir(CONTENT_DIR);
   const articles: Article[] = [];
   for (const file of files) {
     const article = readJsonFile(file);
-    if (article && article.status === "published") {
-      articles.push(article);
-    }
+    if (article) articles.push(article);
   }
-  return articles.sort(
+  return articles;
+}
+
+// --- Blob helpers (for runtime on Vercel) ---
+
+function hasBlobToken(): boolean {
+  return !!process.env.BLOB_READ_WRITE_TOKEN;
+}
+
+async function getBlobArticles(): Promise<Article[]> {
+  if (!hasBlobToken()) return [];
+  try {
+    const articles: Article[] = [];
+    let cursor: string | undefined;
+
+    do {
+      const result = await list({
+        prefix: BLOB_PREFIX,
+        cursor,
+      });
+
+      for (const blob of result.blobs) {
+        if (!blob.pathname.endsWith(".json")) continue;
+        try {
+          const res = await fetch(blob.url);
+          const article = (await res.json()) as Article;
+          articles.push(article);
+        } catch {
+          // skip invalid blobs
+        }
+      }
+
+      cursor = result.hasMore ? result.cursor : undefined;
+    } while (cursor);
+
+    return articles;
+  } catch {
+    return [];
+  }
+}
+
+// --- Combined accessors ---
+
+async function getAllArticlesCombined(): Promise<Article[]> {
+  const local = getLocalArticles();
+  const blob = await getBlobArticles();
+
+  // Merge, deduplicate by slug (blob takes priority)
+  const slugMap = new Map<string, Article>();
+  for (const a of local) slugMap.set(a.slug, a);
+  for (const a of blob) slugMap.set(a.slug, a);
+
+  return Array.from(slugMap.values()).sort(
     (a, b) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
 }
 
+// --- Public API (sync, for build-time static generation) ---
+
+export function getAllArticles(): Article[] {
+  const local = getLocalArticles();
+  return local
+    .filter((a) => a.status === "published")
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    );
+}
+
 export function getArticleBySlug(slug: string): Article | null {
-  const files = walkDir(CONTENT_DIR);
-  for (const file of files) {
-    const article = readJsonFile(file);
-    if (article && article.slug === slug) {
-      return article;
-    }
-  }
-  return null;
+  const articles = getLocalArticles();
+  return articles.find((a) => a.slug === slug) || null;
 }
 
 export function getArticlesByCategory(category: Category): Article[] {
@@ -73,32 +133,58 @@ export function searchArticles(query: string, lang: Lang): Article[] {
   });
 }
 
-export function getAllArticlesIncludingDrafts(): Article[] {
-  const files = walkDir(CONTENT_DIR);
-  const articles: Article[] = [];
-  for (const file of files) {
-    const article = readJsonFile(file);
-    if (article) {
-      articles.push(article);
-    }
-  }
-  return articles.sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  );
+// --- Public API (async, for runtime API routes) ---
+
+export async function getAllArticlesAsync(): Promise<Article[]> {
+  const all = await getAllArticlesCombined();
+  return all.filter((a) => a.status === "published");
 }
 
-export function deleteArticle(slug: string): boolean {
-  const files = walkDir(CONTENT_DIR);
-  for (const file of files) {
-    const article = readJsonFile(file);
-    if (article && article.slug === slug) {
-      fs.unlinkSync(file);
-      return true;
-    }
-  }
-  return false;
+export async function getAllArticlesIncludingDrafts(): Promise<Article[]> {
+  return getAllArticlesCombined();
 }
+
+export async function getArticleBySlugAsync(
+  slug: string
+): Promise<Article | null> {
+  const all = await getAllArticlesCombined();
+  return all.find((a) => a.slug === slug) || null;
+}
+
+export async function writeArticleToBlob(article: Article): Promise<void> {
+  const date = new Date(article.publishedAt);
+  const year = date.getFullYear().toString();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+
+  const blobPath = `${BLOB_PREFIX}${year}/${month}/${day}/${article.slug}.json`;
+  const json = JSON.stringify(article, null, 2);
+
+  await put(blobPath, json, {
+    access: "public",
+    contentType: "application/json",
+    addRandomSuffix: false,
+  });
+}
+
+export async function deleteArticleFromBlob(slug: string): Promise<boolean> {
+  if (!hasBlobToken()) return false;
+
+  try {
+    const result = await list({ prefix: BLOB_PREFIX });
+    for (const blob of result.blobs) {
+      if (blob.pathname.includes(`/${slug}.json`)) {
+        await del(blob.url);
+        return true;
+      }
+    }
+    return false;
+  } catch {
+    return false;
+  }
+}
+
+// --- Legacy local write (for pipeline / GitHub Actions) ---
 
 export function writeArticle(article: Article): void {
   const date = new Date(article.publishedAt);

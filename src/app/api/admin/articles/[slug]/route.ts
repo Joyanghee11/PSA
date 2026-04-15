@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
-import { getArticleBySlug, writeArticle, deleteArticle } from "@/lib/content";
+import {
+  getArticleBySlugAsync,
+  writeArticleToBlob,
+  deleteArticleFromBlob,
+} from "@/lib/content";
 
 export async function GET(
   _request: Request,
@@ -11,7 +15,7 @@ export async function GET(
   }
 
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlugAsync(slug);
   if (!article) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
@@ -28,7 +32,7 @@ export async function PUT(
   }
 
   const { slug } = await params;
-  const existing = getArticleBySlug(slug);
+  const existing = await getArticleBySlugAsync(slug);
   if (!existing) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
@@ -49,15 +53,16 @@ export async function PUT(
       imageAlt: body.imageAlt !== undefined ? body.imageAlt : existing.imageAlt,
     };
 
-    // Delete old file first (in case date changed), then write new
-    deleteArticle(slug);
-    writeArticle(updated);
+    // Delete old blob, write new
+    await deleteArticleFromBlob(slug);
+    await writeArticleToBlob(updated);
 
     return NextResponse.json({ success: true, slug });
-  } catch {
+  } catch (error) {
+    console.error("[Admin API] PUT error:", error);
     return NextResponse.json(
-      { error: "Invalid request body" },
-      { status: 400 }
+      { error: "Failed to update article" },
+      { status: 500 }
     );
   }
 }
@@ -71,7 +76,7 @@ export async function DELETE(
   }
 
   const { slug } = await params;
-  const deleted = deleteArticle(slug);
+  const deleted = await deleteArticleFromBlob(slug);
   if (!deleted) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }

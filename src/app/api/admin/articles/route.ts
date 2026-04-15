@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
 import {
   getAllArticlesIncludingDrafts,
-  writeArticle,
-  getArticleBySlug,
+  writeArticleToBlob,
+  getArticleBySlugAsync,
 } from "@/lib/content";
 import { createSlug } from "@/lib/utils";
 import type { Article } from "@/lib/types";
@@ -13,7 +13,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const articles = getAllArticlesIncludingDrafts();
+  const articles = await getAllArticlesIncludingDrafts();
   return NextResponse.json(articles);
 }
 
@@ -28,7 +28,8 @@ export async function POST(request: Request) {
     const slug = createSlug(body.en?.title || body.ko?.title || "untitled");
 
     // Check for duplicate slug
-    if (getArticleBySlug(slug)) {
+    const existing = await getArticleBySlugAsync(slug);
+    if (existing) {
       return NextResponse.json(
         { error: "Article with this title already exists" },
         { status: 409 }
@@ -59,12 +60,13 @@ export async function POST(request: Request) {
       imageAlt: body.imageAlt || undefined,
     };
 
-    writeArticle(article);
+    await writeArticleToBlob(article);
     return NextResponse.json({ success: true, slug }, { status: 201 });
-  } catch {
+  } catch (error) {
+    console.error("[Admin API] POST error:", error);
     return NextResponse.json(
-      { error: "Invalid request body" },
-      { status: 400 }
+      { error: "Failed to create article" },
+      { status: 500 }
     );
   }
 }
