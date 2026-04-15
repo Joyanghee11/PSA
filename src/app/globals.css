@@ -1,16 +1,29 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@font-face {
+  font-family: "Noto Serif KR";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/notoserif/v23/ga6Iaw1J5X9T9RW6j9bNfFoWaCi_.woff2")
+    format("woff2");
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #111827;
+  --background: #faf9f6;
+  --foreground: #1a1a1a;
   --card: #ffffff;
-  --card-foreground: #111827;
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
-  --accent: #0ea5e9;
+  --card-foreground: #1a1a1a;
+  --muted: #f0ede8;
+  --muted-foreground: #6b6560;
+  --accent: #0c4a6e;
   --accent-foreground: #ffffff;
-  --border: #e5e7eb;
+  --accent-light: #e0f2fe;
+  --border: #d6d0c8;
+  --border-strong: #1a1a1a;
+  --headline: #0f172a;
+  --section-bg: #f5f3ef;
 }
 
 @theme inline {
@@ -22,24 +35,74 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-light: var(--accent-light);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-headline: var(--headline);
+  --color-section-bg: var(--section-bg);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 .dark {
-  --background: #0f172a;
-  --foreground: #f1f5f9;
-  --card: #1e293b;
-  --card-foreground: #f1f5f9;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
+  --background: #0c0f14;
+  --foreground: #e8e4df;
+  --card: #161a22;
+  --card-foreground: #e8e4df;
+  --muted: #1e222b;
+  --muted-foreground: #9ca3af;
   --accent: #38bdf8;
-  --accent-foreground: #0f172a;
-  --border: #334155;
+  --accent-foreground: #0c0f14;
+  --accent-light: #0c4a6e;
+  --border: #2a2e38;
+  --border-strong: #e8e4df;
+  --headline: #f1f5f9;
+  --section-bg: #12161e;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Newspaper-style typography */
+.font-headline {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--headline);
+}
+
+.font-subheadline {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+/* Newspaper divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.divider-strong {
+  border: none;
+  border-top: 3px solid var(--border-strong);
+}
+
+.divider-double {
+  border: none;
+  border-top: 3px double var(--border-strong);
+}
+
+/* Section label */
+.section-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.5rem;
+  background: var(--accent);
+  color: var(--accent-foreground);
 }

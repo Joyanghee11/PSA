@@ -22,7 +22,32 @@
       "Bash(powershell.exe -Command \"\\(Get-Command gh\\).Source\")",
       "Bash(export PATH=\"/c/Program Files/GitHub CLI:$PATH\")",
       "Bash(export PATH=\"/c/Program Files/nodejs:/c/Program Files/GitHub CLI:$PATH\")",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(gh api:*)",
+      "Bash(git config:*)",
+      "Bash(gh repo:*)",
+      "Bash(git push:*)",
+      "Bash(npx vercel:*)",
+      "Bash(curl -s -X POST https://psa-news.vercel.app/api/admin/auth -H 'Content-Type: application/json' -d '{\"password\":\"!Whdidgml912\"}' -c /tmp/psa-cookies.txt -w '\\\\nHTTP %{http_code}')",
+      "Bash(curl -s -X POST https://psa-news.vercel.app/api/admin/articles -H 'Content-Type: application/json' -b /tmp/psa-cookies.txt -d '{\"category\":\"training\",\"status\":\"draft\",\"tags\":[\"test\"],\"ko\":{\"title\":\"테스트 기사\",\"summary\":\"테스트\",\"body\":\"<p>테스트</p>\",\"metaDescription\":\"테스트\"},\"en\":{\"title\":\"Test Article\",\"summary\":\"Test\",\"body\":\"<p>Test</p>\",\"metaDescription\":\"Test\"}}' -w '\\\\nHTTP %{http_code}')",
+      "Bash(git commit:*)",
+      "Bash(curl -s -X POST https://psa-news.vercel.app/api/admin/auth -H \"Content-Type: application/json\" -d '{\"password\":\"!Whdidgml912\"}' -c /tmp/psa-c.txt)",
+      "Bash(curl -s -X POST https://psa-news.vercel.app/api/admin/articles -H \"Content-Type: application/json\" -b /tmp/psa-c.txt -d '{\"category\":\"training\",\"status\":\"draft\",\"tags\":[\"test\"],\"ko\":{\"title\":\"테스트 기사\",\"summary\":\"요약\",\"body\":\"<p>본문</p>\",\"metaDescription\":\"설명\"},\"en\":{\"title\":\"Test Article\",\"summary\":\"Summary\",\"body\":\"<p>Body</p>\",\"metaDescription\":\"Desc\"}}')",
+      "Bash(node -e ':*)",
+      "Bash(node -e \"const d=require\\('/c/Users/joyan/AppData/Roaming/com.vercel.cli/Data/auth.json'\\);console.log\\(d.token\\)\")",
+      "Bash(curl -s https://api.vercel.com/v1/blob/stores -H 'Authorization: Bearer __TRACKED_VAR__' -H 'Content-Type: application/json')",
+      "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\(0,'utf8'\\);const j=JSON.parse\\(d\\);j.stores?.forEach\\(s=>console.log\\(s.id,s.name,s.storeId\\)\\)\")",
+      "Bash(curl -s https://api.vercel.com/v1/storage/stores/blob -H 'Authorization: Bearer vca_6C1EhWLBfMZFCnns9TOl9v35vw5C3RHIAHIAILblNl3vdXTfxB3XUV2w')",
+      "Bash(node -e \"process.stdin.on\\('data',d=>{const j=JSON.parse\\(d\\);\\(j.stores||[]\\).forEach\\(s=>console.log\\(s.id,s.name\\)\\)}\\)\")",
+      "Bash(curl -s https://api.vercel.com/v9/projects/psa-news -H 'Authorization: Bearer __TRACKED_VAR__')",
+      "Bash(node -e \"process.stdin.on\\('data',d=>{const j=JSON.parse\\(d\\);console.log\\('projectId:',j.id\\)}\\)\")",
+      "Bash(curl -s -X POST https://api.vercel.com/v1/storage/stores/blob/store_whU7f1ZL8TVYJqXY/connections -H 'Authorization: Bearer __TRACKED_VAR__' -H 'Content-Type: application/json' -d '{\"projectId\":\"prj_cjwsYkQxodkw1spCPhSbBOszAfxI\",\"environments\":[\"production\",\"preview\",\"development\"]}')",
+      "Bash(curl -s https://api.vercel.com/v1/storage/stores -H 'Authorization: Bearer __TRACKED_VAR__')",
+      "Bash(node -p \"JSON.stringify\\(JSON.parse\\(require\\('fs'\\).readFileSync\\(0,'utf8'\\)\\),null,2\\).slice\\(0,500\\)\")",
+      "Bash(curl -sv -X POST https://api.vercel.com/v1/storage/stores/store_whU7f1ZL8TVYJqXY/connections -H 'Authorization: Bearer __TRACKED_VAR__' -H 'Content-Type: application/json' -d '{\"projectId\":\"prj_cjwsYkQxodkw1spCPhSbBOszAfxI\",\"envVarEnvironments\":[\"production\",\"preview\",\"development\"]}')",
+      "Bash(curl -s -X POST https://psa-news.vercel.app/api/admin/auth -H \"Content-Type: application/json\" -d '{\"password\":\"!Whdidgml912\"}' -c /tmp/psa-c3.txt)",
+      "Bash(curl -s -X POST https://psa-news.vercel.app/api/admin/articles -H \"Content-Type: application/json\" -b /tmp/psa-c3.txt -d '{\"category\":\"training\",\"status\":\"published\",\"tags\":[\"test\"],\"ko\":{\"title\":\"테스트 기사입니다\",\"summary\":\"테스트 요약\",\"body\":\"<p>본문 내용입니다</p>\",\"metaDescription\":\"테스트 설명\"},\"en\":{\"title\":\"Test Article Here\",\"summary\":\"Test summary\",\"body\":\"<p>Body content</p>\",\"metaDescription\":\"Test desc\"}}')"
     ]
   }
 }

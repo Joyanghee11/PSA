@@ -15,10 +15,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "PSA - Planet Sea & Apnea",
-    template: "%s | PSA",
+    default: "다이브 저널 - Dive Journal",
+    template: "%s | 다이브 저널",
   },
-  description: "AI-powered worldwide freediving news in Korean and English",
+  description: "전 세계 프리다이빙 소식을 전하는 AI 인터넷 신문",
 };
 
 export default function RootLayout({

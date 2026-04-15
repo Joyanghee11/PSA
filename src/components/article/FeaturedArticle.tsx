@@ -13,39 +13,41 @@ export function FeaturedArticle({
   const content = article[lang];
 
   return (
-    <article className="group relative bg-card border border-border rounded-xl overflow-hidden">
-      <div className="md:flex">
+    <article className="group">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {article.imageUrl && (
-          <div className="md:w-1/2 aspect-video md:aspect-auto bg-muted overflow-hidden">
-            <img
-              src={article.imageUrl}
-              alt={article.imageAlt || content.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-          </div>
+          <Link href={`/${lang}/article/${article.slug}`} className="block">
+            <div className="aspect-[16/10] overflow-hidden bg-muted">
+              <img
+                src={article.imageUrl}
+                alt={article.imageAlt || content.title}
+                className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+              />
+            </div>
+          </Link>
         )}
-        <div className={`p-6 flex flex-col justify-center ${article.imageUrl ? "md:w-1/2" : "w-full"}`}>
-          <div className="flex items-center gap-2 mb-3">
+        <div className={`flex flex-col justify-center ${!article.imageUrl ? "md:col-span-2" : ""}`}>
+          <div className="flex items-center gap-3 mb-3">
             <CategoryBadge category={article.category} lang={lang} />
-            <span className="text-xs text-muted-foreground">
+            <span className="text-xs text-muted-foreground uppercase tracking-wide">
               {formatDate(article.publishedAt, lang)}
             </span>
           </div>
           <Link href={`/${lang}/article/${article.slug}`}>
-            <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3 group-hover:text-accent transition-colors">
+            <h2 className="text-2xl md:text-4xl font-headline group-hover:text-accent transition-colors mb-4">
               {content.title}
             </h2>
           </Link>
-          <p className="text-muted-foreground mb-4 line-clamp-3">
+          <p className="text-muted-foreground leading-relaxed mb-4 line-clamp-3">
             {content.summary}
           </p>
           <Link
             href={`/${lang}/article/${article.slug}`}
-            className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
           >
-            {lang === "ko" ? "\ub354 \uc77d\uae30" : "Read more"}
+            {lang === "ko" ? "기사 전문 보기" : "Read full article"}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
         </div>

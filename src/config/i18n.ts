@@ -5,35 +5,35 @@ export const defaultLocale: Lang = "ko";
 
 const dictionaries = {
   ko: {
-    siteName: "PSA - Planet Sea & Apnea",
-    siteTagline: "\uc804 \uc138\uacc4 \ud504\ub9ac\ub2e4\uc774\ube59 \ub274\uc2a4",
+    siteName: "다이브 저널",
+    siteTagline: "전 세계 프리다이빙 소식을 전하는 AI 인터넷 신문",
     nav: {
-      home: "\ud648",
-      categories: "\uce74\ud14c\uace0\ub9ac",
-      search: "\uac80\uc0c9",
-      about: "\uc18c\uac1c",
+      home: "홈",
+      categories: "카테고리",
+      search: "검색",
+      about: "소개",
     },
     article: {
-      readMore: "\ub354 \uc77d\uae30",
-      source: "\ucd9c\ucc98",
-      publishedAt: "\ubc1c\ud589\uc77c",
-      relatedArticles: "\uad00\ub828 \uae30\uc0ac",
-      latestNews: "\ucd5c\uc2e0 \ub274\uc2a4",
-      featured: "\uc8fc\uc694 \uae30\uc0ac",
-      noArticles: "\uae30\uc0ac\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.",
+      readMore: "기사 전문 보기",
+      source: "출처",
+      publishedAt: "발행일",
+      relatedArticles: "관련 기사",
+      latestNews: "최신 뉴스",
+      featured: "주요 기사",
+      noArticles: "기사가 없습니다.",
     },
     search: {
-      placeholder: "\uae30\uc0ac \uac80\uc0c9...",
-      noResults: "\uac80\uc0c9 \uacb0\uacfc\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.",
+      placeholder: "기사 검색...",
+      noResults: "검색 결과가 없습니다.",
     },
     footer: {
-      copyright: "\xa9 2026 PSA. AI\ub85c \uc0dd\uc131\ub41c \ud504\ub9ac\ub2e4\uc774\ube59 \ub274\uc2a4.",
-      poweredBy: "Claude AI \uae30\ubc18",
+      copyright: "© 2026 다이브 저널. AI로 생성된 프리다이빙 뉴스.",
+      poweredBy: "Powered by Claude AI",
     },
   },
   en: {
-    siteName: "PSA - Planet Sea & Apnea",
-    siteTagline: "Worldwide Freediving News",
+    siteName: "Dive Journal",
+    siteTagline: "AI-powered worldwide freediving news",
     nav: {
       home: "Home",
       categories: "Categories",
@@ -41,7 +41,7 @@ const dictionaries = {
       about: "About",
     },
     article: {
-      readMore: "Read more",
+      readMore: "Read full article",
       source: "Source",
       publishedAt: "Published",
       relatedArticles: "Related Articles",
@@ -54,7 +54,7 @@ const dictionaries = {
       noResults: "No results found.",
     },
     footer: {
-      copyright: "\xa9 2026 PSA. AI-generated freediving news.",
+      copyright: "© 2026 Dive Journal. AI-generated freediving news.",
       poweredBy: "Powered by Claude AI",
     },
   },
