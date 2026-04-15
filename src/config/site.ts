@@ -3,7 +3,7 @@ export const siteConfig = {
   nameEn: "Dive Journal",
   description: "전 세계 프리다이빙 소식을 전하는 AI 인터넷 신문",
   descriptionEn: "AI-powered worldwide freediving news",
-  url: "https://psa-news.vercel.app",
+  url: "https://divejournal.co.kr",
   defaultLang: "ko" as const,
   categories: [
     { slug: "competition", label: { en: "Competition", ko: "대회" } },

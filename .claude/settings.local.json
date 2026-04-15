@@ -54,7 +54,15 @@
       "Bash(powershell.exe -Command \"\\(Get-Command claude -ErrorAction SilentlyContinue\\).Source\")",
       "Bash(powershell.exe -Command \"schtasks /create /tn 'DiveJournal_DailyNews' /tr 'C:\\\\Users\\\\joyan\\\\PSA\\\\scripts\\\\generate-news.bat' /sc daily /st 09:00 /f\")",
       "Bash(powershell.exe -Command \"schtasks /query /tn 'DiveJournal_DailyNews' /fo list\")",
-      "Bash(node -e \"const a=require\\('./content/articles/2026/04/15/cop15-landmark-shark-protections.json'\\); console.log\\('en.title:', a.en.title\\); console.log\\('en.body length:', a.en.body?.length\\); console.log\\('slug:', a.slug\\)\")"
+      "Bash(node -e \"const a=require\\('./content/articles/2026/04/15/cop15-landmark-shark-protections.json'\\); console.log\\('en.title:', a.en.title\\); console.log\\('en.body length:', a.en.body?.length\\); console.log\\('slug:', a.slug\\)\")",
+      "Bash(nslookup divejournal.co.kr)",
+      "Bash(dig divejournal.co.kr A +short)",
+      "Bash(nslookup divejournal.co.kr 8.8.8.8)",
+      "Bash(nslookup www.divejournal.co.kr 8.8.8.8)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://divejournal.co.kr)",
+      "Bash(nslookup divejournal.co.kr ns.gabia.co.kr)",
+      "Bash(curl -sk -o /dev/null -w \"HTTP %{http_code}, IP: %{remote_ip}\" --resolve divejournal.co.kr:443:76.76.21.21 https://divejournal.co.kr)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\" --resolve divejournal.co.kr:80:76.76.21.21 http://divejournal.co.kr)"
     ]
   }
 }
