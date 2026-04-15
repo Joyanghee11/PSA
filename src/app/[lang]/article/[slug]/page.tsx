@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { Lang } from "@/lib/types";
-import { getArticleBySlug, getAllArticles } from "@/lib/content";
+import { getArticleBySlugAsync, getAllArticles } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
 import { CategoryBadge } from "@/components/article/CategoryBadge";
 import { getDictionary } from "@/config/i18n";
+
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   const articles = getAllArticles();
@@ -22,7 +24,7 @@ export async function generateMetadata({
   params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
   const { lang, slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlugAsync(slug);
   if (!article) return { title: "Not Found" };
 
   const content = article[lang as Lang];
@@ -51,7 +53,7 @@ export default async function ArticlePage({
   params: Promise<{ lang: string; slug: string }>;
 }) {
   const { lang, slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlugAsync(slug);
   if (!article) notFound();
 
   const dict = getDictionary(lang as Lang);

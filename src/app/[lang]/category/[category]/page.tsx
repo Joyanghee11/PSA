@@ -3,9 +3,11 @@ import type { Metadata } from "next";
 import type { Lang, Category } from "@/lib/types";
 import { siteConfig } from "@/config/site";
 import { getDictionary } from "@/config/i18n";
-import { getArticlesByCategory } from "@/lib/content";
+import { getAllArticlesAsync } from "@/lib/content";
 import { getCategoryLabel } from "@/lib/utils";
 import { ArticleList } from "@/components/article/ArticleList";
+
+export const dynamic = "force-dynamic";
 
 const validCategories: string[] = siteConfig.categories.map((c) => c.slug);
 
@@ -30,7 +32,7 @@ export async function generateMetadata({
     title: label,
     description:
       lang === "ko"
-        ? `${label} \uad00\ub828 \ud504\ub9ac\ub2e4\uc774\ube59 \ub274\uc2a4`
+        ? `${label} 관련 프리다이빙 뉴스`
         : `Freediving news about ${label}`,
   };
 }
@@ -47,7 +49,8 @@ export default async function CategoryPage({
   }
 
   const dict = getDictionary(lang as Lang);
-  const articles = getArticlesByCategory(category as Category);
+  const allArticles = await getAllArticlesAsync();
+  const articles = allArticles.filter((a) => a.category === category);
   const label = getCategoryLabel(category as Category, lang as Lang);
 
   return (

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import type { Lang } from "@/lib/types";
 import { getDictionary } from "@/config/i18n";
-import { getRecentArticles } from "@/lib/content";
+import { getAllArticlesAsync } from "@/lib/content";
 import { FeaturedArticle } from "@/components/article/FeaturedArticle";
 import { ArticleCard } from "@/components/article/ArticleCard";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -30,7 +32,8 @@ export default async function HomePage({
 }) {
   const { lang } = await params;
   const dict = getDictionary(lang as Lang);
-  const articles = getRecentArticles(20);
+  const allArticles = await getAllArticlesAsync();
+  const articles = allArticles.slice(0, 20);
   const featured = articles[0];
   const row2 = articles.slice(1, 4);
   const row3 = articles.slice(4, 8);
