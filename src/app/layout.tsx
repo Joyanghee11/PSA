@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   },
   description: "전 세계 프리다이빙 소식을 전하는 AI 인터넷 신문",
     verification: {
+          google: "NUkGNP5ffmfBvIFziSJIKVtlPRFyHMrT8BL_M5NLL30",
           other: {
                   "naver-site-verification": "8518ec3b62017018364e9c6a826670e2b0c6a05d",
           },
