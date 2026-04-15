@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.89.0",
+    "@vercel/blob": "^2.3.3",
     "cheerio": "^1.2.0",
     "date-fns": "^4.1.0",
     "fuse.js": "^7.3.0",
