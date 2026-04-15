@@ -4,9 +4,15 @@
   "updatedAt": "2026-04-15T00:00:00Z",
   "status": "published",
   "category": "diving-spot",
-  "tags": ["Iceland", "Silfra", "tectonic plates", "crystal clear", "travel"],
+  "tags": [
+    "Iceland",
+    "Silfra",
+    "tectonic plates",
+    "crystal clear",
+    "travel"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/crystal%20clear%20turquoise%20water%20between%20two%20tectonic%20plates%20at%20Silfra%20fissure%20Iceland%2C%20underwater%20view%20showing%20volcanic%20rock%20walls%20and%20incredible%20visibility%2C%20snorkeler%20floating%20between%20continents%2C%20nature%20photography?width=800&height=450&nologo=true&seed=5001",
+  "imageUrl": "https://image.pollinations.ai/prompt/crystal%20clear%20turquoise%20water%20between%20two%20tectonic%20plates%20at%20Silfra%20fissure%20Iceland%2C%20underwater%20view%20showing%20volcanic%20rock%20walls%20and%20incredible%20visibility%2C%20snorkeler%20floating%20between%20continents%2C%20nature%20photography?model=flux&width=1200&height=675&nologo=true&seed=35770&enhance=true",
   "imageAlt": "Silfra fissure crystal clear water between tectonic plates",
   "en": {
     "title": "Diving Spot of the Day: Silfra Fissure, Iceland — Diving Between Two Continents",

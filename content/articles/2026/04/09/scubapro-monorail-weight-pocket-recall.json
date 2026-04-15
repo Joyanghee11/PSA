@@ -4,12 +4,18 @@
   "updatedAt": "2026-04-09T12:00:00Z",
   "status": "published",
   "category": "equipment",
-  "tags": ["SCUBAPRO", "recall", "safety", "BCD", "weight pocket"],
+  "tags": [
+    "SCUBAPRO",
+    "recall",
+    "safety",
+    "BCD",
+    "weight pocket"
+  ],
   "sourceUrls": [
     "https://www.cpsc.gov/Recalls/2026/SCUBAPRO-Recalls-Monorail-Weight-Pockets-for-Buoyancy-Compensator-Devices-BCDs-Due-to-Risk-of-Serious-Injury-or-Death-from-Drowning",
     "https://www.deeperblue.com/scubapro-recalls-monorail-weight-pockets-for-bcds/"
   ],
-  "imageUrl": "https://image.pollinations.ai/prompt/scuba%20diving%20BCD%20buoyancy%20compensator%20weight%20pocket%20system%20close-up%20detail%20showing%20D-ring%20handle%20mechanism%2C%20diving%20equipment%20safety%20inspection%2C%20studio%20product%20photography?width=800&height=450&nologo=true&seed=9401",
+  "imageUrl": "https://image.pollinations.ai/prompt/scuba%20diving%20BCD%20buoyancy%20compensator%20weight%20pocket%20system%20close-up%20detail%20showing%20D-ring%20handle%20mechanism%2C%20diving%20equipment%20safety%20inspection%2C%20studio%20product%20photography?model=flux&width=1200&height=675&nologo=true&seed=23491&enhance=true",
   "imageAlt": "BCD weight pocket system close-up",
   "en": {
     "title": "SCUBAPRO Recalls 2,800 Monorail Weight Pockets Over Drowning Risk",

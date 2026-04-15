@@ -4,9 +4,16 @@
   "updatedAt": "2026-04-15T01:00:00Z",
   "status": "published",
   "category": "recipe",
-  "tags": ["recipe", "salmon", "beetroot", "iron", "oxygen", "nutrition"],
+  "tags": [
+    "recipe",
+    "salmon",
+    "beetroot",
+    "iron",
+    "oxygen",
+    "nutrition"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/beautiful%20healthy%20poke%20bowl%20with%20fresh%20salmon%20sashimi%20slices%20beetroot%20cubes%20avocado%20brown%20rice%20spinach%20and%20sesame%20seeds%20on%20ceramic%20plate%2C%20overhead%20food%20photography%2C%20natural%20lighting?width=800&height=450&nologo=true&seed=6001",
+  "imageUrl": "https://image.pollinations.ai/prompt/beautiful%20healthy%20poke%20bowl%20with%20fresh%20salmon%20sashimi%20slices%20beetroot%20cubes%20avocado%20brown%20rice%20spinach%20and%20sesame%20seeds%20on%20ceramic%20plate%2C%20overhead%20food%20photography%2C%20natural%20lighting?model=flux&width=1200&height=675&nologo=true&seed=73652&enhance=true",
   "imageAlt": "Beetroot salmon poke bowl",
   "en": {
     "title": "Diver's Kitchen: Beetroot & Salmon Power Bowl for Oxygen-Rich Blood",

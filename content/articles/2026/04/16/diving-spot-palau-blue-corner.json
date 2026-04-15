@@ -4,9 +4,17 @@
   "updatedAt": "2026-04-16T00:00:00Z",
   "status": "published",
   "category": "diving-spot",
-  "tags": ["Palau", "Blue Corner", "Pacific", "sharks", "manta ray", "shark sanctuary", "travel"],
+  "tags": [
+    "Palau",
+    "Blue Corner",
+    "Pacific",
+    "sharks",
+    "manta ray",
+    "shark sanctuary",
+    "travel"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/dramatic%20underwater%20reef%20wall%20at%20Blue%20Corner%20Palau%20with%20grey%20reef%20sharks%20and%20schooling%20barracuda%20circling%20in%20crystal%20blue%20Pacific%20water%2C%20diver%20silhouette%20against%20deep%20blue%20abyss%2C%20underwater%20photography%20vivid%20colors?width=800&height=450&nologo=true&seed=4201",
+  "imageUrl": "https://image.pollinations.ai/prompt/dramatic%20underwater%20reef%20wall%20at%20Blue%20Corner%20Palau%20with%20grey%20reef%20sharks%20and%20schooling%20barracuda%20circling%20in%20crystal%20blue%20Pacific%20water%2C%20diver%20silhouette%20against%20deep%20blue%20abyss%2C%20underwater%20photography%20vivid%20colors?model=flux&width=1200&height=675&nologo=true&seed=65311&enhance=true",
   "imageAlt": "Blue Corner reef wall in Palau with sharks and barracuda",
   "en": {
     "title": "Diving Spot of the Day: Palau Blue Corner — The World's Most Exhilarating Reef Dive",

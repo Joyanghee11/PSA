@@ -71,7 +71,12 @@
       "Bash(nslookup -type=NS divejournal.co.kr 8.8.8.8)",
       "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\" --dns-servers 8.8.8.8 https://divejournal.co.kr)",
       "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\" -k --resolve divejournal.co.kr:443:64.29.17.1 https://divejournal.co.kr)",
-      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\" -L -k --resolve divejournal.co.kr:443:64.29.17.1 --resolve divejournal.co.kr:80:64.29.17.1 https://divejournal.co.kr)"
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\" -L -k --resolve divejournal.co.kr:443:64.29.17.1 --resolve divejournal.co.kr:80:64.29.17.1 https://divejournal.co.kr)",
+      "Bash(powershell.exe -Command \"schtasks /delete /tn 'DiveJournal_DailyNews' /f; schtasks /create /tn 'DiveJournal_DailyNews' /tr 'C:\\\\Users\\\\joyan\\\\PSA\\\\scripts\\\\generate-news.bat' /sc daily /st 09:00 /rl highest /f\")",
+      "Bash(powershell.exe -Command \"schtasks /delete /tn 'DiveJournal_DailyNews' /f 2>&1; schtasks /create /tn 'DiveJournal_DailyNews' /tr 'C:\\\\Users\\\\joyan\\\\PSA\\\\scripts\\\\generate-news.bat' /sc daily /st 09:00 /f\")",
+      "Bash(ls /c/Users/joyan/PSA/content/articles/2026/04/16/*.json)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)"
     ]
   }
 }

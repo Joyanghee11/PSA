@@ -107,6 +107,28 @@ body {
   color: var(--accent);
 }
 
+/* Force article body text colors for light/dark mode */
+.prose {
+  --tw-prose-body: var(--foreground) !important;
+  --tw-prose-headings: var(--headline) !important;
+  --tw-prose-bold: var(--headline) !important;
+  --tw-prose-links: var(--accent-blue) !important;
+  --tw-prose-counters: var(--muted-foreground) !important;
+  --tw-prose-bullets: var(--muted-foreground) !important;
+}
+.prose p, .prose li, .prose td, .prose th {
+  color: var(--foreground) !important;
+}
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: var(--headline) !important;
+}
+.prose strong, .prose b {
+  color: var(--headline) !important;
+}
+.prose a {
+  color: var(--accent-blue) !important;
+}
+
 /* Thin border util */
 .border-t-thin { border-top: 1px solid var(--border); }
 .border-b-thin { border-bottom: 1px solid var(--border); }

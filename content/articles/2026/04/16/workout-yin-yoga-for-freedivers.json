@@ -4,9 +4,17 @@
   "updatedAt": "2026-04-16T02:00:00Z",
   "status": "published",
   "category": "workout",
-  "tags": ["yoga", "yin yoga", "flexibility", "hip flexor", "thoracic spine", "streamline", "training"],
+  "tags": [
+    "yoga",
+    "yin yoga",
+    "flexibility",
+    "hip flexor",
+    "thoracic spine",
+    "streamline",
+    "training"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/woman%20in%20deep%20low%20lunge%20dragon%20yoga%20pose%20on%20wooden%20floor%20by%20large%20bright%20window%2C%20athletic%20wear%2C%20calm%20focused%20expression%2C%20warm%20natural%20light%2C%20wellness%20editorial%20photography?width=800&height=450&nologo=true&seed=7201",
+  "imageUrl": "https://image.pollinations.ai/prompt/woman%20in%20deep%20low%20lunge%20dragon%20yoga%20pose%20on%20wooden%20floor%20by%20large%20bright%20window%2C%20athletic%20wear%2C%20calm%20focused%20expression%2C%20warm%20natural%20light%2C%20wellness%20editorial%20photography?model=flux&width=1200&height=675&nologo=true&seed=19227&enhance=true",
   "imageAlt": "Person doing deep dragon yin yoga pose for hip flexor flexibility",
   "en": {
     "title": "Training Tip: Yin Yoga Sequence for Freedivers — Open Your Hips, Chest, and Mind",

@@ -102,7 +102,7 @@ export default async function ArticlePage({
 
       {/* Body */}
       <div
-        className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-headline prose-p:leading-relaxed prose-p:text-foreground/90"
+        className="prose prose-lg max-w-none prose-headings:font-headline prose-p:leading-relaxed"
         dangerouslySetInnerHTML={{ __html: content.body }}
       />
 

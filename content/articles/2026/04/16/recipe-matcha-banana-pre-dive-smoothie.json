@@ -4,9 +4,17 @@
   "updatedAt": "2026-04-16T01:00:00Z",
   "status": "published",
   "category": "recipe",
-  "tags": ["recipe", "matcha", "banana", "smoothie bowl", "L-theanine", "pre-dive", "nutrition"],
+  "tags": [
+    "recipe",
+    "matcha",
+    "banana",
+    "smoothie bowl",
+    "L-theanine",
+    "pre-dive",
+    "nutrition"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/vibrant%20green%20matcha%20smoothie%20bowl%20on%20white%20ceramic%2C%20topped%20with%20banana%20slices%20kiwi%20rounds%20granola%20and%20chia%20seeds%2C%20overhead%20food%20photography%20natural%20daylight%20minimalist%20table%20setting%20healthy%20breakfast?width=800&height=450&nologo=true&seed=6201",
+  "imageUrl": "https://image.pollinations.ai/prompt/vibrant%20green%20matcha%20smoothie%20bowl%20on%20white%20ceramic%2C%20topped%20with%20banana%20slices%20kiwi%20rounds%20granola%20and%20chia%20seeds%2C%20overhead%20food%20photography%20natural%20daylight%20minimalist%20table%20setting%20healthy%20breakfast?model=flux&width=1200&height=675&nologo=true&seed=84308&enhance=true",
   "imageAlt": "Matcha banana smoothie bowl with fruit toppings",
   "en": {
     "title": "Diver's Kitchen: Matcha & Banana Smoothie Bowl for Focused Calm Before the Dive",
