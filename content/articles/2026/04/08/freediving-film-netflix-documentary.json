@@ -4,9 +4,14 @@
   "updatedAt": "2026-04-08T18:00:00Z",
   "status": "published",
   "category": "people",
-  "tags": ["documentary", "Netflix", "film", "Guillaume Nery"],
+  "tags": [
+    "documentary",
+    "Netflix",
+    "film",
+    "Guillaume Nery"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/cinematic%20underwater%20shot%20of%20freediver%20silhouetted%20against%20bright%20sun%20rays%20penetrating%20deep%20blue%20ocean%2C%20dramatic%20lighting%2C%20film%20still%20quality%2C%20Guillaume%20Nery%20style%20diving?width=800&height=450&nologo=true&seed=3575",
   "imageAlt": "Deep blue ocean surface",
   "en": {
     "title": "Netflix Freediving Documentary 'One Breath' Becomes Platform's Most-Watched Sports Film",

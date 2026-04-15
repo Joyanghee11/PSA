@@ -4,9 +4,14 @@
   "updatedAt": "2026-04-15T11:00:00Z",
   "status": "published",
   "category": "records",
-  "tags": ["Korea", "national team", "CWT", "record"],
+  "tags": [
+    "Korea",
+    "national team",
+    "CWT",
+    "record"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/Korean%20freediver%20in%20competition%20wetsuit%20emerging%20from%20deep%20blue%20water%20along%20dive%20line%2C%20celebrating%20at%20surface%2C%20competition%20judges%20on%20platform%2C%20dramatic%20lighting?width=800&height=450&nologo=true&seed=3159",
   "imageAlt": "Deep blue ocean freediving",
   "en": {
     "title": "South Korean National Freediving Team Sets New Asian CWT Record",

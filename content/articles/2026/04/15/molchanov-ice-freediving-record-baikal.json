@@ -4,12 +4,18 @@
   "updatedAt": "2026-04-15T14:00:00Z",
   "status": "published",
   "category": "records",
-  "tags": ["Molchanov", "ice freediving", "Baikal", "world record", "Russia"],
+  "tags": [
+    "Molchanov",
+    "ice freediving",
+    "Baikal",
+    "world record",
+    "Russia"
+  ],
   "sourceUrls": [
     "https://www.deeperblue.com",
     "https://divernet.com"
   ],
-  "imageUrl": "https://images.unsplash.com/photo-1551244072-5d12893278ab?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/freediver%20descending%20through%20hole%20cut%20in%20thick%20ice%20into%20dark%20freezing%20water%20below%2C%20ice%20surface%20visible%20from%20underwater%2C%20dramatic%20contrast%20between%20ice%20and%20deep%20water%2C%20extreme%20sports%20photography?width=800&height=450&nologo=true&seed=3762",
   "imageAlt": "Frozen lake with ice hole",
   "en": {
     "title": "Molchanov Shatters Ice Freediving Record Under Frozen Lake Baikal",

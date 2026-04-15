@@ -4,9 +4,15 @@
   "updatedAt": "2026-04-12T10:00:00Z",
   "status": "published",
   "category": "people",
-  "tags": ["Philippines", "tourism", "Moalboal", "Panglao", "travel"],
+  "tags": [
+    "Philippines",
+    "tourism",
+    "Moalboal",
+    "Panglao",
+    "travel"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/stunning%20underwater%20scene%20in%20Moalboal%20Philippines%20with%20massive%20sardine%20ball%20swirling%20around%20a%20freediver%2C%20crystal%20clear%20tropical%20water%2C%20coral%20reef%20below%2C%20travel%20photography?width=800&height=450&nologo=true&seed=3599",
   "imageAlt": "Tropical ocean with coral reef",
   "en": {
     "title": "Philippines Emerges as World's Fastest-Growing Freediving Tourism Destination",

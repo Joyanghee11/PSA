@@ -4,9 +4,14 @@
   "updatedAt": "2026-04-13T14:00:00Z",
   "status": "published",
   "category": "competition",
-  "tags": ["women", "championship", "AIDA", "Alessia Zecchini"],
+  "tags": [
+    "women",
+    "championship",
+    "AIDA",
+    "Alessia Zecchini"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/female%20freediver%20in%20competition%20performing%20perfect%20duck%20dive%20entry%20into%20deep%20blue%20Mediterranean%20sea%2C%20Kalamata%20Greece%20coastline%20visible%2C%20competition%20setting%2C%20sports%20photography?width=800&height=450&nologo=true&seed=2982",
   "imageAlt": "Underwater blue ocean",
   "en": {
     "title": "Women's Freediving World Championship Draws Record 120 Athletes to Kalamata",

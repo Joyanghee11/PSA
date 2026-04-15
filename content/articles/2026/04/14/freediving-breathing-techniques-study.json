@@ -4,9 +4,14 @@
   "updatedAt": "2026-04-14T08:00:00Z",
   "status": "published",
   "category": "science",
-  "tags": ["breathing", "research", "physiology", "mammalian dive reflex"],
+  "tags": [
+    "breathing",
+    "research",
+    "physiology",
+    "mammalian dive reflex"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/scientific%20laboratory%20setup%20with%20freediver%20in%20pool%20being%20monitored%20by%20medical%20equipment%2C%20heart%20rate%20monitors%20and%20oxygen%20sensors%20attached%2C%20researchers%20taking%20notes%2C%20medical%20photography?width=800&height=450&nologo=true&seed=3792",
   "imageAlt": "Ocean surface with sunlight",
   "en": {
     "title": "Stanford Study Reveals New Insights Into Mammalian Dive Reflex in Trained Freedivers",

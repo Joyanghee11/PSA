@@ -4,9 +4,14 @@
   "updatedAt": "2026-04-09T12:00:00Z",
   "status": "published",
   "category": "records",
-  "tags": ["static apnea", "pool", "record", "Budimir Sobat"],
+  "tags": [
+    "static apnea",
+    "pool",
+    "record",
+    "Budimir Sobat"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/freediver%20floating%20face%20down%20motionless%20in%20perfectly%20still%20pool%20water%20during%20static%20apnea%20attempt%2C%20timer%20clock%20visible%20on%20poolside%2C%20calm%20meditative%20atmosphere%2C%20sports%20photography?width=800&height=450&nologo=true&seed=2923",
   "imageAlt": "Swimming pool underwater",
   "en": {
     "title": "Croatian Freediver Budimir Sobat Extends Static Apnea Record to 25 Minutes 12 Seconds",

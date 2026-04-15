@@ -4,9 +4,15 @@
   "updatedAt": "2026-04-10T15:00:00Z",
   "status": "published",
   "category": "training",
-  "tags": ["youth", "education", "AIDA", "junior", "training"],
+  "tags": [
+    "youth",
+    "education",
+    "AIDA",
+    "junior",
+    "training"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://images.unsplash.com/photo-1530053969600-caed2596d242?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/group%20of%20teenage%20students%20in%20pool%20learning%20freediving%20basics%20from%20instructor%2C%20wearing%20masks%20and%20snorkels%2C%20educational%20setting%2C%20bright%20pool%20lighting%2C%20youth%20sports%20photography?width=800&height=450&nologo=true&seed=3158",
   "imageAlt": "Young swimmers in pool",
   "en": {
     "title": "AIDA Launches Global Youth Freediving Program for Ages 12-18",

@@ -4,9 +4,15 @@
   "updatedAt": "2026-04-10T09:00:00Z",
   "status": "published",
   "category": "environment",
-  "tags": ["Blue Hole", "Dahab", "conservation", "Egypt", "coral"],
+  "tags": [
+    "Blue Hole",
+    "Dahab",
+    "conservation",
+    "Egypt",
+    "coral"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/aerial%20drone%20shot%20of%20the%20Blue%20Hole%20in%20Dahab%20Egypt%2C%20perfect%20circular%20deep%20blue%20hole%20in%20coral%20reef%20surrounded%20by%20turquoise%20shallow%20water%2C%20Red%20Sea%2C%20nature%20photography?width=800&height=450&nologo=true&seed=2786",
   "imageAlt": "Aerial view of blue hole",
   "en": {
     "title": "Dahab Blue Hole Gets New Marine Protection Status After Freediving Community Campaign",

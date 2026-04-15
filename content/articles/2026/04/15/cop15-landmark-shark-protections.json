@@ -4,11 +4,17 @@
   "updatedAt": "2026-04-15T17:00:00Z",
   "status": "published",
   "category": "conservation",
-  "tags": ["shark", "COP15", "CMS", "conservation", "marine life"],
+  "tags": [
+    "shark",
+    "COP15",
+    "CMS",
+    "conservation",
+    "marine life"
+  ],
   "sourceUrls": [
     "https://www.deeperblue.com/cop15-agrees-to-landmark-shark-protections/"
   ],
-  "imageUrl": "https://images.unsplash.com/photo-1559827291-72ebfec4148f?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/majestic%20great%20white%20shark%20swimming%20in%20open%20blue%20ocean%20with%20sunlight%20streaming%20down%2C%20conservation%20photography%20style%2C%20powerful%20and%20graceful?width=800&height=450&nologo=true&seed=3148",
   "imageAlt": "Shark swimming in open ocean",
   "en": {
     "title": "COP15 Reaches Landmark Agreement on Global Shark Protections",

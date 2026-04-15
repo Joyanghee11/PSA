@@ -4,11 +4,17 @@
   "updatedAt": "2026-04-15T16:00:00Z",
   "status": "published",
   "category": "gear",
-  "tags": ["SCUBAPRO", "recall", "BCD", "safety", "weight system"],
+  "tags": [
+    "SCUBAPRO",
+    "recall",
+    "BCD",
+    "safety",
+    "weight system"
+  ],
   "sourceUrls": [
     "https://www.deeperblue.com/scubapro-recalls-monorail-weight-pockets-for-bcds/"
   ],
-  "imageUrl": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/scuba%20diving%20BCD%20weight%20system%20close-up%20showing%20weight%20pocket%20mechanism%2C%20technical%20diving%20equipment%20detail%2C%20safety%20inspection%20context%2C%20product%20recall%20photography?width=800&height=450&nologo=true&seed=3829",
   "imageAlt": "Scuba diver checking equipment before a dive",
   "en": {
     "title": "SCUBAPRO Issues Recall on Monorail Weight Pockets Amid Safety Concern",

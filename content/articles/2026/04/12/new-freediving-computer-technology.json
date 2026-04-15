@@ -4,9 +4,16 @@
   "updatedAt": "2026-04-12T15:00:00Z",
   "status": "published",
   "category": "equipment",
-  "tags": ["dive computer", "technology", "Garmin", "wearable"],
-  "sourceUrls": ["https://divernet.com"],
-  "imageUrl": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
+  "tags": [
+    "dive computer",
+    "technology",
+    "Garmin",
+    "wearable"
+  ],
+  "sourceUrls": [
+    "https://divernet.com"
+  ],
+  "imageUrl": "https://image.pollinations.ai/prompt/close-up%20of%20futuristic%20dive%20computer%20smartwatch%20on%20wrist%20underwater%20showing%20depth%20and%20heart%20rate%20data%2C%20blue%20water%20background%20with%20bubbles%2C%20product%20photography%20style?width=800&height=450&nologo=true&seed=3487",
   "imageAlt": "Dive watch technology",
   "en": {
     "title": "Garmin Unveils AI-Powered Freediving Computer with Real-Time Safety Alerts",
@@ -15,9 +22,9 @@
     "metaDescription": "Garmin unveils the Descent G2 Pro, an AI-powered freediving computer with real-time safety alerts and blackout prediction."
   },
   "ko": {
-    "title": "\uac00\ubbfc, AI \uae30\ubc18 \uc2e4\uc2dc\uac04 \uc548\uc804 \uacbd\uace0 \ud504\ub9ac\ub2e4\uc774\ube59 \ucef4\ud4e8\ud130 \uacf5\uac1c",
-    "summary": "\uac00\ubbfc\uc758 \ucd5c\uc2e0 \ud504\ub9ac\ub2e4\uc774\ube59 \uc6cc\uce58\ub294 \uc0dd\uccb4 \ub370\uc774\ud130\ub97c \ubaa8\ub2c8\ud130\ub9c1\ud558\uace0 \ub2e4\uc774\ube59 \uc911 \uc2e4\uc2dc\uac04 \uc548\uc804 \uacbd\uace0\ub97c \uc81c\uacf5\ud558\ub294 AI \uc5d4\uc9c4\uc744 \ud0d1\uc7ac\ud588\uc2b5\ub2c8\ub2e4.",
-    "body": "<p>\uac00\ubbfc\uc774 \ud504\ub9ac\ub2e4\uc774\ubc84\uc758 \ud6c8\ub828\uacfc \ub300\ud68c \ubc29\uc2dd\uc744 \ud601\uba85\uc801\uc73c\ub85c \ubc14\uafe8 \uc218 \uc788\ub294 AI \uae30\ubc18 \uc548\uc804 \uc2dc\uc2a4\ud15c\uc744 \ud0d1\uc7ac\ud55c \ucd5c\ucca8\ub2e8 \ud504\ub9ac\ub2e4\uc774\ube59 \ucef4\ud4e8\ud130 Descent G2 Pro\ub97c \ubc1c\ud45c\ud588\uc2b5\ub2c8\ub2e4.</p><p>\uc774 \uae30\uae30\ub294 \uad11\ud559 \uc2ec\ubc15\uc218 \uc13c\uc11c, \ud608\uc561 \uc0b0\uc18c \ubaa8\ub2c8\ud130\ub9c1, \ub3c5\uc790 \uc54c\uace0\ub9ac\uc998\uc744 \uc0ac\uc6a9\ud558\uc5ec \uc800\uc0b0\uc18c \uc774\ubca4\ud2b8\uac00 \ubc1c\uc0dd\ud558\uae30 \uc804\uc5d0 \uc608\uce21\ud569\ub2c8\ub2e4. \uc704\ud5d8 \uc9c0\ud45c\uac00 \uac10\uc9c0\ub418\uba74 \uc2dc\uacc4\uac00 \ub2e4\uc774\ubc84\uc5d0\uac8c \uc9c4\ub3d9 \uc54c\ub9bc\uc744 \uc804\ub2ec\ud569\ub2c8\ub2e4.</p><p>\"\uc6b0\ub9ac\ub294 \uc218\ucc9c \uc2dc\uac04\uc758 \ud504\ub9ac\ub2e4\uc774\ube59 \ub370\uc774\ud130\ub85c AI \ubaa8\ub378\uc744 \ud6c8\ub828\uc2dc\ucf30\uc2b5\ub2c8\ub2e4\"\ub77c\uace0 \uac00\ubbfc \ud574\uc591 \ubd80\ubb38 \ucc45\uc784\uc790\uac00 \ub9d0\ud588\uc2b5\ub2c8\ub2e4. \"\uc774 \uc2dc\uc2a4\ud15c\uc740 \ube14\ub799\uc544\uc6c3 \uc774\ubca4\ud2b8\uc5d0 \uc120\ud589\ud558\ub294 \ud328\ud134\uc744 \ub180\ub77c\uc6b4 \uc815\ud655\ub3c4\ub85c \uac10\uc9c0\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4.\"</p><p>\ucd94\uac00 \uae30\ub2a5\uc73c\ub85c\ub294 \uc790\ub3d9 \ub2e4\uc774\ube0c \ub85c\uae45, \uc218\uc2ec \ubc0f \uc218\uc628 \ucd94\uc801, \uc218\uba74 \ud734\uc2dd \uad00\ub9ac, \uc0c1\uc138\ud55c \ub2e4\uc774\ube0c \ud6c4 \ubd84\uc11d\uc744 \uc81c\uacf5\ud558\ub294 \uc2a4\ub9c8\ud2b8\ud3f0 \uc571\uacfc\uc758 \uc6d0\ud65c\ud55c \ub3d9\uae30\ud654\uac00 \uc788\uc2b5\ub2c8\ub2e4.</p><p>Descent G2 Pro\uc758 \uac00\uaca9\uc740 $899\uc774\uba70 2026\ub144 5\uc6d4\ubd80\ud130 \uad6c\ub9e4 \uac00\ub2a5\ud569\ub2c8\ub2e4. \uc0ac\uc804 \uc608\uc57d\uc740 \ub2e4\uc74c \uc8fc\ubd80\ud130 \uc2dc\uc791\ub429\ub2c8\ub2e4.</p>",
-    "metaDescription": "\uac00\ubbfc\uc774 AI \uae30\ubc18 \uc2e4\uc2dc\uac04 \uc548\uc804 \uacbd\uace0\uc640 \ube14\ub799\uc544\uc6c3 \uc608\uce21 \uae30\ub2a5\uc744 \ud0d1\uc7ac\ud55c Descent G2 Pro \ud504\ub9ac\ub2e4\uc774\ube59 \ucef4\ud4e8\ud130\ub97c \uacf5\uac1c\ud588\uc2b5\ub2c8\ub2e4."
+    "title": "가민, AI 기반 실시간 안전 경고 프리다이빙 컴퓨터 공개",
+    "summary": "가민의 최신 프리다이빙 워치는 생체 데이터를 모니터링하고 다이빙 중 실시간 안전 경고를 제공하는 AI 엔진을 탑재했습니다.",
+    "body": "<p>가민이 프리다이버의 훈련과 대회 방식을 혁명적으로 바꿨 수 있는 AI 기반 안전 시스템을 탑재한 최첨단 프리다이빙 컴퓨터 Descent G2 Pro를 발표했습니다.</p><p>이 기기는 광학 심박수 센서, 혈액 산소 모니터링, 독자 알고리즘을 사용하여 저산소 이벤트가 발생하기 전에 예측합니다. 위험 지표가 감지되면 시계가 다이버에게 진동 알림을 전달합니다.</p><p>\"우리는 수천 시간의 프리다이빙 데이터로 AI 모델을 훈련시켰습니다\"라고 가민 해양 부문 책임자가 말했습니다. \"이 시스템은 블랙아웃 이벤트에 선행하는 패턴을 놀라운 정확도로 감지할 수 있습니다.\"</p><p>추가 기능으로는 자동 다이브 로깅, 수심 및 수온 추적, 수면 휴식 관리, 상세한 다이브 후 분석을 제공하는 스마트폰 앱과의 원활한 동기화가 있습니다.</p><p>Descent G2 Pro의 가격은 $899이며 2026년 5월부터 구매 가능합니다. 사전 예약은 다음 주부터 시작됩니다.</p>",
+    "metaDescription": "가민이 AI 기반 실시간 안전 경고와 블랙아웃 예측 기능을 탑재한 Descent G2 Pro 프리다이빙 컴퓨터를 공개했습니다."
   }
 }

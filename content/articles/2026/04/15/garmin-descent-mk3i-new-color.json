@@ -4,11 +4,16 @@
   "updatedAt": "2026-04-15T06:00:00Z",
   "status": "published",
   "category": "equipment",
-  "tags": ["Garmin", "Descent Mk3i", "dive computer", "titanium"],
+  "tags": [
+    "Garmin",
+    "Descent Mk3i",
+    "dive computer",
+    "titanium"
+  ],
   "sourceUrls": [
     "https://www.deeperblue.com/garmin-unveils-new-descent-mk3i-51mm-dive-computer-color-design/"
   ],
-  "imageUrl": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/premium%20titanium%20dive%20watch%20in%20black%20and%20silver%20two-tone%20finish%20displayed%20on%20dark%20surface%20with%20water%20droplets%2C%20luxury%20product%20photography%2C%20detailed%20craftsmanship%20visible?width=800&height=450&nologo=true&seed=2805",
   "imageAlt": "Dive watch on wrist",
   "en": {
     "title": "Garmin Launches Descent Mk3i in New Black and Silver Titanium Design",

@@ -4,11 +4,17 @@
   "updatedAt": "2026-04-15T04:00:00Z",
   "status": "published",
   "category": "people",
-  "tags": ["Doug Allan", "photographer", "BBC", "obituary", "Nepal"],
+  "tags": [
+    "Doug Allan",
+    "photographer",
+    "BBC",
+    "obituary",
+    "Nepal"
+  ],
   "sourceUrls": [
     "https://www.deeperblue.com/underwater-photographer-doug-allan-dies-during-mountaineering-trip-in-nepal/"
   ],
-  "imageUrl": "https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=800&q=80",
+  "imageUrl": "https://image.pollinations.ai/prompt/underwater%20photographer%20with%20professional%20camera%20housing%20filming%20marine%20life%20in%20cold%20blue%20water%2C%20BBC%20documentary%20style%2C%20respectful%20tribute%20portrait%2C%20underwater%20cinematography?width=800&height=450&nologo=true&seed=3940",
   "imageAlt": "Underwater camera equipment",
   "en": {
     "title": "Legendary Underwater Photographer Doug Allan Passes Away at 74 During Nepal Expedition",
