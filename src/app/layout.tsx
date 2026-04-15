@@ -19,6 +19,11 @@ export const metadata: Metadata = {
     template: "%s | 다이브 저널",
   },
   description: "전 세계 프리다이빙 소식을 전하는 AI 인터넷 신문",
+    verification: {
+          other: {
+                  "naver-site-verification": "8518ec3b62017018364e9c6a826670e2b0c6a05d",
+          },
+    },
 };
 
 export default function RootLayout({
