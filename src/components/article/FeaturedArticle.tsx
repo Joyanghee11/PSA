@@ -14,42 +14,41 @@ export function FeaturedArticle({
 
   return (
     <article className="group">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
+        {/* Image - takes 7 cols */}
         {article.imageUrl && (
-          <Link href={`/${lang}/article/${article.slug}`} className="block">
-            <div className="aspect-[16/10] overflow-hidden bg-muted">
-              <img
-                src={article.imageUrl}
-                alt={article.imageAlt || content.title}
-                className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-              />
-            </div>
-          </Link>
-        )}
-        <div className={`flex flex-col justify-center ${!article.imageUrl ? "md:col-span-2" : ""}`}>
-          <div className="flex items-center gap-3 mb-3">
-            <CategoryBadge category={article.category} lang={lang} />
-            <span className="text-xs text-muted-foreground uppercase tracking-wide">
-              {formatDate(article.publishedAt, lang)}
-            </span>
+          <div className="md:col-span-7">
+            <Link href={`/${lang}/article/${article.slug}`} className="block">
+              <div className="aspect-[16/9] overflow-hidden bg-muted">
+                <img
+                  src={article.imageUrl}
+                  alt={article.imageAlt || content.title}
+                  className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                />
+              </div>
+            </Link>
           </div>
+        )}
+        {/* Text - takes 5 cols */}
+        <div className={`${article.imageUrl ? "md:col-span-5" : "md:col-span-12"} flex flex-col justify-center`}>
+          <CategoryBadge category={article.category} lang={lang} />
           <Link href={`/${lang}/article/${article.slug}`}>
-            <h2 className="text-2xl md:text-4xl font-headline group-hover:text-accent transition-colors mb-4">
+            <h2 className="text-[24px] md:text-[30px] font-headline mt-2 group-hover:text-accent-blue transition-colors">
               {content.title}
             </h2>
           </Link>
-          <p className="text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+          <p className="text-[15px] text-muted-foreground mt-3 leading-relaxed line-clamp-4">
             {content.summary}
           </p>
-          <Link
-            href={`/${lang}/article/${article.slug}`}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
-          >
-            {lang === "ko" ? "기사 전문 보기" : "Read full article"}
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+          <div className="flex items-center gap-2 mt-4">
+            <span className="text-xs text-muted-foreground">
+              {formatDate(article.publishedAt, lang)}
+            </span>
+            <span className="text-xs text-muted-foreground">|</span>
+            <span className="text-xs text-muted-foreground">
+              {lang === "ko" ? "다이브저널" : "Dive Journal"}
+            </span>
+          </div>
         </div>
       </div>
     </article>

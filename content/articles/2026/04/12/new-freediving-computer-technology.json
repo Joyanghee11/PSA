@@ -6,6 +6,8 @@
   "category": "equipment",
   "tags": ["dive computer", "technology", "Garmin", "wearable"],
   "sourceUrls": ["https://divernet.com"],
+  "imageUrl": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
+  "imageAlt": "Dive watch technology",
   "en": {
     "title": "Garmin Unveils AI-Powered Freediving Computer with Real-Time Safety Alerts",
     "summary": "Garmin's latest freediving watch features an AI engine that monitors physiological data and provides real-time safety alerts during dives.",

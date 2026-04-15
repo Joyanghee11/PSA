@@ -6,6 +6,8 @@
   "category": "records",
   "tags": ["CWT", "world record", "Alexey Molchanov", "AIDA"],
   "sourceUrls": ["https://www.deeperblue.com"],
+  "imageUrl": "https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&q=80",
+  "imageAlt": "Freediver descending into deep blue water",
   "en": {
     "title": "Alexey Molchanov Sets New CWT World Record at 136 Meters",
     "summary": "Russian freediver Alexey Molchanov has achieved a remarkable new Constant Weight (CWT) world record, reaching a depth of 136 meters during a competition in the Bahamas.",

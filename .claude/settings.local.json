@@ -47,7 +47,8 @@
       "Bash(node -p \"JSON.stringify\\(JSON.parse\\(require\\('fs'\\).readFileSync\\(0,'utf8'\\)\\),null,2\\).slice\\(0,500\\)\")",
       "Bash(curl -sv -X POST https://api.vercel.com/v1/storage/stores/store_whU7f1ZL8TVYJqXY/connections -H 'Authorization: Bearer __TRACKED_VAR__' -H 'Content-Type: application/json' -d '{\"projectId\":\"prj_cjwsYkQxodkw1spCPhSbBOszAfxI\",\"envVarEnvironments\":[\"production\",\"preview\",\"development\"]}')",
       "Bash(curl -s -X POST https://psa-news.vercel.app/api/admin/auth -H \"Content-Type: application/json\" -d '{\"password\":\"!Whdidgml912\"}' -c /tmp/psa-c3.txt)",
-      "Bash(curl -s -X POST https://psa-news.vercel.app/api/admin/articles -H \"Content-Type: application/json\" -b /tmp/psa-c3.txt -d '{\"category\":\"training\",\"status\":\"published\",\"tags\":[\"test\"],\"ko\":{\"title\":\"테스트 기사입니다\",\"summary\":\"테스트 요약\",\"body\":\"<p>본문 내용입니다</p>\",\"metaDescription\":\"테스트 설명\"},\"en\":{\"title\":\"Test Article Here\",\"summary\":\"Test summary\",\"body\":\"<p>Body content</p>\",\"metaDescription\":\"Test desc\"}}')"
+      "Bash(curl -s -X POST https://psa-news.vercel.app/api/admin/articles -H \"Content-Type: application/json\" -b /tmp/psa-c3.txt -d '{\"category\":\"training\",\"status\":\"published\",\"tags\":[\"test\"],\"ko\":{\"title\":\"테스트 기사입니다\",\"summary\":\"테스트 요약\",\"body\":\"<p>본문 내용입니다</p>\",\"metaDescription\":\"테스트 설명\"},\"en\":{\"title\":\"Test Article Here\",\"summary\":\"Test summary\",\"body\":\"<p>Body content</p>\",\"metaDescription\":\"Test desc\"}}')",
+      "WebFetch(domain:www.hani.co.kr)"
     ]
   }
 }

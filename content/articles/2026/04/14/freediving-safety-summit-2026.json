@@ -6,6 +6,8 @@
   "category": "safety",
   "tags": ["safety", "blackout", "training", "summit"],
   "sourceUrls": ["https://www.aidainternational.org"],
+  "imageUrl": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80",
+  "imageAlt": "Conference room with presentation",
   "en": {
     "title": "International Freediving Safety Summit Announces New Blackout Prevention Guidelines",
     "summary": "Leading freediving organizations gather in Sharm el-Sheikh to establish comprehensive safety protocols aimed at reducing shallow water blackout incidents.",

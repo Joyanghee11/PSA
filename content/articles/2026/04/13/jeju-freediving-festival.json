@@ -6,6 +6,8 @@
   "category": "competition",
   "tags": ["Jeju", "Korea", "competition", "festival"],
   "sourceUrls": ["https://news.google.com"],
+  "imageUrl": "https://images.unsplash.com/photo-1500930287596-c1ecaa210c96?w=800&q=80",
+  "imageAlt": "Jeju Island coastal scenery",
   "en": {
     "title": "Jeju Island Hosts Asia's Largest Freediving Festival with 200 Athletes",
     "summary": "The annual Jeju International Freediving Festival kicks off this weekend, featuring athletes from 15 countries competing in multiple disciplines.",

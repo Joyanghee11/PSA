@@ -6,6 +6,8 @@
   "category": "environment",
   "tags": ["climate change", "ocean", "environment", "coral"],
   "sourceUrls": ["https://www.deeperblue.com"],
+  "imageUrl": "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=800&q=80",
+  "imageAlt": "Sea turtle swimming in warm ocean",
   "en": {
     "title": "Rising Ocean Temperatures Force Freediving Communities to Adapt Training Locations",
     "summary": "Warming seas are pushing freedivers to seek new training spots as coral bleaching and changing marine conditions reshape popular diving destinations.",

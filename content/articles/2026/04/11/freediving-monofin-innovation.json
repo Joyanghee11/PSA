@@ -1,0 +1,23 @@
+{
+  "slug": "freediving-monofin-innovation",
+  "publishedAt": "2026-04-11T14:00:00Z",
+  "updatedAt": "2026-04-11T14:00:00Z",
+  "status": "published",
+  "category": "equipment",
+  "tags": ["monofin", "carbon fiber", "innovation", "Cetma"],
+  "sourceUrls": [],
+  "imageUrl": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
+  "imageAlt": "Ocean underwater light rays",
+  "en": {
+    "title": "Next-Gen Carbon Fiber Monofins Promise 15% Efficiency Boost for Competitive Freedivers",
+    "summary": "Italian manufacturer Cetma launches revolutionary monofin design using aerospace-grade carbon fiber composites with variable stiffness zones.",
+    "body": "<p>Italian freediving equipment manufacturer Cetma has unveiled its next-generation monofin, the Mantra V3, which the company claims delivers a 15% improvement in propulsion efficiency compared to current top-tier models.</p><p>The key innovation lies in the fin's variable stiffness design, which uses three distinct carbon fiber layup zones. The blade tip is more flexible for the recovery phase, while the base is stiffer for maximum power transfer during the kick.</p><p>\"We used computational fluid dynamics and worked directly with world record holders to optimize the flex pattern,\" explained Cetma's lead engineer Marco Benedetti.</p><p>Early testing by several competitive freedivers has been overwhelmingly positive. Multiple athletes reported improved glide phases and reduced fatigue during deep constant weight dives.</p><p>The Mantra V3 is priced at $1,200 and will begin shipping in June 2026. A customization service for foot pocket fitting will also be available.</p>",
+    "metaDescription": "Cetma launches the Mantra V3 monofin with variable-stiffness carbon fiber design promising 15% efficiency gain."
+  },
+  "ko": {
+    "title": "차세대 카본 모노핀, 경쟁 프리다이버에게 15% 효율 향상 약속",
+    "summary": "이탈리아 체트마, 항공우주급 탄소섬유 복합재로 가변 강성 구간을 적용한 혁신적 모노핀을 출시했다.",
+    "body": "<p>이탈리아 프리다이빙 장비 제조사 체트마가 차세대 모노핀 '만트라 V3'를 공개했다. 회사 측은 기존 최상급 모델 대비 추진 효율이 15% 향상됐다고 밝혔다.</p><p>핵심 혁신은 3개의 서로 다른 탄소섬유 적층 구간을 사용한 가변 강성 설계에 있다. 블레이드 끝은 회복 단계를 위해 더 유연하고, 기부는 킥 시 최대 동력 전달을 위해 더 단단하다.</p><p>체트마의 수석 엔지니어 마르코 베네데티는 \"전산유체역학을 활용하고 세계기록 보유자들과 직접 협력하여 플렉스 패턴을 최적화했다\"고 설명했다.</p><p>여러 경쟁 프리다이버의 초기 테스트 결과는 매우 긍정적이었다. 다수의 선수가 글라이드 단계 개선과 딥 CWT 다이브 중 피로 감소를 보고했다.</p><p>만트라 V3의 가격은 1,200달러이며 2026년 6월부터 배송을 시작한다. 풋포켓 피팅을 위한 맞춤 서비스도 제공될 예정이다.</p>",
+    "metaDescription": "체트마가 가변 강성 탄소섬유 설계로 15% 효율 향상을 약속하는 만트라 V3 모노핀을 출시했다."
+  }
+}

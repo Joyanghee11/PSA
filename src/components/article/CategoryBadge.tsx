@@ -11,18 +11,15 @@ export function CategoryBadge({
   lang: Lang;
   linked?: boolean;
 }) {
-  const className =
-    "section-label";
-
   const label = getCategoryLabel(category, lang);
 
   if (linked) {
     return (
-      <Link href={`/${lang}/category/${category}`} className={className}>
+      <Link href={`/${lang}/category/${category}`} className="cat-label hover:underline">
         {label}
       </Link>
     );
   }
 
-  return <span className={className}>{label}</span>;
+  return <span className="cat-label">{label}</span>;
 }

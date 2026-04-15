@@ -26,7 +26,7 @@ export default async function LangLayout({
   return (
     <>
       <Header lang={lang as Lang} dict={dict} />
-      <main className="flex-1 max-w-7xl mx-auto px-4 py-8 w-full">
+      <main className="flex-1 max-w-[1200px] mx-auto px-4 py-6 w-full">
         {children}
       </main>
       <Footer dict={dict} lang={lang as Lang} />
