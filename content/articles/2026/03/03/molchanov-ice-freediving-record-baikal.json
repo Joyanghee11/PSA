@@ -1,0 +1,26 @@
+{
+  "slug": "molchanov-ice-freediving-record-baikal",
+  "publishedAt": "2026-03-03T09:00:00Z",
+  "updatedAt": "2026-03-03T09:00:00Z",
+  "status": "published",
+  "category": "records",
+  "tags": ["Molchanov", "ice freediving", "Baikal", "world record", "CWT"],
+  "sourceUrls": [
+    "https://us.molchanovs.com/blogs/latest/alexey-molchanov-sets-new-under-ice-freediving-world-record-at-lake-baikal",
+    "https://divernet.com/scuba-news/freediving/14-deeper-freediver-molchanov-breaks-own-icy-record/"
+  ],
+  "imageUrl": "https://image.pollinations.ai/prompt/freediver%20in%20black%20wetsuit%20descending%20vertically%20through%20rectangular%20hole%20cut%20in%20thick%20blue%20ice%20into%20dark%20cold%20water%20below%2C%20safety%20rope%20visible%2C%20ice%20surface%20seen%20from%20underwater%2C%20dramatic%20natural%20lighting?width=800&height=450&nologo=true&seed=9101",
+  "imageAlt": "Freediver descending through ice hole at Lake Baikal",
+  "en": {
+    "title": "Molchanov Dives to 91m Under Frozen Lake Baikal, Sets 42nd World Record",
+    "summary": "Alexey Molchanov reached 91 meters beneath the ice of Lake Baikal on March 3, 2026, breaking his own under-ice CWT record by 14% in water temperatures of just 2°C.",
+    "body": "<p>On March 3, 2026, Alexey Molchanov descended to 91 meters on a single breath beneath the frozen surface of Lake Baikal during the Third International Ice Freediving Festival in Listvyanka, Russia. The dive marks his 42nd career world record and fourth under-ice depth record.</p><p>The dive was performed in the Constant Weight discipline using a monofin, through a hole cut in ice more than a meter thick. Surface temperatures reached -23°C while the water below sat at approximately 2°C. Molchanov wore a 5mm wetsuit and used a carbon monofin for the attempt, which lasted just under three minutes.</p><p>The achievement represents a 14% improvement over his previous under-ice record, a significant margin in a discipline where extreme cold severely limits performance. Ice freediving carries unique risks, as the diver must return to a single exit point in the ice while managing the physiological stress of near-freezing water.</p><p>The festival, held from March 1-6 in the Irkutsk Region, also saw records set by other athletes. Molchanov, who serves as president of the Russian Freediving Federation, continues to push the boundaries of what is considered possible in extreme-environment freediving.</p>",
+    "metaDescription": "Alexey Molchanov sets 42nd world record with a 91m under-ice dive at Lake Baikal, March 2026."
+  },
+  "ko": {
+    "title": "몰차노프, 바이칼 호수 얼음 아래 91m 잠수 — 42번째 세계기록",
+    "summary": "2026년 3월 3일, 몰차노프가 바이칼 호수 빙판 아래 91m까지 도달하며 자신의 아이스 CWT 기록을 14% 경신했다. 수온 2°C의 극한 환경에서의 도전이었다.",
+    "body": "<p>2026년 3월 3일, 알렉세이 몰차노프가 러시아 리스트뱐카에서 열린 제3회 국제 아이스 프리다이빙 페스티벌에서 바이칼 호수의 얼어붙은 수면 아래 91m까지 단일 호흡으로 잠수했다. 이번 다이브는 그의 통산 42번째 세계기록이자 네 번째 아이스 수심 기록이다.</p><p>다이브는 1m 이상 두께의 얼음에 뚫린 구멍을 통해 모노핀을 사용한 콘스턴트 웨이트(CWT) 종목으로 수행됐다. 지상 기온은 영하 23°C, 얼음 아래 수온은 약 2°C였다. 몰차노프는 5mm 웻슈트와 카본 모노핀을 착용했으며, 전체 다이브 시간은 약 3분이었다.</p><p>이번 성과는 그의 이전 아이스 기록 대비 14%나 향상된 것으로, 극한의 추위가 신체 능력을 크게 제한하는 종목에서 상당한 차이다. 아이스 프리다이빙은 빙판의 유일한 출구로 돌아가야 하면서 영하에 가까운 수온의 생리적 스트레스를 관리해야 하는 고유한 위험을 수반한다.</p><p>이르쿠츠크 지역에서 3월 1~6일간 열린 이 페스티벌에서는 다른 선수들의 기록도 수립됐다. 러시아 프리다이빙 연맹 회장이기도 한 몰차노프는 극한 환경 프리다이빙의 한계를 계속 넓혀가고 있다.</p>",
+    "metaDescription": "몰차노프가 2026년 3월 바이칼 호수에서 아이스 CWT 91m 세계기록을 세우며 42번째 세계기록을 달성했다."
+  }
+}
