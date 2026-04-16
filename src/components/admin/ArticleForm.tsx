@@ -26,6 +26,8 @@ export function ArticleForm({ initial, mode }: ArticleFormProps) {
   const [imageUrl, setImageUrl] = useState(initial?.imageUrl || "");
   const [imageAlt, setImageAlt] = useState(initial?.imageAlt || "");
   const [uploading, setUploading] = useState(false);
+  const [generating, setGenerating] = useState(false);
+  const [aiPrompt, setAiPrompt] = useState("");
 
   // Korean
   const [koTitle, setKoTitle] = useState(initial?.ko.title || "");
@@ -67,6 +69,34 @@ export function ArticleForm({ initial, mode }: ArticleFormProps) {
     } finally {
       setUploading(false);
       e.target.value = "";
+    }
+  }
+
+  async function handleGenerateImage() {
+    const prompt = aiPrompt || enTitle || koTitle;
+    if (!prompt) {
+      setError("이미지 프롬프트 또는 제목을 먼저 입력해주세요.");
+      return;
+    }
+    setGenerating(true);
+    setError("");
+    try {
+      const res = await fetch("/api/admin/generate-image", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setImageUrl(data.url);
+      } else {
+        const data = await res.json();
+        setError(data.error || "AI 이미지 생성에 실패했습니다.");
+      }
+    } catch {
+      setError("AI 이미지 생성 중 오류가 발생했습니다.");
+    } finally {
+      setGenerating(false);
     }
   }
 
@@ -197,6 +227,28 @@ export function ArticleForm({ initial, mode }: ArticleFormProps) {
                   disabled={uploading}
                 />
               </label>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                AI 이미지 생성 (나노바나나)
+              </label>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={aiPrompt}
+                  onChange={(e) => setAiPrompt(e.target.value)}
+                  className="flex-1 px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm"
+                  placeholder="이미지 설명 (영문 권장, 비우면 제목 사용)"
+                />
+                <button
+                  type="button"
+                  onClick={handleGenerateImage}
+                  disabled={generating}
+                  className="px-4 py-2 bg-accent text-accent-foreground rounded-lg text-sm font-medium hover:opacity-90 disabled:opacity-50 flex-shrink-0"
+                >
+                  {generating ? "생성 중..." : "AI 생성"}
+                </button>
+              </div>
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">
