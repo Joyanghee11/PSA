@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
-import { getAllBanners, saveBanners } from "@/lib/ads";
+import { getAllBanners, saveBannersViaGitHub } from "@/lib/ads";
 import type { AdBanner } from "@/lib/ads";
 
 export async function GET() {
@@ -24,20 +24,16 @@ export async function POST(request: Request) {
       const idx = banners.findIndex((b: AdBanner) => b.id === body.id);
       if (idx === -1)
         return NextResponse.json({ error: "Not found" }, { status: 404 });
-      banners[idx] = {
-        ...banners[idx],
-        ...body,
-        id: banners[idx].id,
-        createdAt: banners[idx].createdAt,
-      };
-      delete (banners[idx] as any)._action;
-      saveBanners(banners);
+      const updated = { ...banners[idx], ...body };
+      delete updated._action;
+      banners[idx] = updated;
+      await saveBannersViaGitHub(banners);
       return NextResponse.json({ success: true });
     }
 
     if (body._action === "delete") {
       const filtered = banners.filter((b: AdBanner) => b.id !== body.id);
-      saveBanners(filtered);
+      await saveBannersViaGitHub(filtered);
       return NextResponse.json({ success: true });
     }
 
@@ -56,13 +52,10 @@ export async function POST(request: Request) {
     };
 
     banners.push(newBanner);
-    saveBanners(banners);
-    return NextResponse.json(
-      { success: true, id: newBanner.id },
-      { status: 201 }
-    );
+    await saveBannersViaGitHub(banners);
+    return NextResponse.json({ success: true, id: newBanner.id }, { status: 201 });
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    return NextResponse.json({ error: `Failed: ${msg}` }, { status: 400 });
+    return NextResponse.json({ error: `Failed: ${msg}` }, { status: 500 });
   }
 }

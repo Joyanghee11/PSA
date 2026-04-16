@@ -18,6 +18,7 @@ export interface AdBanner {
 
 const ADS_FILE = path.join(process.cwd(), "content", "ads.json");
 
+// Read: works on both local and Vercel (read-only at build time)
 export function getAllBanners(): AdBanner[] {
   try {
     if (!fs.existsSync(ADS_FILE)) return [];
@@ -28,10 +29,50 @@ export function getAllBanners(): AdBanner[] {
   }
 }
 
-export function saveBanners(banners: AdBanner[]): void {
-  const dir = path.dirname(ADS_FILE);
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(ADS_FILE, JSON.stringify(banners, null, 2), "utf-8");
+// Write via GitHub API (works on Vercel serverless)
+export async function saveBannersViaGitHub(banners: AdBanner[]): Promise<void> {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) throw new Error("GITHUB_TOKEN not configured");
+
+  const owner = "Joyanghee11";
+  const repo = "PSA";
+  const filePath = "content/ads.json";
+  const content = Buffer.from(JSON.stringify(banners, null, 2)).toString("base64");
+
+  // Get current file SHA
+  const getRes = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`,
+    { headers: { Authorization: `Bearer ${token}`, "User-Agent": "DiveJournal" } }
+  );
+
+  let sha: string | undefined;
+  if (getRes.ok) {
+    const data = await getRes.json();
+    sha = data.sha;
+  }
+
+  // Create or update file
+  const putRes = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "User-Agent": "DiveJournal",
+      },
+      body: JSON.stringify({
+        message: "chore: update ads.json",
+        content,
+        ...(sha ? { sha } : {}),
+      }),
+    }
+  );
+
+  if (!putRes.ok) {
+    const err = await putRes.text();
+    throw new Error(`GitHub API failed: ${putRes.status} ${err}`);
+  }
 }
 
 export function getActiveBanners(position: AdPosition): AdBanner[] {
