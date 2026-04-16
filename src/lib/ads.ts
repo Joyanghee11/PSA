@@ -30,15 +30,15 @@ function hasBlobToken(): boolean {
   return !!process.env.BLOB_READ_WRITE_TOKEN;
 }
 
-// Read: local file first, then Blob
+// Read: Blob first (with cache bust), then local file
 export async function getAllBanners(): Promise<AdBanner[]> {
-  // Try Blob first (runtime on Vercel)
   if (hasBlobToken()) {
     try {
       const result = await list({ prefix: "ads/" });
       const blob = result.blobs.find((b) => b.pathname === BLOB_PATH);
       if (blob) {
-        const res = await fetch(blob.url);
+        // Cache bust to always get latest
+        const res = await fetch(blob.url, { cache: "no-store" });
         return (await res.json()) as AdBanner[];
       }
     } catch {
@@ -46,7 +46,6 @@ export async function getAllBanners(): Promise<AdBanner[]> {
     }
   }
 
-  // Fallback: local file
   try {
     if (fs.existsSync(ADS_FILE)) {
       return JSON.parse(fs.readFileSync(ADS_FILE, "utf-8")) as AdBanner[];
