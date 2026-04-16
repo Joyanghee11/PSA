@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
-import { getAllBanners, saveBannersViaGitHub } from "@/lib/ads";
+import { getAllBanners, saveBanners } from "@/lib/ads";
 import type { AdBanner } from "@/lib/ads";
 
 export async function GET() {
   if (!(await isAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const banners = getAllBanners();
+  const banners = await getAllBanners();
   return NextResponse.json(banners);
 }
 
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const banners = getAllBanners();
+    const banners = await getAllBanners();
 
     if (body._action === "update") {
       const idx = banners.findIndex((b: AdBanner) => b.id === body.id);
@@ -27,13 +27,13 @@ export async function POST(request: Request) {
       const updated = { ...banners[idx], ...body };
       delete updated._action;
       banners[idx] = updated;
-      await saveBannersViaGitHub(banners);
+      await saveBanners(banners);
       return NextResponse.json({ success: true });
     }
 
     if (body._action === "delete") {
       const filtered = banners.filter((b: AdBanner) => b.id !== body.id);
-      await saveBannersViaGitHub(filtered);
+      await saveBanners(filtered);
       return NextResponse.json({ success: true });
     }
 
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
     };
 
     banners.push(newBanner);
-    await saveBannersViaGitHub(banners);
+    await saveBanners(banners);
     return NextResponse.json({ success: true, id: newBanner.id }, { status: 201 });
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);

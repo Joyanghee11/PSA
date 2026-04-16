@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { list, put } from "@vercel/blob";
 
 export type AdPosition = "header-top" | "sidebar" | "between-articles";
 
@@ -17,66 +18,70 @@ export interface AdBanner {
 }
 
 const ADS_FILE = path.join(process.cwd(), "content", "ads.json");
+const BLOB_PATH = "ads/banners.json";
 
-// Read: works on both local and Vercel (read-only at build time)
-export function getAllBanners(): AdBanner[] {
-  try {
-    if (!fs.existsSync(ADS_FILE)) return [];
-    const raw = fs.readFileSync(ADS_FILE, "utf-8");
-    return JSON.parse(raw) as AdBanner[];
-  } catch {
-    return [];
-  }
+function hasBlobToken(): boolean {
+  return !!process.env.BLOB_READ_WRITE_TOKEN;
 }
 
-// Write via GitHub API (works on Vercel serverless)
-export async function saveBannersViaGitHub(banners: AdBanner[]): Promise<void> {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) throw new Error("GITHUB_TOKEN not configured");
-
-  const owner = "Joyanghee11";
-  const repo = "PSA";
-  const filePath = "content/ads.json";
-  const content = Buffer.from(JSON.stringify(banners, null, 2)).toString("base64");
-
-  // Get current file SHA
-  const getRes = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`,
-    { headers: { Authorization: `Bearer ${token}`, "User-Agent": "DiveJournal" } }
-  );
-
-  let sha: string | undefined;
-  if (getRes.ok) {
-    const data = await getRes.json();
-    sha = data.sha;
-  }
-
-  // Create or update file
-  const putRes = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`,
-    {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        "User-Agent": "DiveJournal",
-      },
-      body: JSON.stringify({
-        message: "chore: update ads.json",
-        content,
-        ...(sha ? { sha } : {}),
-      }),
+// Read: local file first, then Blob
+export async function getAllBanners(): Promise<AdBanner[]> {
+  // Try Blob first (runtime on Vercel)
+  if (hasBlobToken()) {
+    try {
+      const result = await list({ prefix: "ads/" });
+      const blob = result.blobs.find((b) => b.pathname === BLOB_PATH);
+      if (blob) {
+        const res = await fetch(blob.url);
+        return (await res.json()) as AdBanner[];
+      }
+    } catch {
+      // fall through to local
     }
-  );
-
-  if (!putRes.ok) {
-    const err = await putRes.text();
-    throw new Error(`GitHub API failed: ${putRes.status} ${err}`);
   }
+
+  // Fallback: local file
+  try {
+    if (fs.existsSync(ADS_FILE)) {
+      return JSON.parse(fs.readFileSync(ADS_FILE, "utf-8")) as AdBanner[];
+    }
+  } catch {}
+  return [];
 }
 
-export function getActiveBanners(position: AdPosition): AdBanner[] {
-  const all = getAllBanners();
+// Write: Blob (Vercel runtime)
+export async function saveBanners(banners: AdBanner[]): Promise<void> {
+  await put(BLOB_PATH, JSON.stringify(banners, null, 2), {
+    access: "public",
+    contentType: "application/json",
+    addRandomSuffix: false,
+  });
+}
+
+// Sync read for build-time (server components)
+export function getActiveBannersSync(position: AdPosition): AdBanner[] {
+  let banners: AdBanner[] = [];
+  try {
+    if (fs.existsSync(ADS_FILE)) {
+      banners = JSON.parse(fs.readFileSync(ADS_FILE, "utf-8")) as AdBanner[];
+    }
+  } catch {}
+
+  const now = new Date().toISOString();
+  return banners
+    .filter((b) => {
+      if (!b.active) return false;
+      if (b.position !== position) return false;
+      if (b.startDate && now < b.startDate) return false;
+      if (b.endDate && now > b.endDate) return false;
+      return true;
+    })
+    .sort((a, b) => a.order - b.order);
+}
+
+// Async read for runtime (dynamic pages)
+export async function getActiveBanners(position: AdPosition): Promise<AdBanner[]> {
+  const all = await getAllBanners();
   const now = new Date().toISOString();
   return all
     .filter((b) => {
