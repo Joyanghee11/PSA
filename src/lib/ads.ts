@@ -31,13 +31,14 @@ function hasBlobToken(): boolean {
   return !!process.env.BLOB_READ_WRITE_TOKEN;
 }
 
-// Read from Blob (direct URL, no list(), no cache)
+// Read from Blob using head() to get uncached download URL
 export async function getAllBanners(): Promise<AdBanner[]> {
   if (hasBlobToken()) {
     try {
-      const res = await fetch(BLOB_URL + "?t=" + Date.now(), {
-        cache: "no-store",
-      });
+      const { head } = await import("@vercel/blob");
+      const meta = await head(BLOB_URL);
+      // Use downloadUrl which bypasses CDN cache
+      const res = await fetch(meta.downloadUrl, { cache: "no-store" });
       if (res.ok) {
         return (await res.json()) as AdBanner[];
       }
