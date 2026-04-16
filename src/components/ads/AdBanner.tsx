@@ -1,8 +1,8 @@
-import type { AdBanner as AdBannerType, AdPosition } from "@/lib/ads";
+import type { AdPosition } from "@/lib/ads";
 import { getActiveBanners } from "@/lib/ads";
 
-export async function AdSlot({ position }: { position: AdPosition }) {
-  const banners = await getActiveBanners(position);
+export function AdSlot({ position }: { position: AdPosition }) {
+  const banners = getActiveBanners(position);
   if (banners.length === 0) return null;
 
   if (position === "header-top") {

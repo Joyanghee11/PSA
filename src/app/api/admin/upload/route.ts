@@ -1,17 +1,11 @@
 import { NextResponse } from "next/server";
-import { put } from "@vercel/blob";
 import { isAuthenticated } from "@/lib/auth";
+import fs from "fs";
+import path from "path";
 
 export async function POST(request: Request) {
   if (!(await isAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    return NextResponse.json(
-      { error: "BLOB_READ_WRITE_TOKEN not configured" },
-      { status: 500 }
-    );
   }
 
   try {
@@ -41,18 +35,31 @@ export async function POST(request: Request) {
 
     const timestamp = Date.now();
     const ext = file.name.split(".").pop() || "jpg";
-    const filename = `uploads/${timestamp}.${ext}`;
+    const filename = `${timestamp}.${ext}`;
 
-    // Convert File to Buffer for reliable upload
+    // Try Vercel Blob first
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      try {
+        const { put } = await import("@vercel/blob");
+        const arrayBuffer = await file.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+        const blob = await put(`uploads/${filename}`, buffer, {
+          access: "public",
+          contentType: file.type,
+        });
+        return NextResponse.json({ url: blob.url });
+      } catch (blobError) {
+        console.warn("[Upload] Blob failed, falling back to local:", blobError);
+        // Fall through to local storage
+      }
+    }
+
+    // Fallback: save to public/uploads/ (works on local, not on Vercel serverless)
+    const uploadDir = path.join(process.cwd(), "public", "uploads");
+    fs.mkdirSync(uploadDir, { recursive: true });
     const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-
-    const blob = await put(filename, buffer, {
-      access: "public",
-      contentType: file.type,
-    });
-
-    return NextResponse.json({ url: blob.url });
+    fs.writeFileSync(path.join(uploadDir, filename), Buffer.from(arrayBuffer));
+    return NextResponse.json({ url: `/uploads/${filename}` });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.error("[Upload] Failed:", message);

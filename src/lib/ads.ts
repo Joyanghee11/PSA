@@ -1,4 +1,5 @@
-import { list, put } from "@vercel/blob";
+import fs from "fs";
+import path from "path";
 
 export type AdPosition = "header-top" | "sidebar" | "between-articles";
 
@@ -15,37 +16,26 @@ export interface AdBanner {
   createdAt: string;
 }
 
-const BLOB_PATH = "ads/banners.json";
+const ADS_FILE = path.join(process.cwd(), "content", "ads.json");
 
-function hasBlobToken(): boolean {
-  return !!process.env.BLOB_READ_WRITE_TOKEN;
-}
-
-export async function getAllBanners(): Promise<AdBanner[]> {
-  if (!hasBlobToken()) return [];
+export function getAllBanners(): AdBanner[] {
   try {
-    const result = await list({ prefix: "ads/" });
-    const blob = result.blobs.find((b) => b.pathname === BLOB_PATH);
-    if (!blob) return [];
-    const res = await fetch(blob.url);
-    return (await res.json()) as AdBanner[];
+    if (!fs.existsSync(ADS_FILE)) return [];
+    const raw = fs.readFileSync(ADS_FILE, "utf-8");
+    return JSON.parse(raw) as AdBanner[];
   } catch {
     return [];
   }
 }
 
-export async function saveBanners(banners: AdBanner[]): Promise<void> {
-  await put(BLOB_PATH, JSON.stringify(banners, null, 2), {
-    access: "public",
-    contentType: "application/json",
-    addRandomSuffix: false,
-  });
+export function saveBanners(banners: AdBanner[]): void {
+  const dir = path.dirname(ADS_FILE);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(ADS_FILE, JSON.stringify(banners, null, 2), "utf-8");
 }
 
-export async function getActiveBanners(
-  position: AdPosition
-): Promise<AdBanner[]> {
-  const all = await getAllBanners();
+export function getActiveBanners(position: AdPosition): AdBanner[] {
+  const all = getAllBanners();
   const now = new Date().toISOString();
   return all
     .filter((b) => {

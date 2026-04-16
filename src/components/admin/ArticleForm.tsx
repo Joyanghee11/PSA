@@ -62,10 +62,10 @@ export function ArticleForm({ initial, mode }: ArticleFormProps) {
         setImageUrl(data.url);
       } else {
         const data = await res.json();
-        setError(data.error || "이미지 업로드에 실패했습니다.");
+        setError(data.error || "이미지 업로드 실패. 아래 URL 입력란에 외부 이미지 URL을 직접 붙여넣어 주세요.");
       }
     } catch {
-      setError("이미지 업로드 중 오류가 발생했습니다.");
+      setError("이미지 업로드 실패. 아래 URL 입력란에 외부 이미지 URL을 직접 붙여넣어 주세요.");
     } finally {
       setUploading(false);
       e.target.value = "";

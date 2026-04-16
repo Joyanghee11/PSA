@@ -98,7 +98,11 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=e1l5-hpZFWc&format=json\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=MzH6BI6P4Uo&format=json\")",
       "Bash(mkdir -p /c/tmp)",
-      "Bash(curl -s -X POST https://divejournal.co.kr/api/admin/upload -b /tmp/dj-c.txt -F \"file=@C:/tmp/test.jpg;type=image/jpeg;filename=test.jpg\")"
+      "Bash(curl -s -X POST https://divejournal.co.kr/api/admin/upload -b /tmp/dj-c.txt -F \"file=@C:/tmp/test.jpg;type=image/jpeg;filename=test.jpg\")",
+      "Bash(curl -s -X POST https://divejournal.co.kr/api/admin/auth -H \"Content-Type: application/json\" -d '{\"password\":\"!Whdidgml912\"}' -c /c/tmp/dj-c.txt)",
+      "Bash(curl -s -X POST https://divejournal.co.kr/api/admin/upload -b /c/tmp/dj-c.txt -F \"file=@C:/tmp/test.jpg;type=image/jpeg;filename=test.jpg\")",
+      "Bash(curl -s https://divejournal.co.kr/api/admin/ads -b /c/tmp/dj-c.txt)",
+      "Bash(curl -s -X POST https://divejournal.co.kr/api/admin/ads -H \"Content-Type: application/json\" -b /c/tmp/dj-c.txt -d '{\"position\":\"header-top\",\"imageUrl\":\"https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=728&h=90&fit=crop\",\"linkUrl\":\"https://divejournal.co.kr\",\"altText\":\"test banner\",\"active\":true}')"
     ]
   }
 }
