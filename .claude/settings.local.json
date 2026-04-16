@@ -93,7 +93,10 @@
       "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\(0,'utf8'\\);const j=JSON.parse\\(d\\);if\\(j.error\\)console.log\\('ERROR:',j.error.message?.slice\\(0,200\\)\\);else console.log\\('OK:',j.candidates?.[0]?.content?.parts?.[0]?.text?.slice\\(0,50\\)\\)\")",
       "Bash(curl -s 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image-preview:generateContent?key=AIzaSyDdm_sqF9re0Ieub0dgZBfdivYqgDIBl8k' -H 'Content-Type: application/json' -d '{\"contents\":[{\"parts\":[{\"text\":\"Generate a photorealistic underwater photograph: a freediver in black wetsuit diving vertically downward into deep blue ocean using a monofin, dramatic sunlight rays penetrating from the surface above, crystal clear water, professional underwater photography\"}]}],\"generationConfig\":{\"responseModalities\":[\"TEXT\",\"IMAGE\"]}}')",
       "Bash(printf 'AIzaSyDdm_sqF9re0Ieub0dgZBfdivYqgDIBl8k')",
-      "Bash(ls -la /c/Users/joyan/PSA/public/images/articles/*.jpg)"
+      "Bash(ls -la /c/Users/joyan/PSA/public/images/articles/*.jpg)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=OnvQggy3Ezw&format=json\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=e1l5-hpZFWc&format=json\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=MzH6BI6P4Uo&format=json\")"
     ]
   }
 }
