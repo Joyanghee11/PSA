@@ -96,7 +96,9 @@
       "Bash(ls -la /c/Users/joyan/PSA/public/images/articles/*.jpg)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=OnvQggy3Ezw&format=json\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=e1l5-hpZFWc&format=json\")",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=MzH6BI6P4Uo&format=json\")"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=MzH6BI6P4Uo&format=json\")",
+      "Bash(mkdir -p /c/tmp)",
+      "Bash(curl -s -X POST https://divejournal.co.kr/api/admin/upload -b /tmp/dj-c.txt -F \"file=@C:/tmp/test.jpg;type=image/jpeg;filename=test.jpg\")"
     ]
   }
 }
