@@ -31,6 +31,7 @@ export default async function LangLayout({
       <main className="flex-1 max-w-[1200px] mx-auto px-4 py-6 w-full">
         {children}
       </main>
+      <AdSlot position="footer-above" />
       <Footer dict={dict} lang={lang as Lang} />
     </>
   );

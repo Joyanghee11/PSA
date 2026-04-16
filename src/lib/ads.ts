@@ -2,7 +2,13 @@ import fs from "fs";
 import path from "path";
 import { list, put } from "@vercel/blob";
 
-export type AdPosition = "header-top" | "sidebar" | "between-articles";
+export type AdPosition =
+  | "header-top"
+  | "sidebar"
+  | "between-articles"
+  | "article-top"
+  | "article-bottom"
+  | "footer-above";
 
 export interface AdBanner {
   id: string;

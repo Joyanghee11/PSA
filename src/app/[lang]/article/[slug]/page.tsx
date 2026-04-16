@@ -5,6 +5,7 @@ import { getArticleBySlugAsync, getAllArticles } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
 import { CategoryBadge } from "@/components/article/CategoryBadge";
 import { getDictionary } from "@/config/i18n";
+import { AdSlot } from "@/components/ads/AdBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -100,11 +101,17 @@ export default async function ArticlePage({
         </figure>
       )}
 
+      {/* Ad: article top */}
+      <AdSlot position="article-top" />
+
       {/* Body */}
       <div
         className="prose prose-lg max-w-none prose-headings:font-headline prose-p:leading-relaxed"
         dangerouslySetInnerHTML={{ __html: content.body }}
       />
+
+      {/* Ad: article bottom */}
+      <AdSlot position="article-bottom" />
 
       {/* Source */}
       {article.sourceUrls.length > 0 && (

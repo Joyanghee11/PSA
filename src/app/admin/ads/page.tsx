@@ -6,9 +6,12 @@ import Link from "next/link";
 import type { AdBanner, AdPosition } from "@/lib/ads";
 
 const POSITIONS: { value: AdPosition; label: string }[] = [
-  { value: "header-top", label: "헤더 상단 (728x90)" },
-  { value: "sidebar", label: "사이드바 (300x250)" },
-  { value: "between-articles", label: "기사 목록 사이 (반응형)" },
+  { value: "header-top", label: "① 헤더 상단 (728x90)" },
+  { value: "sidebar", label: "② 사이드바 (300x250)" },
+  { value: "between-articles", label: "③ 기사 목록 사이 (반응형)" },
+  { value: "article-top", label: "④ 기사 본문 위 (728x90)" },
+  { value: "article-bottom", label: "⑤ 기사 본문 아래 (728x90)" },
+  { value: "footer-above", label: "⑥ 푸터 위 (반응형)" },
 ];
 
 function EmptyForm(): Omit<AdBanner, "id" | "createdAt"> {
