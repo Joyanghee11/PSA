@@ -4,10 +4,17 @@
   "updatedAt": "2026-04-16T15:00:00Z",
   "status": "published",
   "category": "workout",
-  "tags": ["CO2 tolerance", "breath training", "apnea tables", "freediving training", "breath-hold", "contractions"],
+  "tags": [
+    "CO2 tolerance",
+    "breath training",
+    "apnea tables",
+    "freediving training",
+    "breath-hold",
+    "contractions"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/freediver%20dry%20training%20CO2%20tolerance%20breath%20hold%20table%20mat%20floor%20relaxed%20concentration?model=flux&width=800&height=450&nologo=true",
-  "imageAlt": "Freediver practicing CO2 tolerance tables on a training mat",
+  "imageUrl": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Person doing breathing exercises on yoga mat",
   "en": {
     "title": "Freediving Training: CO2 Tolerance Tables — Train Your Body to Push Through the Urge to Breathe",
     "summary": "CO2 tolerance tables systematically condition your body's response to rising carbon dioxide, extending the time before contractions begin and teaching you to stay relaxed when your lungs most want air.",

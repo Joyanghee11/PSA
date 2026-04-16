@@ -4,12 +4,20 @@
   "updatedAt": "2026-04-16T09:00:00Z",
   "status": "published",
   "category": "science",
-  "tags": ["freediving", "psychology", "Arctic", "ice diving", "performance", "breath-hold", "research"],
+  "tags": [
+    "freediving",
+    "psychology",
+    "Arctic",
+    "ice diving",
+    "performance",
+    "breath-hold",
+    "research"
+  ],
   "sourceUrls": [
     "https://7news.com.au/sport/freediving-psychologist-conquers-arctic-ice-to-unlock-performance-secrets"
   ],
-  "imageUrl": "https://image.pollinations.ai/prompt/freediving%20psychologist%20researcher%20under%20arctic%20ice%20frozen%20lake%20breath%20hold%20science%20performance?model=flux&width=800&height=450&nologo=true",
-  "imageAlt": "Researcher freediving under Arctic ice to study breath-hold performance",
+  "imageUrl": "https://images.unsplash.com/photo-1551244072-5d12893278ab?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Arctic ice underwater research",
   "en": {
     "title": "Freediving Psychologist Dives Under Arctic Ice to Study the Science of Performance Under Pressure",
     "summary": "A sport psychologist specializing in freediving has undertaken dives beneath Arctic ice to study how elite breath-hold athletes manage fear, focus, and physiological stress — research with implications beyond sport.",

@@ -4,10 +4,18 @@
   "updatedAt": "2026-04-16T11:00:00Z",
   "status": "published",
   "category": "diving-spot",
-  "tags": ["Cocos Island", "Costa Rica", "Pacific", "hammerhead sharks", "whale shark", "UNESCO", "liveaboard"],
+  "tags": [
+    "Cocos Island",
+    "Costa Rica",
+    "Pacific",
+    "hammerhead sharks",
+    "whale shark",
+    "UNESCO",
+    "liveaboard"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/Cocos%20Island%20Costa%20Rica%20underwater%20hammerhead%20shark%20school%20Pacific%20Ocean%20liveaboard%20diving?model=flux&width=800&height=450&nologo=true",
-  "imageAlt": "Cocos Island Costa Rica — schools of hammerhead sharks in the Pacific",
+  "imageUrl": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Hammerhead sharks at Cocos Island",
   "en": {
     "title": "Diving Spot of the Day: Cocos Island, Costa Rica — The Shark Supermarket of the Pacific",
     "summary": "Cocos Island is a remote Costa Rican UNESCO World Heritage island 550 km offshore where hammerhead sharks school in the hundreds, whale sharks cruise the cleaning stations, and the Pacific's megafauna gathers in concentrations seen almost nowhere else.",

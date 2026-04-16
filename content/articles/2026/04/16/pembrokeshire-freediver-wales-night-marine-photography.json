@@ -4,12 +4,19 @@
   "updatedAt": "2026-04-16T08:00:00Z",
   "status": "published",
   "category": "people",
-  "tags": ["freediving", "underwater photography", "Wales", "Pembrokeshire", "night diving", "marine life"],
+  "tags": [
+    "freediving",
+    "underwater photography",
+    "Wales",
+    "Pembrokeshire",
+    "night diving",
+    "marine life"
+  ],
   "sourceUrls": [
     "https://www.bbc.co.uk/news/articles/c9dl7w3pd5eo"
   ],
-  "imageUrl": "https://image.pollinations.ai/prompt/freediver%20underwater%20night%20photography%20Wales%20coastline%20bioluminescence%20cold%20clear%20Atlantic%20water%20marine%20life%20documentary?model=flux&width=800&height=450&nologo=true",
-  "imageAlt": "Pembrokeshire freediver capturing Wales marine life on camera at night",
+  "imageUrl": "https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Underwater night photography marine life",
   "en": {
     "title": "Pembrokeshire Freediver Documents Wales' Underwater World After Dark",
     "summary": "A freediver based in Pembrokeshire, Wales, has been capturing the nighttime behavior of the Welsh coast's marine life on camera, producing striking imagery from some of Britain's richest inshore waters.",

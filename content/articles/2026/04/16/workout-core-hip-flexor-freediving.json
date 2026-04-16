@@ -4,10 +4,17 @@
   "updatedAt": "2026-04-16T16:00:00Z",
   "status": "published",
   "category": "workout",
-  "tags": ["core training", "hip flexor", "dolphin kick", "freediving fitness", "underwater posture", "monofin"],
+  "tags": [
+    "core training",
+    "hip flexor",
+    "dolphin kick",
+    "freediving fitness",
+    "underwater posture",
+    "monofin"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/freediver%20core%20training%20hip%20flexor%20exercise%20dolphin%20kick%20underwater%20fitness%20yoga%20mat%20stability?model=flux&width=800&height=450&nologo=true",
-  "imageAlt": "Freediver doing core and hip flexor exercises on a yoga mat",
+  "imageUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Core workout exercise in gym",
   "en": {
     "title": "Freediving Fitness: Core and Hip Flexor Training for a Powerful, Efficient Dolphin Kick",
     "summary": "A strong, flexible core and hip flexors are the engine of freediving's most efficient movement — the dolphin kick. This routine targets the specific muscles that generate propulsion and maintain streamlined body position at depth.",

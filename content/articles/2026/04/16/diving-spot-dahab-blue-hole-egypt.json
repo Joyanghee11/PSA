@@ -4,10 +4,18 @@
   "updatedAt": "2026-04-16T10:00:00Z",
   "status": "published",
   "category": "diving-spot",
-  "tags": ["Dahab", "Blue Hole", "Egypt", "Red Sea", "freediving", "sinkhole", "travel"],
+  "tags": [
+    "Dahab",
+    "Blue Hole",
+    "Egypt",
+    "Red Sea",
+    "freediving",
+    "sinkhole",
+    "travel"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/Dahab%20Blue%20Hole%20Egypt%20Red%20Sea%20underwater%20freediver%20deep%20blue%20sinkhole%20coral%20reef%20sunlight?model=flux&width=800&height=450&nologo=true",
-  "imageAlt": "Dahab Blue Hole in Egypt — deep blue circular sinkhole in the Red Sea",
+  "imageUrl": "https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Blue hole aerial view in Egypt",
   "en": {
     "title": "Diving Spot of the Day: Dahab Blue Hole, Egypt — Freediving's Most Iconic and Controversial Site",
     "summary": "The Dahab Blue Hole is a 100-meter-deep circular sinkhole in the Red Sea, famous for its electric blue color, the legendary Arch passage at 56m, and a history that commands both reverence and caution.",

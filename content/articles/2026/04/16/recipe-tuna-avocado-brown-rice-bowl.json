@@ -4,10 +4,18 @@
   "updatedAt": "2026-04-16T13:00:00Z",
   "status": "published",
   "category": "recipe",
-  "tags": ["recipe", "freediving", "nutrition", "omega-3", "tuna", "avocado", "pre-dive meal"],
+  "tags": [
+    "recipe",
+    "freediving",
+    "nutrition",
+    "omega-3",
+    "tuna",
+    "avocado",
+    "pre-dive meal"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/tuna%20avocado%20brown%20rice%20bowl%20healthy%20meal%20freediving%20nutrition%20fresh%20ingredients%20colorful%20overhead%20view?model=flux&width=800&height=450&nologo=true",
-  "imageAlt": "Tuna avocado brown rice bowl — a balanced pre-dive meal rich in omega-3",
+  "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Healthy tuna poke bowl with avocado",
   "en": {
     "title": "Freediving Nutrition: Tuna & Avocado Brown Rice Bowl for Sustained Breath-Hold Performance",
     "summary": "This omega-3-rich tuna and avocado bowl over brown rice provides the sustained energy, anti-inflammatory support, and cardiovascular conditioning that freedivers need for long sessions in the water.",

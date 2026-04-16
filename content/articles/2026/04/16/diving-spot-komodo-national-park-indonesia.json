@@ -4,10 +4,18 @@
   "updatedAt": "2026-04-16T12:00:00Z",
   "status": "published",
   "category": "diving-spot",
-  "tags": ["Komodo", "Indonesia", "manta ray", "current diving", "Coral Triangle", "UNESCO", "Flores Sea"],
+  "tags": [
+    "Komodo",
+    "Indonesia",
+    "manta ray",
+    "current diving",
+    "Coral Triangle",
+    "UNESCO",
+    "Flores Sea"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/Komodo%20National%20Park%20Indonesia%20underwater%20manta%20ray%20cleaning%20station%20coral%20triangle%20freediver%20colorful%20reef?model=flux&width=800&height=450&nologo=true",
-  "imageAlt": "Komodo National Park Indonesia — manta ray at cleaning station above colorful reef",
+  "imageUrl": "https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Komodo Island turquoise water",
   "en": {
     "title": "Diving Spot of the Day: Komodo National Park, Indonesia — Dragons Above, Mantas Below",
     "summary": "Komodo National Park offers two worlds in one UNESCO site: Komodo dragons on land and some of the most current-driven, species-rich diving in the Coral Triangle — mantas, pygmy seahorses, and a 1,000-species fish count.",

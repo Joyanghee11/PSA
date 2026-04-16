@@ -4,10 +4,20 @@
   "updatedAt": "2026-04-16T14:00:00Z",
   "status": "published",
   "category": "recipe",
-  "tags": ["recipe", "miso", "tofu", "spinach", "pre-dive", "freediving", "nutrition", "iron", "Japanese"],
+  "tags": [
+    "recipe",
+    "miso",
+    "tofu",
+    "spinach",
+    "pre-dive",
+    "freediving",
+    "nutrition",
+    "iron",
+    "Japanese"
+  ],
   "sourceUrls": [],
-  "imageUrl": "https://image.pollinations.ai/prompt/miso%20soup%20tofu%20spinach%20wakame%20Japanese%20bowl%20healthy%20freediving%20nutrition%20warm%20meal%20pre-dive?model=flux&width=800&height=450&nologo=true",
-  "imageAlt": "Miso tofu spinach soup — a warming pre-dive meal with iron and easy digestion",
+  "imageUrl": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Miso soup with tofu and vegetables",
   "en": {
     "title": "Freediving Nutrition: Miso, Tofu & Spinach Soup — Iron-Rich and Easy on the Stomach Before a Dive",
     "summary": "A traditional miso soup upgraded with tofu, spinach, and wakame delivers iron, plant-based protein, and beneficial probiotics — and digests lightly enough to eat closer to your dive session than most hot meals.",
