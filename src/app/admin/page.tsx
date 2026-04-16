@@ -89,6 +89,12 @@ export default function AdminDashboard() {
           </div>
           <div className="flex items-center gap-3">
             <Link
+              href="/admin/ads"
+              className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors"
+            >
+              광고 관리
+            </Link>
+            <Link
               href="/admin/create"
               className="px-4 py-2 bg-accent text-accent-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
             >

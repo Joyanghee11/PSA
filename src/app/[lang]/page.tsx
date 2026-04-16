@@ -4,6 +4,7 @@ import { getDictionary } from "@/config/i18n";
 import { getAllArticlesAsync } from "@/lib/content";
 import { FeaturedArticle } from "@/components/article/FeaturedArticle";
 import { ArticleCard } from "@/components/article/ArticleCard";
+import { AdSlot } from "@/components/ads/AdBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -69,6 +70,9 @@ export default async function HomePage({
         </section>
       )}
 
+      {/* Ad: between articles */}
+      <AdSlot position="between-articles" />
+
       {/* Row 3: main content + sidebar layout */}
       <section className="py-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -103,6 +107,10 @@ export default async function HomePage({
                   variant="compact"
                 />
               ))}
+            </div>
+            {/* Sidebar ad */}
+            <div className="mt-6">
+              <AdSlot position="sidebar" />
             </div>
           </aside>
         </div>
