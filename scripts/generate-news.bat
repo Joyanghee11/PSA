@@ -1,4 +1,10 @@
 @echo off
+:: 로그 파일로 출력
+set LOGFILE=C:\Users\joyan\PSA\scripts\generate-news.log
+call :main > "%LOGFILE%" 2>&1
+exit /b %ERRORLEVEL%
+
+:main
 :: =====================================================
 :: 다이브저널 매일 아침 6시 자동 기사 생성 (10건)
 :: - 뉴스 4건
