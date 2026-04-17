@@ -1,16 +1,27 @@
 export type Category =
-  | "competition"
-  | "records"
-  | "training"
-  | "safety"
-  | "equipment"
+  // 프리다이빙
+  | "freediving-competition"
+  | "freediving-records"
+  | "freediving-training"
+  | "freediving-safety"
+  // 스쿠버
+  | "scuba-news"
+  | "scuba-equipment"
+  | "scuba-destination"
+  // 공통
   | "science"
   | "environment"
   | "people"
   | "diving-spot"
   | "recipe"
   | "workout"
-  | "video";
+  | "video"
+  // 레거시 (기존 기사 호환)
+  | "competition"
+  | "records"
+  | "training"
+  | "safety"
+  | "equipment";
 
 export type Lang = "ko" | "en";
 

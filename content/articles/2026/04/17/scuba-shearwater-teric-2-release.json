@@ -1,0 +1,23 @@
+{
+  "slug": "scuba-shearwater-teric-2-release",
+  "publishedAt": "2026-04-17T06:00:00Z",
+  "updatedAt": "2026-04-17T06:00:00Z",
+  "status": "published",
+  "category": "scuba-equipment",
+  "tags": ["Shearwater", "Teric", "dive computer", "OLED"],
+  "sourceUrls": [],
+  "imageUrl": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Scuba diver underwater with equipment",
+  "en": {
+    "title": "Shearwater Teric 2 Dive Computer Launches with Brighter OLED and Longer Battery",
+    "summary": "Shearwater Research announces the Teric 2 with a 40% brighter OLED display, 20-hour battery life, and wireless air integration for up to 4 transmitters.",
+    "body": "<p>Shearwater Research has released the Teric 2, the long-awaited successor to one of the most popular wrist-mounted dive computers in the technical diving community.</p><p>The Teric 2 features a 1.4-inch OLED display that is 40% brighter than its predecessor, making it significantly easier to read in bright tropical conditions and at depth. Battery life has been extended to approximately 20 hours in dive mode with a single charge.</p><p>Wireless air integration now supports up to four transmitters simultaneously, allowing divers to monitor their own gas supply along with up to three buddies. The device supports both recreational and technical diving modes including nitrox, trimix, CCR, and gauge.</p><p>New features include a built-in dive planner, customizable screen layouts, and Bluetooth connectivity for post-dive log uploads via the Shearwater Cloud app. The titanium bezel and sapphire crystal lens provide durability for demanding dive environments.</p><p>The Teric 2 retails for $1,499 without a transmitter and $1,799 with one wireless transmitter included. It begins shipping in May 2026.</p>",
+    "metaDescription": "Shearwater Teric 2 dive computer: 40% brighter OLED, 20-hour battery, 4-transmitter air integration."
+  },
+  "ko": {
+    "title": "쉬어워터 테릭 2 다이브 컴퓨터 출시 — 더 밝은 OLED, 더 긴 배터리",
+    "summary": "쉬어워터 리서치가 40% 더 밝은 OLED 디스플레이, 20시간 배터리, 최대 4개 송신기 무선 에어 연동을 갖춘 테릭 2를 발표했다.",
+    "body": "<p>쉬어워터 리서치가 테크니컬 다이빙 커뮤니티에서 가장 인기 있는 손목형 다이브 컴퓨터의 후속작 테릭 2를 출시했다.</p><p>테릭 2는 전작보다 40% 더 밝은 1.4인치 OLED 디스플레이를 탑재하여 열대 밝은 환경과 수심에서도 훨씬 읽기 쉽다. 배터리 수명은 다이브 모드에서 1회 충전으로 약 20시간으로 연장됐다.</p><p>무선 에어 연동은 최대 4개 송신기를 동시에 지원하여 본인의 가스 공급량과 최대 3명의 버디 현황을 모니터링할 수 있다. 나이트록스, 트라이믹스, CCR, 게이지 등 레크리에이션과 테크니컬 다이빙 모드를 모두 지원한다.</p><p>새로운 기능으로는 내장 다이브 플래너, 맞춤형 화면 레이아웃, 블루투스를 통한 쉬어워터 클라우드 앱 다이브 로그 업로드가 포함된다. 티타늄 베젤과 사파이어 크리스탈 렌즈는 가혹한 다이빙 환경에서의 내구성을 제공한다.</p><p>테릭 2의 가격은 송신기 미포함 $1,499, 무선 송신기 1개 포함 $1,799이며 2026년 5월부터 배송이 시작된다.</p>",
+    "metaDescription": "쉬어워터 테릭 2: 40% 더 밝은 OLED, 20시간 배터리, 4개 송신기 무선 에어 연동 다이브 컴퓨터."
+  }
+}
