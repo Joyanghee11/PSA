@@ -44,6 +44,11 @@ export default async function HomePage({
   const sidebar = articles.slice(8, 14);
   const bottom = articles.slice(14);
 
+  // 인기 기사: 가장 오래된 기사 중 상위 5개 (=가장 오래 노출됨)
+  const popular = [...nonVideo]
+    .sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime())
+    .slice(0, 5);
+
   if (!featured) {
     return (
       <div className="text-center py-24">
@@ -68,6 +73,27 @@ export default async function HomePage({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {row2.map((article) => (
               <ArticleCard key={article.slug} article={article} lang={lang as Lang} variant="default" />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Popular articles */}
+      {popular.length > 0 && (
+        <section className="py-6 border-b-thin">
+          <div className="section-title">
+            <span>🔥 {lang === "ko" ? "인기 기사" : "Popular"}</span>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {popular.map((article, i) => (
+              <Link key={article.slug} href={`/${lang}/article/${article.slug}`} className="group">
+                <div className="flex items-start gap-2">
+                  <span className="text-2xl font-black text-accent/30 leading-none">{i + 1}</span>
+                  <h3 className="text-sm font-semibold leading-snug group-hover:text-accent-blue transition-colors line-clamp-3" style={{ wordBreak: "keep-all" }}>
+                    {article[lang as Lang].title}
+                  </h3>
+                </div>
+              </Link>
             ))}
           </div>
         </section>

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import type { Lang } from "@/lib/types";
 import type { Dictionary } from "@/config/i18n";
 import { siteConfig } from "@/config/site";
+import { getCategoryLabel } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useState } from "react";
@@ -18,10 +19,6 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
     lang === "ko"
       ? `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, "0")}.${String(now.getDate()).padStart(2, "0")} ${["일", "월", "화", "수", "목", "금", "토"][now.getDay()]}요일`
       : now.toLocaleDateString("en-US", { weekday: "short", year: "numeric", month: "short", day: "numeric" });
-
-  const commonCats = siteConfig.categories.filter(
-    (c) => c.section === "common" && c.slug !== "video"
-  );
 
   return (
     <header>
@@ -81,54 +78,16 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
                 {dict.nav.home}
               </Link>
             </li>
-
-            {/* 프리다이빙 섹션 */}
-            <li className="group relative">
-              <span className={`block px-3 py-2 md:py-0 text-sm font-bold cursor-pointer hover:text-accent ${pathname.includes("/freediving") ? "text-accent" : ""}`}>
-                {lang === "ko" ? "프리다이빙" : "Freediving"} <span className="text-[10px]">▼</span>
-              </span>
-              <ul className="md:absolute md:hidden md:group-hover:block md:bg-nav-bg md:shadow-lg md:min-w-[180px] md:z-50 md:border md:border-[#444] md:mt-0 md:left-0 pl-4 md:pl-0">
-                {siteConfig.categories.filter(c => c.section === "freediving").map(cat => (
-                  <li key={cat.slug}>
-                    <Link href={`/${lang}/category/${cat.slug}`} className="block px-4 py-2 text-sm hover:text-accent hover:bg-[#333]">
-                      {cat.label[lang]}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-
-            {/* 스쿠버 섹션 */}
-            <li className="group relative">
-              <span className={`block px-3 py-2 md:py-0 text-sm font-bold cursor-pointer hover:text-accent ${pathname.includes("/scuba") ? "text-accent" : ""}`}>
-                {lang === "ko" ? "스쿠버" : "Scuba"} <span className="text-[10px]">▼</span>
-              </span>
-              <ul className="md:absolute md:hidden md:group-hover:block md:bg-nav-bg md:shadow-lg md:min-w-[180px] md:z-50 md:border md:border-[#444] md:mt-0 md:left-0 pl-4 md:pl-0">
-                {siteConfig.categories.filter(c => c.section === "scuba").map(cat => (
-                  <li key={cat.slug}>
-                    <Link href={`/${lang}/category/${cat.slug}`} className="block px-4 py-2 text-sm hover:text-accent hover:bg-[#333]">
-                      {cat.label[lang]}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-
-            {/* 공통 카테고리 */}
-            {commonCats.map(cat => (
+            {siteConfig.categories.map((cat) => (
               <li key={cat.slug}>
-                <Link href={`/${lang}/category/${cat.slug}`} className={`block px-3 py-2 md:py-0 text-sm font-medium hover:text-accent ${pathname.includes(`/category/${cat.slug}`) ? "text-accent" : ""}`}>
-                  {cat.label[lang]}
+                <Link
+                  href={`/${lang}/category/${cat.slug}`}
+                  className={`block px-3 py-2 md:py-0 text-sm font-medium hover:text-accent ${pathname.includes(`/category/${cat.slug}`) ? "text-accent" : ""}`}
+                >
+                  {cat.slug === "video" ? "📺 " : ""}{cat.label[lang]}
                 </Link>
               </li>
             ))}
-
-            {/* 영상 */}
-            <li>
-              <Link href={`/${lang}/category/video`} className={`block px-3 py-2 md:py-0 text-sm font-medium hover:text-accent ${pathname.includes("/category/video") ? "text-accent" : ""}`}>
-                📺 {lang === "ko" ? "영상" : "Video"}
-              </Link>
-            </li>
           </ul>
         </div>
       </nav>
