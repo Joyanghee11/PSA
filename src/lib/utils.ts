@@ -20,9 +20,10 @@ export function formatRelativeDate(dateStr: string, lang: Lang): string {
 }
 
 const categoryLabels: Record<string, Record<Lang, string>> = {
+  freediving: { en: "Freediving", ko: "프리다이빙" },
+  "scuba-news": { en: "Scuba", ko: "스쿠버" },
   competition: { en: "Competition", ko: "대회" },
   equipment: { en: "Equipment", ko: "장비" },
-  "scuba-news": { en: "Scuba", ko: "스쿠버" },
   environment: { en: "Environment", ko: "환경" },
   people: { en: "People", ko: "인물" },
   science: { en: "Science", ko: "과학" },
@@ -48,9 +49,10 @@ export function getCategoryLabel(category: Category, lang: Lang): string {
 
 export function getCategoryColor(category: Category): string {
   const colors: Record<string, string> = {
-    competition: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
-    equipment: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
+    freediving: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
     "scuba-news": "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200",
+    competition: "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
+    equipment: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
     environment: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200",
     people: "bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200",
     science: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200",

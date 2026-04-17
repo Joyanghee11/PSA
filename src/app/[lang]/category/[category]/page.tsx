@@ -50,7 +50,24 @@ export default async function CategoryPage({
 
   const dict = getDictionary(lang as Lang);
   const allArticles = await getAllArticlesAsync();
-  const articles = allArticles.filter((a) => a.category === category);
+
+  // 프리다이빙 카테고리는 레거시 카테고리도 포함
+  const freedivingCats = ["freediving", "freediving-competition", "freediving-records", "freediving-training", "freediving-safety"];
+  const equipmentCats = ["equipment", "scuba-equipment"];
+  const competitionCats = ["competition", "freediving-competition"];
+
+  let articles;
+  if (category === "freediving") {
+    articles = allArticles.filter((a) => freedivingCats.includes(a.category) || a.category === "records" || a.category === "training" || a.category === "safety");
+  } else if (category === "equipment") {
+    articles = allArticles.filter((a) => equipmentCats.includes(a.category));
+  } else if (category === "competition") {
+    articles = allArticles.filter((a) => competitionCats.includes(a.category));
+  } else if (category === "scuba-news") {
+    articles = allArticles.filter((a) => a.category === "scuba-news" || a.category === "scuba-destination");
+  } else {
+    articles = allArticles.filter((a) => a.category === category);
+  }
   const label = getCategoryLabel(category as Category, lang as Lang);
 
   return (

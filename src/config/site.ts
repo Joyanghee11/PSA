@@ -6,11 +6,11 @@ export const siteConfig = {
   url: "https://divejournal.co.kr",
   defaultLang: "ko" as const,
 
-  // 전체 카테고리 (네비게이션 순서)
   categories: [
+    { slug: "freediving", label: { en: "Freediving", ko: "프리다이빙" } },
+    { slug: "scuba-news", label: { en: "Scuba", ko: "스쿠버" } },
     { slug: "competition", label: { en: "Competition", ko: "대회" } },
     { slug: "equipment", label: { en: "Equipment", ko: "장비" } },
-    { slug: "scuba-news", label: { en: "Scuba", ko: "스쿠버" } },
     { slug: "environment", label: { en: "Environment", ko: "환경" } },
     { slug: "people", label: { en: "People", ko: "인물" } },
     { slug: "science", label: { en: "Science", ko: "과학" } },

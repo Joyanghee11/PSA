@@ -1,5 +1,6 @@
 export type Category =
-  // 프리다이빙
+  | "freediving"
+  // 레거시 프리다이빙
   | "freediving-competition"
   | "freediving-records"
   | "freediving-training"
