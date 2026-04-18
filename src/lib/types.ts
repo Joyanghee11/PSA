@@ -45,6 +45,7 @@ export interface Article {
   ko: LocalizedContent;
   imageUrl?: string;
   imageAlt?: string;
+  pinned?: "top" | "featured" | undefined;
 }
 
 export interface RawNewsItem {

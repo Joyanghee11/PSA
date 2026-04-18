@@ -81,6 +81,19 @@ export default function AdminDashboard() {
       );
   }
 
+  async function handlePin(article: Article, pin: "top" | "featured" | undefined) {
+    // 같은 값이면 해제
+    const newPin = article.pinned === pin ? undefined : pin;
+    setArticles((prev) =>
+      prev.map((a) => (a.slug === article.slug ? { ...a, pinned: newPin } : a))
+    );
+    await fetch(`/api/admin/articles/${article.slug}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pinned: newPin ?? null }),
+    });
+  }
+
   async function handleLogout() {
     await fetch("/api/admin/auth", { method: "DELETE" });
     router.push("/admin/login");
@@ -223,6 +236,12 @@ export default function AdminDashboard() {
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
+                    {article.pinned === "top" && (
+                      <span className="px-1.5 py-0.5 text-[10px] font-bold bg-red-600 text-white rounded">📌 최상단</span>
+                    )}
+                    {article.pinned === "featured" && (
+                      <span className="px-1.5 py-0.5 text-[10px] font-bold bg-blue-600 text-white rounded">⭐ 상단</span>
+                    )}
                     <button
                       onClick={() => setFilterCategory(article.category)}
                       className={`inline-block px-2 py-0.5 text-xs font-medium rounded-full cursor-pointer hover:opacity-80 ${getCategoryColor(article.category)}`}
@@ -237,6 +256,28 @@ export default function AdminDashboard() {
                   <p className="text-sm text-muted-foreground truncate">{article.en.title}</p>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
+                  <button
+                    onClick={() => handlePin(article, "top")}
+                    className={`px-2 py-1.5 text-xs rounded-lg border transition-colors ${
+                      article.pinned === "top"
+                        ? "bg-red-600 text-white border-red-600"
+                        : "border-border text-muted-foreground hover:bg-muted"
+                    }`}
+                    title="최상단 고정"
+                  >
+                    📌
+                  </button>
+                  <button
+                    onClick={() => handlePin(article, "featured")}
+                    className={`px-2 py-1.5 text-xs rounded-lg border transition-colors ${
+                      article.pinned === "featured"
+                        ? "bg-blue-600 text-white border-blue-600"
+                        : "border-border text-muted-foreground hover:bg-muted"
+                    }`}
+                    title="상단 고정"
+                  >
+                    ⭐
+                  </button>
                   <button
                     onClick={() => handleToggleStatus(article)}
                     className={`px-3 py-1.5 text-xs rounded-lg border transition-colors ${

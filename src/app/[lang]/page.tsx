@@ -38,7 +38,17 @@ export default async function HomePage({
   const allArticles = await getAllArticlesAsync();
   const nonVideo = allArticles.filter((a) => a.category !== "video");
   const videos = allArticles.filter((a) => a.category === "video");
-  const articles = nonVideo.slice(0, 20);
+
+  // pinned 기사 우선 정렬: top > featured > 나머지 (날짜순)
+  const sorted = [...nonVideo].sort((a, b) => {
+    const pinOrder = { top: 0, featured: 1 } as Record<string, number>;
+    const aPin = a.pinned ? (pinOrder[a.pinned] ?? 2) : 2;
+    const bPin = b.pinned ? (pinOrder[b.pinned] ?? 2) : 2;
+    if (aPin !== bPin) return aPin - bPin;
+    return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+  });
+
+  const articles = sorted.slice(0, 20);
   const featured = articles[0];
   const row2 = articles.slice(1, 4);
   const row3 = articles.slice(4, 8);
