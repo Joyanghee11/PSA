@@ -11,7 +11,7 @@ export function VideoCard({ article, lang }: { article: Article; lang: Lang }) {
   if (!videoId) return null;
 
   return (
-    <div>
+    <div className="flex-shrink-0 w-[280px] md:w-[300px]">
       <div className="relative aspect-video bg-black overflow-hidden rounded">
         {playing ? (
           <iframe
@@ -40,10 +40,7 @@ export function VideoCard({ article, lang }: { article: Article; lang: Lang }) {
           </button>
         )}
       </div>
-      <h3
-        className="text-sm font-semibold mt-2 line-clamp-2"
-        style={{ wordBreak: "keep-all" }}
-      >
+      <h3 className="text-sm font-semibold mt-2 line-clamp-2" style={{ wordBreak: "keep-all" }}>
         {content.title}
       </h3>
     </div>

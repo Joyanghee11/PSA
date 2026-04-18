@@ -6,7 +6,7 @@ import { getAllArticlesAsync } from "@/lib/content";
 import { FeaturedArticle } from "@/components/article/FeaturedArticle";
 import { ArticleCard } from "@/components/article/ArticleCard";
 import { AdSlot } from "@/components/ads/AdBanner";
-import { VideoCard } from "@/components/article/VideoCard";
+import { VideoCarousel } from "@/components/article/VideoCarousel";
 
 export const dynamic = "force-dynamic";
 
@@ -37,7 +37,7 @@ export default async function HomePage({
   const dict = getDictionary(lang as Lang);
   const allArticles = await getAllArticlesAsync();
   const nonVideo = allArticles.filter((a) => a.category !== "video");
-  const videos = allArticles.filter((a) => a.category === "video").slice(0, 8);
+  const videos = allArticles.filter((a) => a.category === "video");
   const articles = nonVideo.slice(0, 20);
   const featured = articles[0];
   const row2 = articles.slice(1, 4);
@@ -85,11 +85,7 @@ export default async function HomePage({
           <div className="section-title">
             <span>📺 {lang === "ko" ? "추천 영상" : "Featured Videos"}</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {videos.map((v) => (
-              <VideoCard key={v.slug} article={v} lang={lang as Lang} />
-            ))}
-          </div>
+          <VideoCarousel articles={videos} lang={lang as Lang} />
         </section>
       )}
 
