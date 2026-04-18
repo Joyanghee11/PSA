@@ -51,6 +51,7 @@ export async function PUT(
       ko: { ...existing.ko, ...body.ko },
       imageUrl: body.imageUrl !== undefined ? body.imageUrl : existing.imageUrl,
       imageAlt: body.imageAlt !== undefined ? body.imageAlt : existing.imageAlt,
+      pinned: body.pinned !== undefined ? (body.pinned || undefined) : existing.pinned,
     };
 
     // Delete old blob, write new
