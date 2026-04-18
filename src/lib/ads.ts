@@ -8,7 +8,9 @@ export type AdPosition =
   | "between-articles"
   | "article-top"
   | "article-bottom"
-  | "footer-above";
+  | "footer-above"
+  | "sticky-left"
+  | "sticky-right";
 
 export interface AdBanner {
   id: string;

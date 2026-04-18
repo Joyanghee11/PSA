@@ -12,6 +12,8 @@ const POSITIONS: { value: AdPosition; label: string }[] = [
   { value: "article-top", label: "④ 기사 본문 위 (728x90)" },
   { value: "article-bottom", label: "⑤ 기사 본문 아래 (728x90)" },
   { value: "footer-above", label: "⑥ 푸터 위 (반응형)" },
+  { value: "sticky-left", label: "⑦ 좌측 세로 배너 (160x600)" },
+  { value: "sticky-right", label: "⑧ 우측 세로 배너 (160x600)" },
 ];
 
 function EmptyForm(): Omit<AdBanner, "id" | "createdAt"> {

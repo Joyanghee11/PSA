@@ -4,6 +4,7 @@ import type { Lang } from "@/lib/types";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { AdSlot } from "@/components/ads/AdBanner";
+import { StickyBanners } from "@/components/ads/StickyBanners";
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -26,6 +27,7 @@ export default async function LangLayout({
 
   return (
     <>
+      <StickyBanners />
       <AdSlot position="header-top" />
       <Header lang={lang as Lang} dict={dict} />
       <main className="flex-1 max-w-[1200px] mx-auto px-4 py-6 w-full">
