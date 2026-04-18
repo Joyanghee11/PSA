@@ -6,6 +6,7 @@ import { getAllArticlesAsync } from "@/lib/content";
 import { FeaturedArticle } from "@/components/article/FeaturedArticle";
 import { ArticleCard } from "@/components/article/ArticleCard";
 import { AdSlot } from "@/components/ads/AdBanner";
+import { VideoCard } from "@/components/article/VideoCard";
 
 export const dynamic = "force-dynamic";
 
@@ -85,30 +86,9 @@ export default async function HomePage({
             <span>📺 {lang === "ko" ? "추천 영상" : "Featured Videos"}</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {videos.map((v) => {
-              const videoId = v.en.body.match(/embed\/([a-zA-Z0-9_-]+)/)?.[1];
-              return (
-                <Link key={v.slug} href={`/${lang}/article/${v.slug}`} className="group block">
-                  <div className="relative aspect-video bg-muted overflow-hidden rounded">
-                    <img
-                      src={v.imageUrl || `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
-                      alt={v[lang as Lang].title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 bg-black/70 rounded-full flex items-center justify-center group-hover:bg-accent/90 transition-colors">
-                        <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <h3 className="text-sm font-semibold mt-2 line-clamp-2 group-hover:text-accent-blue transition-colors" style={{ wordBreak: "keep-all" }}>
-                    {v[lang as Lang].title}
-                  </h3>
-                </Link>
-              );
-            })}
+            {videos.map((v) => (
+              <VideoCard key={v.slug} article={v} lang={lang as Lang} />
+            ))}
           </div>
         </section>
       )}
