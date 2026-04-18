@@ -37,7 +37,7 @@ export default async function HomePage({
   const dict = getDictionary(lang as Lang);
   const allArticles = await getAllArticlesAsync();
   const nonVideo = allArticles.filter((a) => a.category !== "video");
-  const videos = allArticles.filter((a) => a.category === "video").slice(0, 4);
+  const videos = allArticles.filter((a) => a.category === "video").slice(0, 8);
   const articles = nonVideo.slice(0, 20);
   const featured = articles[0];
   const row2 = articles.slice(1, 4);
