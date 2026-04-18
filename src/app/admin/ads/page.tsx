@@ -56,7 +56,7 @@ export default function AdminAdsPage() {
       ? { ...form, id: editingId, _action: "update" }
       : form;
 
-    await fetch("/api/admin/ads", {
+    const res = await fetch("/api/admin/ads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -66,20 +66,27 @@ export default function AdminAdsPage() {
     setEditingId(null);
     setForm(EmptyForm());
     setSaving(false);
-    fetchBanners();
+
+    // 저장 후 2초 대기하여 Blob 캐시 갱신 후 다시 로드
+    setTimeout(() => fetchBanners(), 2000);
   }
 
   async function handleDelete(id: string) {
     if (!confirm("이 배너를 삭제하시겠습니까?")) return;
+    // 즉시 로컬 상태 업데이트
+    setBanners((prev) => prev.filter((b) => b.id !== id));
     await fetch("/api/admin/ads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ _action: "delete", id }),
     });
-    fetchBanners();
   }
 
   async function handleToggle(banner: AdBanner) {
+    // 즉시 로컬 상태 업데이트
+    setBanners((prev) =>
+      prev.map((b) => (b.id === banner.id ? { ...b, active: !b.active } : b))
+    );
     await fetch("/api/admin/ads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
