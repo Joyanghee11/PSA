@@ -1,105 +1,103 @@
-# 색상 시스템 — Deep Blue Journal
+# 색상 시스템 — Tidal Editorial (Round 2)
 
-컨셉: **바다 표면(Surface) → 심해(Abyss)** 로 이어지는 그라데이션.
-같은 색상(남색) 안에서 명도만 변화시켜 위계를 만드는 **모노크로매틱 전략**.
-대비가 필요한 곳에서만 물빛 시안을 얕게 사용.
+컨셉: 차가운 바다를 **따뜻한 종이 위에 편집한 잡지**.
+독자 타겟: 30대 여성 프리다이버.
+레퍼런스: Kinfolk, Cereal, Magazine B의 절제된 편집 감성.
 
----
-
-## Primary Palette (Ocean Scale)
-
-표면에서 심해로, 옅은 색부터 짙은 색까지.
-
-| 이름 | Hex | 용도 |
-|------|------|------|
-| `ocean-50` | `#f5fafd` | 카드·섹션 은은한 배경 |
-| `ocean-100` | `#e4eff7` | 인용·보조 정보 박스 |
-| `ocean-300` | `#a5c8de` | 비활성 버튼·경계 강조 |
-| `ocean-500` | `#3a7ba4` | 링크 hover·아이콘 |
-| `ocean-600` | `#1565a1` | 버튼 기본 |
-| `ocean-800` | `#0e3a5f` | **주 브랜드색 (accent)** — 로고, CTA |
-| `ocean-900` | `#082640` | 헤드라인, 네비게이션 |
-| `ocean-950` | `#061a2c` | 다크 모드 배경 |
-
-## Support Palette
-
-| 이름 | Hex | 용도 |
-|------|------|------|
-| `cyan-500` | `#0891b2` | 링크 기본 (본문 내 inline link) |
-| `cyan-400` | `#22b8d9` | 다크 모드 링크 |
-| `mist-50` | `#fafbfc` | 라이트 모드 배경 (미세 블루-그레이) |
-| `mist-100` | `#f1f4f7` | 서브 배경 (muted) |
-| `mist-300` | `#d9e0e8` | 경계선 (border) |
-| `charcoal-500` | `#6b7a87` | 보조 텍스트 (muted-foreground) |
-| `charcoal-900` | `#141c24` | 본문 텍스트 |
-
-## Semantic Colors (상태 전용)
-
-전체 팔레트와 분리. 오직 상태 표시에만 사용.
-
-| 이름 | Hex | 용도 |
-|------|------|------|
-| `danger-600` | `#dc2626` | 삭제·탈퇴·파괴적 액션 |
-| `danger-100` | `#fee2e2` | 경고 박스 배경 |
-| `success-600` | `#059669` | 게재됨·패스 게이트 통과 |
-| `warning-500` | `#d97706` | draft·게이트 실패 뱃지 |
+**핵심 원칙**: 크림색 종이(Canvas) 위에 심해 잉크(Ink)로 타이포그래피가 중심이 되고,
+티드(Tide) 청록이 포인트로, 산호(Coral)가 아주 드문 감정 포인트로 사용된다.
 
 ---
 
-## CSS 변수 매핑 (src/app/globals.css)
+## Palette (Light — 기본)
 
-### :root (라이트 모드)
+| 역할 | Hex | 이름 | 용도 |
+|------|-----|------|------|
+| 바탕 | `#f4efe7` | **Canvas** (아이보리 크림) | 페이지 전체 배경 |
+| 종이 | `#fbf8f3` | **Paper** | 카드·기사 박스 배경 |
+| 잉크 | `#1a2427` | **Ink** | 본문 텍스트 |
+| 헤드라인 | `#0d1517` | **Deep Ink** | 제목, 대비 극대화 |
+| 스톤 | `#6b6e6a` | **Stone** | 보조 텍스트 |
+| 연한 돌 | `#dcd4c9` | **Sand Line** | 헤어라인 경계 |
+| 티드 | `#2d4a50` | **Tide** | 주 포인트, 링크, CTA |
+| 샐로우 | `#6a9b9b` | **Shallow** | 호버·보조 포인트 |
+| 산호 | `#b85c52` | **Coral** | 드문 감정 포인트 (pull quote 등) |
+| 쉘 | `#d4b5a5` | **Shell** | 카테고리 태그 배경 |
 
+## Palette (Dark)
+
+| 역할 | Hex |
+|------|-----|
+| 바탕 | `#12181a` |
+| 종이 | `#1c2224` |
+| 잉크 | `#e8e2d9` |
+| 헤드라인 | `#faf6f0` |
+| 스톤 | `#a09d94` |
+| 티드 | `#6a9b9b` |
+| 산호 | `#d47c70` |
+
+## Semantic (상태 전용, 브랜드 팔레트와 분리)
+
+| 역할 | Hex |
+|------|-----|
+| 파괴 | `#9a3b33` (Deep coral) |
+| 성공 | `#5e7a5f` (Moss) |
+| 주의 | `#c89a46` (Amber) |
+
+---
+
+## CSS 변수 (globals.css)
+
+### :root
 ```css
 :root {
-  --background: #fafbfc;           /* mist-50 */
-  --foreground: #141c24;           /* charcoal-900 */
-  --card: #ffffff;
-  --card-foreground: #141c24;
-  --muted: #f1f4f7;                /* mist-100 */
-  --muted-foreground: #6b7a87;     /* charcoal-500 */
-  --accent: #0e3a5f;               /* ocean-800 — 주 브랜드 */
-  --accent-foreground: #ffffff;
-  --accent-blue: #0891b2;          /* cyan-500 — 본문 링크 */
-  --border: #d9e0e8;               /* mist-300 */
-  --border-strong: #0e3a5f;        /* ocean-800 */
-  --headline: #061a2c;             /* ocean-950 */
-  --nav-bg: #082640;               /* ocean-900 */
-  --nav-text: #e4eff7;             /* ocean-100 */
+  --background: #f4efe7;      /* Canvas */
+  --foreground: #1a2427;      /* Ink */
+  --card: #fbf8f3;            /* Paper */
+  --card-foreground: #1a2427;
+  --muted: #ede7dc;
+  --muted-foreground: #6b6e6a; /* Stone */
+  --accent: #2d4a50;          /* Tide */
+  --accent-foreground: #fbf8f3;
+  --accent-blue: #2d4a50;     /* 링크도 Tide */
+  --accent-warm: #b85c52;     /* Coral (드문 포인트) */
+  --border: #dcd4c9;          /* Sand Line */
+  --border-strong: #1a2427;
+  --headline: #0d1517;        /* Deep Ink */
+  --nav-bg: #f4efe7;          /* 네비도 Canvas */
+  --nav-text: #1a2427;
+  --serif: "Fraunces", "Noto Serif KR", ui-serif, Georgia, serif;
+  --sans: "Inter", "Pretendard", ui-sans-serif, system-ui, sans-serif;
 }
 ```
 
-### .dark (다크 모드)
-
+### .dark
 ```css
 .dark {
-  --background: #061a2c;           /* ocean-950 */
-  --foreground: #e4eff7;           /* ocean-100 */
-  --card: #0e2740;                 /* ocean-900 진한 쪽 */
-  --card-foreground: #e4eff7;
-  --muted: #0e2740;
-  --muted-foreground: #a5c8de;     /* ocean-300 */
-  --accent: #3a7ba4;               /* ocean-500 — 다크에선 더 밝게 */
-  --accent-foreground: #ffffff;
-  --accent-blue: #22b8d9;          /* cyan-400 */
-  --border: #1e3248;
-  --border-strong: #3a7ba4;
-  --headline: #ffffff;
-  --nav-bg: #030f1a;
-  --nav-text: #e4eff7;
+  --background: #12181a;
+  --foreground: #e8e2d9;
+  --card: #1c2224;
+  --card-foreground: #e8e2d9;
+  --muted: #1c2224;
+  --muted-foreground: #a09d94;
+  --accent: #6a9b9b;
+  --accent-foreground: #12181a;
+  --accent-blue: #6a9b9b;
+  --accent-warm: #d47c70;
+  --border: #2e3638;
+  --border-strong: #a09d94;
+  --headline: #faf6f0;
+  --nav-bg: #12181a;
+  --nav-text: #e8e2d9;
 }
 ```
 
-## 사용 규칙
+## Typography 시스템
 
-1. **`--accent`는 로고·네비 활성·주요 CTA에만**
-   링크는 `--accent-blue` 사용. 혼용 금지.
-
-2. **`--danger-*`는 상태만**
-   일반 강조에 빨간색 쓰지 말 것. 빨간색 = 삭제·위험의 의미를 보존.
-
-3. **헤드라인 색은 본문보다 항상 진함**
-   `--headline` < `--foreground` (명도 순).
-
-4. **섹션 타이틀 좌측 바 색은 `--accent`**
-   (기존 빨간색에서 ocean-800으로 변경됨 — 자동)
+| 역할 | 폰트 | 스타일 |
+|------|------|--------|
+| 디스플레이 제목 | Fraunces 700–900 | `letter-spacing: -0.02em`, 크게 |
+| 소제목 | Fraunces 500–600 italic | 본문 중간 섹션 구분 |
+| 본문 | Inter 400 + Pretendard 400 | 17px, line-height 1.75 |
+| 보조·메타 | Inter 500 small caps | `letter-spacing: 0.2em` |
+| pull quote | Fraunces 300 italic | 큰 크기, 헤어라인 경계 |

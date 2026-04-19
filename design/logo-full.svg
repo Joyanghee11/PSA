@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  DiveJournal Full Lockup (horizontal)
-  Mark + bilingual wordmark. Use this on the main header.
-  Target height: ~40–56px on screen.
+  DiveJournal — Editorial Masthead (Wide)
+  For top-of-page masthead. Horizontal lockup with Korean subtitle.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 56" width="320" height="56" role="img" aria-label="다이브저널 · DiveJournal">
-  <!-- Mark -->
-  <g>
-    <rect width="48" height="48" y="4" rx="10" fill="#0e3a5f"/>
-    <path d="M9 25 Q14.5 19.5 20 25 T31 25 L39 25"
-          stroke="#a5c8de" stroke-width="2.4"
-          fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M9 34 Q14.5 28.5 20 34 T31 34 L39 34"
-          stroke="#3a7ba4" stroke-width="2.4"
-          fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 64" width="420" height="64" role="img" aria-label="다이브 저널 · DiveJournal">
+  <g font-family="'Fraunces', 'Noto Serif KR', Georgia, serif" text-anchor="middle">
+    <!-- wordmark -->
+    <text x="210" y="30" font-size="26" font-weight="700" letter-spacing="10" fill="#0d1517">DIVE</text>
+    <line x1="100" y1="37" x2="320" y2="37" stroke="#dcd4c9" stroke-width="0.75"/>
+    <text x="210" y="54" font-size="26" font-weight="400" letter-spacing="10" font-style="italic" fill="#2d4a50">journal</text>
   </g>
-
-  <!-- Wordmark -->
-  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Pretendard', Roboto, sans-serif" fill="#061a2c">
-    <text x="62" y="28" font-size="22" font-weight="800" letter-spacing="-0.5">다이브저널</text>
-    <text x="62" y="44" font-size="10" font-weight="600" letter-spacing="3" fill="#3a7ba4">DIVE JOURNAL</text>
+  <!-- Korean subtitle, small caps-like letterspaced -->
+  <g font-family="'Pretendard', 'Noto Sans KR', sans-serif" text-anchor="middle">
+    <text x="210" y="12" font-size="9" letter-spacing="6" fill="#6b6e6a" font-weight="500">다 이 브   저 널</text>
   </g>
 </svg>

@@ -1,22 +1,26 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* =========================================================
+   DiveJournal — Tidal Editorial theme
+   See design/palette.md for the full system.
+   ========================================================= */
 :root {
-  /* DiveJournal — Deep Blue Journal theme (see design/palette.md) */
-  --background: #fafbfc;         /* mist-50 */
-  --foreground: #141c24;         /* charcoal-900 */
-  --card: #ffffff;
-  --card-foreground: #141c24;
-  --muted: #f1f4f7;              /* mist-100 */
-  --muted-foreground: #6b7a87;   /* charcoal-500 */
-  --accent: #0e3a5f;             /* ocean-800 */
-  --accent-foreground: #ffffff;
-  --accent-blue: #0891b2;        /* cyan-500 */
-  --border: #d9e0e8;             /* mist-300 */
-  --border-strong: #0e3a5f;      /* ocean-800 */
-  --headline: #061a2c;           /* ocean-950 */
-  --nav-bg: #082640;             /* ocean-900 */
-  --nav-text: #e4eff7;           /* ocean-100 */
+  --background: #f4efe7;         /* Canvas */
+  --foreground: #1a2427;         /* Ink */
+  --card: #fbf8f3;               /* Paper */
+  --card-foreground: #1a2427;
+  --muted: #ede7dc;
+  --muted-foreground: #6b6e6a;   /* Stone */
+  --accent: #2d4a50;             /* Tide */
+  --accent-foreground: #fbf8f3;
+  --accent-blue: #2d4a50;        /* Links also Tide */
+  --accent-warm: #b85c52;        /* Coral — sparse use */
+  --border: #dcd4c9;             /* Sand Line */
+  --border-strong: #1a2427;
+  --headline: #0d1517;           /* Deep Ink */
+  --nav-bg: #f4efe7;             /* Nav lives on canvas, thin dividers */
+  --nav-text: #1a2427;
 }
 
 @theme inline {
@@ -29,109 +33,155 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-blue: var(--accent-blue);
+  --color-accent-warm: var(--accent-warm);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-headline: var(--headline);
   --color-nav-bg: var(--nav-bg);
   --color-nav-text: var(--nav-text);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
 }
 
 .dark {
-  --background: #061a2c;         /* ocean-950 */
-  --foreground: #e4eff7;         /* ocean-100 */
-  --card: #0e2740;
-  --card-foreground: #e4eff7;
-  --muted: #0e2740;
-  --muted-foreground: #a5c8de;   /* ocean-300 */
-  --accent: #3a7ba4;             /* ocean-500 — 다크에선 더 밝게 */
-  --accent-foreground: #ffffff;
-  --accent-blue: #22b8d9;        /* cyan-400 */
-  --border: #1e3248;
-  --border-strong: #3a7ba4;
-  --headline: #ffffff;
-  --nav-bg: #030f1a;
-  --nav-text: #e4eff7;
+  --background: #12181a;
+  --foreground: #e8e2d9;
+  --card: #1c2224;
+  --card-foreground: #e8e2d9;
+  --muted: #1c2224;
+  --muted-foreground: #a09d94;
+  --accent: #6a9b9b;
+  --accent-foreground: #12181a;
+  --accent-blue: #6a9b9b;
+  --accent-warm: #d47c70;
+  --border: #2e3638;
+  --border-strong: #a09d94;
+  --headline: #faf6f0;
+  --nav-bg: #12181a;
+  --nav-text: #e8e2d9;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-sans), "Pretendard", ui-sans-serif, system-ui, sans-serif;
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Headline typography */
+/* -------- Editorial headline class --------
+   Use instead of the old .font-headline. Serif by default.
+*/
 .font-headline {
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.25;
+  font-family: var(--font-serif), "Noto Serif KR", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
   color: var(--headline);
   word-break: keep-all;
 }
 
 .font-subheadline {
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: var(--font-serif), "Noto Serif KR", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
   line-height: 1.35;
   word-break: keep-all;
 }
 
-/* Section header - red left bar like Korean newspapers */
-.section-title {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--border-strong);
-}
-.section-title::before {
-  content: "";
-  display: block;
-  width: 4px;
-  height: 1.2rem;
-  background: var(--accent);
-  flex-shrink: 0;
-}
-.section-title span {
-  font-size: 1.1rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+/* Editorial italic accent */
+.font-italic-serif {
+  font-family: var(--font-serif), "Noto Serif KR", Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
 }
 
-/* Category label */
+/* -------- Editorial small caps utility --------
+   For category tags, section kickers.
+*/
+.smallcaps {
+  font-family: var(--font-sans), "Pretendard", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* -------- Section title (editorial hairline header) --------
+   Replaces the old red-bar section title with a subtle
+   small-caps label over a hairline divider.
+*/
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-title::before { content: none; }
+.section-title span {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* -------- Category label --------
+   Serif italic small accent, used in article cards.
+*/
 .cat-label {
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
   color: var(--accent);
 }
 
-/* Force article body text colors for light/dark mode */
+/* -------- Prose (article body) --------
+   Editorial reading experience: serif headings, wide leading,
+   tide-colored links, occasional italic accent.
+*/
 .prose {
   --tw-prose-body: var(--foreground) !important;
   --tw-prose-headings: var(--headline) !important;
   --tw-prose-bold: var(--headline) !important;
-  --tw-prose-links: var(--accent-blue) !important;
+  --tw-prose-links: var(--accent) !important;
   --tw-prose-counters: var(--muted-foreground) !important;
   --tw-prose-bullets: var(--muted-foreground) !important;
+  font-family: var(--font-sans), "Pretendard", sans-serif;
+  font-size: 17px;
+  line-height: 1.85;
 }
-.prose p, .prose li, .prose td, .prose th {
-  color: var(--foreground) !important;
-}
-.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+.prose p { color: var(--foreground) !important; margin-bottom: 1.25em; }
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-family: var(--font-serif), "Noto Serif KR", Georgia, serif;
   color: var(--headline) !important;
+  letter-spacing: -0.01em;
+  font-weight: 500;
 }
-.prose strong, .prose b {
-  color: var(--headline) !important;
+.prose h3 { font-size: 1.25rem; margin-top: 2.5em; }
+.prose em {
+  font-family: var(--font-serif), "Noto Serif KR", Georgia, serif;
+  font-style: italic;
+  color: var(--accent) !important;
 }
+.prose strong, .prose b { color: var(--headline) !important; font-weight: 600; }
 .prose a {
-  color: var(--accent-blue) !important;
+  color: var(--accent) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
-/* Thin border util */
+/* -------- Thin border utils --------
+   The editorial voice relies on hairlines, not heavy rules.
+*/
 .border-t-thin { border-top: 1px solid var(--border); }
 .border-b-thin { border-bottom: 1px solid var(--border); }
-.border-b-thick { border-bottom: 2px solid var(--border-strong); }
+.border-b-thick { border-bottom: 1px solid var(--border-strong); }

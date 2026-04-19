@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  DiveJournal Mark (1:1)
-  Concept: rounded square mask representing a dive mask's viewport,
-  holding two stacked wave lines that suggest water surface and depth.
-  Reads cleanly at 16x16 (favicon) up to hero sizes.
+  DiveJournal — Editorial Wordmark (Mark-only, compact)
+  Serif typography only, no icon. Reads as a masthead.
+  Stacked two-line "DIVE / JOURNAL" in wide-tracked serif.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="DiveJournal">
-  <rect width="48" height="48" rx="10" fill="#0e3a5f"/>
-  <!-- water surface (brighter) -->
-  <path d="M9 21 Q14.5 15.5 20 21 T31 21 L39 21"
-        stroke="#a5c8de" stroke-width="2.4"
-        fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- depth line (dimmer, slightly offset) -->
-  <path d="M9 30 Q14.5 24.5 20 30 T31 30 L39 30"
-        stroke="#3a7ba4" stroke-width="2.4"
-        fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" width="160" height="48" role="img" aria-label="DiveJournal">
+  <g font-family="'Fraunces', 'Noto Serif KR', Georgia, serif" fill="#0d1517" text-anchor="middle">
+    <text x="80" y="22" font-size="18" font-weight="700" letter-spacing="6">DIVE</text>
+    <line x1="28" y1="28" x2="132" y2="28" stroke="#dcd4c9" stroke-width="0.75"/>
+    <text x="80" y="44" font-size="18" font-weight="400" letter-spacing="6" font-style="italic">journal</text>
+  </g>
 </svg>

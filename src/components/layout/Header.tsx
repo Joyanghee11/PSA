@@ -39,33 +39,33 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
       {/* Logo */}
       <div className="bg-card">
         <div className="max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href={`/${lang}`} className="flex items-center gap-3" aria-label="다이브저널 · DiveJournal">
-            <svg viewBox="0 0 48 48" width="40" height="40" className="flex-shrink-0" aria-hidden="true">
-              <rect width="48" height="48" rx="10" fill="var(--accent)" />
-              <path
-                d="M9 21 Q14.5 15.5 20 21 T31 21 L39 21"
-                stroke="#a5c8de"
-                strokeWidth="2.4"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+          <Link
+            href={`/${lang}`}
+            className="flex flex-col items-start leading-none select-none"
+            aria-label="다이브 저널 · DiveJournal"
+          >
+            <span
+              className="font-serif text-headline"
+              style={{ fontSize: "26px", letterSpacing: "0.14em", fontWeight: 400 }}
+            >
+              <span style={{ fontWeight: 700 }}>DIVE</span>
+              <span
+                aria-hidden="true"
+                style={{
+                  display: "inline-block",
+                  width: "26px",
+                  borderTop: "1px solid var(--border)",
+                  verticalAlign: "middle",
+                  margin: "0 10px",
+                }}
               />
-              <path
-                d="M9 30 Q14.5 24.5 20 30 T31 30 L39 30"
-                stroke="#3a7ba4"
-                strokeWidth="2.4"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="flex flex-col">
-              <span className="text-2xl md:text-3xl font-black tracking-tight text-headline leading-none">
-                {lang === "ko" ? "다이브저널" : "DiveJournal"}
-              </span>
-              <span className="hidden sm:inline text-[10px] text-muted-foreground font-semibold tracking-[0.2em] mt-1">
-                {lang === "ko" ? "DIVE JOURNAL" : "다이브저널"}
-              </span>
+              <span style={{ fontStyle: "italic", color: "var(--accent)" }}>journal</span>
+            </span>
+            <span
+              className="hidden sm:inline text-muted-foreground mt-1.5"
+              style={{ fontSize: "9px", letterSpacing: "0.4em", fontWeight: 500 }}
+            >
+              다 이 브   저 널
             </span>
           </Link>
           <Link
