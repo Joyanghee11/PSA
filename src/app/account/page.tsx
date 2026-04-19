@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import LogoutButton from "./LogoutButton";
+import DeleteAccountButton from "./DeleteAccountButton";
 
 export default async function AccountPage() {
   const supabase = await createClient();
@@ -45,6 +46,8 @@ export default async function AccountPage() {
           </Link>
           <LogoutButton />
         </div>
+
+        <DeleteAccountButton />
       </div>
     </div>
   );
