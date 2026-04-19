@@ -124,28 +124,31 @@ body {
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 2rem;
-  padding-bottom: 0.75rem;
+  padding-bottom: 0.875rem;
   border-bottom: 1px solid var(--border);
 }
 .section-title::before { content: none; }
 .section-title span {
-  font-family: var(--font-sans), sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
+  /* Korean-first: Gowun Batang headline for magazine section markers.
+     Latin glyphs fall through to Fraunces automatically. */
+  font-family: var(--font-serif-kr), var(--font-serif), "Noto Serif KR", Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  color: var(--headline);
 }
 
 /* -------- Category label --------
-   Serif italic small accent, used in article cards.
+   Uppercase small-caps kicker above article titles.
+   Restrained letter-spacing so Korean reads naturally.
 */
 .cat-label {
   display: inline-block;
-  font-family: var(--font-sans), sans-serif;
-  font-size: 10px;
+  font-family: var(--font-sans-kr), var(--font-sans), sans-serif;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
 }
