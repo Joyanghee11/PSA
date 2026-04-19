@@ -6,6 +6,7 @@ import { formatDate } from "@/lib/utils";
 import { CategoryBadge } from "@/components/article/CategoryBadge";
 import { getDictionary } from "@/config/i18n";
 import { AdSlot } from "@/components/ads/AdBanner";
+import CommentSection from "@/components/comments/CommentSection";
 
 export const dynamic = "force-dynamic";
 
@@ -149,6 +150,9 @@ export default async function ArticlePage({
           ))}
         </div>
       )}
+
+      {/* Comments */}
+      <CommentSection slug={article.slug} />
     </article>
   );
 }

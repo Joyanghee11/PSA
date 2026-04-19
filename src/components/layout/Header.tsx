@@ -8,6 +8,7 @@ import { siteConfig } from "@/config/site";
 import { getCategoryLabel } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { AuthMenu } from "./AuthMenu";
 import { useState } from "react";
 
 export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
@@ -26,7 +27,9 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
       <div className="bg-muted border-b-thin">
         <div className="max-w-[1200px] mx-auto px-4 h-8 flex items-center justify-between text-xs text-muted-foreground">
           <span>{dateStr}</span>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <AuthMenu lang={lang} />
+            <span className="text-border">·</span>
             <LanguageSwitcher lang={lang} />
             <ThemeToggle />
           </div>
