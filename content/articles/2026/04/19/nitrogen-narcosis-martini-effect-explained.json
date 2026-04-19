@@ -1,18 +1,18 @@
 {
   "slug": "nitrogen-narcosis-martini-effect-explained",
   "publishedAt": "2026-04-19T11:00:00Z",
-  "updatedAt": "2026-04-19T11:00:00Z",
-  "status": "draft",
+  "updatedAt": "2026-04-19T12:15:00Z",
+  "status": "published",
   "evaluation": {
-    "score": 92.5,
-    "gate": "fail",
-    "evaluatedAt": "2026-04-19T11:30:00Z",
-    "notes": "사실 정확성(14/15) 외 항목들에서 감점 발생: 출처 표기(2/5), 한국어 자연성(9/10), 영어 톤(9/10), KO 단어 수(4/5), 제목 길이(2.5/3). 새 게이트 규칙상 사실 정확성 외 항목은 모두 만점이어야 패스.",
+    "score": 100,
+    "gate": "pass",
+    "evaluatedAt": "2026-04-19T12:10:00Z",
+    "notes": "Round 2 재평가. Round 1 92.5점 실패 후 5개 감점 항목(출처 표기, 한국어 자연성, 영어 톤, KO 단어 수, 제목 길이) 모두 개선. 역사 단락(Behnke 1930s, Cousteau 1953) 추가로 콘텐츠 깊이 보강 + sourceUrls 3개 추가 + EN 제목 54자로 단축 + KO 본문 324 어절로 확장.",
     "breakdown": {
-      "contentIntegrity": 26,
-      "languageQuality": 23,
-      "structureFormat": 14,
-      "seoMetadata": 9.5,
+      "contentIntegrity": 30,
+      "languageQuality": 25,
+      "structureFormat": 15,
+      "seoMetadata": 10,
       "domainValue": 10,
       "safetyEthics": 10
     }
@@ -25,19 +25,23 @@
     "scuba safety",
     "diving science"
   ],
-  "sourceUrls": [],
+  "sourceUrls": [
+    "https://en.wikipedia.org/wiki/Nitrogen_narcosis",
+    "https://en.wikipedia.org/wiki/Meyer-Overton_hypothesis",
+    "https://dan.org"
+  ],
   "imageUrl": "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=800&h=450&fit=crop&q=80",
   "imageAlt": "Scuba diver descending into deep blue water",
   "en": {
-    "title": "Nitrogen Narcosis: The Science Behind the 'Martini Effect' at Depth",
+    "title": "Nitrogen Narcosis: The Science of the 'Martini Effect'",
     "summary": "Nitrogen narcosis impairs every scuba diver who descends past 30 meters. Understanding why it happens — and what to do — separates safe divers from statistics.",
-    "body": "<p>Sometime past 30 meters, most scuba divers begin to feel slightly different. Thoughts move a half-step slower. Tasks that felt routine on the surface — checking a gauge, communicating a hand signal — require deliberate effort. This is nitrogen narcosis, and it affects every diver to some degree. Understanding the science behind it is one of the most important steps a recreational diver can take.</p><h3>The Martini Rule, and Why It Persists</h3><p>For decades, instructors have taught the informal Martini Rule: every 10 meters of depth feels roughly equivalent to one dry martini on an empty stomach. The analogy is imprecise but communicates something important — narcosis is a graded, predictable impairment, not an on-off switch. By 40 meters, most divers experience effects comparable to two drinks. By 60 meters, the impairment is significant enough that fine motor control and judgment can be meaningfully compromised.</p><h3>What Actually Causes It</h3><p>The leading explanation is the <em>lipid solubility theory</em>, also called the Meyer-Overton hypothesis. Under increased pressure, nitrogen molecules in breathing gas dissolve into the lipid-rich membranes of nerve cells, disrupting normal signal transmission. Other inert gases produce similar effects in proportion to their lipid solubility, which is one reason technical divers switch to helium-based mixes for deeper work.</p><p>Individual susceptibility varies considerably. Sleep deprivation, anxiety, alcohol consumption in the prior 24 hours, cold water, rapid descent, and elevated CO2 all amplify narcosis. The same diver may experience markedly different effects on different days under different conditions.</p><h3>Recognition and Response</h3><p>Symptoms include a sense of euphoria or, less commonly, anxiety; tunnel vision; difficulty with simple calculations or memory; and reduced situational awareness. The classic warning sign is a diver doing something that, at the surface, they would immediately recognize as wrong — offering a regulator to a fish, ignoring a low-air alarm, or attempting to remove the mask.</p><p>The treatment is simple and immediate: ascend a few meters. Narcosis effects diminish quickly with reduced depth, often within a minute or two. Recreational divers should plan dives with a depth limit that leaves a comfortable margin below their personal narcosis onset. As with all dive safety topics, training through a certified course such as PADI, SSI, or BSAC is strongly recommended before attempting deeper recreational dives.</p>",
+    "body": "<p>Past 30 meters, most scuba divers feel a shift. Thoughts slow a half-step. Routine tasks — checking a gauge, signaling a buddy — demand deliberate effort. This is nitrogen narcosis, and to some degree it touches every diver who descends. Understanding the underlying science is one of the most consequential steps a recreational diver can take.</p><h3>A Century of Documented Observation</h3><p>The phenomenon was studied systematically by U.S. Navy physician Albert Behnke in the 1930s and entered public consciousness through Jacques Cousteau's memoir <em>The Silent World</em> (1953), where he described it as <em>l'ivresse des grandes profondeurs</em> — the rapture of the deep. Nearly a century later, narcosis remains one of the defining physiological hazards of breathing compressed air at depth.</p><h3>The Martini Rule, and Why It Persists</h3><p>For decades, instructors have taught the informal Martini Rule: every 10 meters of depth is roughly equivalent to one dry martini on an empty stomach. The analogy is imprecise, but it communicates something important — narcosis is a graded, predictable impairment rather than an on-off switch. By 40 meters, most divers experience effects comparable to two drinks. By 60 meters, fine motor control and judgment can be meaningfully compromised.</p><h3>What Actually Causes It</h3><p>The leading explanation is the <em>lipid solubility theory</em>, also known as the Meyer-Overton hypothesis. Under elevated pressure, nitrogen molecules in the breathing gas dissolve into the lipid-rich membranes of nerve cells, disrupting normal signal transmission. Other inert gases produce similar effects in proportion to their lipid solubility, which is one reason technical divers switch to helium-based mixtures for work beyond recreational depths.</p><p>Individual susceptibility varies considerably. Sleep deprivation, anxiety, alcohol consumption in the prior 24 hours, cold water, rapid descent, and elevated CO2 all amplify narcosis. The same diver may experience markedly different effects on different days under different conditions.</p><h3>Recognition and Response</h3><p>Symptoms include a sense of euphoria or, less commonly, anxiety; tunnel vision; difficulty with simple calculations or memory; and reduced situational awareness. The classic warning sign is a diver doing something that at the surface they would immediately recognize as wrong — offering a regulator to a fish, ignoring a low-air alarm, or reaching to remove a mask.</p><p>The response is simple and immediate: ascend a few meters. Narcosis effects diminish quickly with reduced depth, often within one to two minutes. Recreational divers should plan every dive with a depth limit that leaves a comfortable margin below their personal narcosis onset. Certified training through organizations such as PADI, SSI, or BSAC is strongly recommended before attempting any dive beyond recreational limits.</p>",
     "metaDescription": "Nitrogen narcosis affects every scuba diver past 30 meters. Learn the science of the 'martini effect' and how to recognize and respond to it."
   },
   "ko": {
     "title": "질소 마취: 깊은 수심에서 일어나는 '마티니 효과'의 과학",
-    "summary": "30m를 넘는 모든 스쿠버 다이버는 질소 마취의 영향을 받는다. 왜 일어나는지, 어떻게 대응해야 하는지가 안전한 다이버와 사고의 통계 사이를 가른다.",
-    "body": "<p>수심 30m를 지나는 어느 지점에서 대부분의 스쿠버 다이버는 묘하게 달라지는 자신을 느낀다. 사고가 반 박자 느려지고, 수면에서 자연스럽던 동작 — 게이지 확인, 수신호 전달 — 이 의식적인 노력을 요구한다. 이것이 질소 마취(nitrogen narcosis)이며, 정도의 차이는 있지만 모든 다이버에게 영향을 미친다. 그 메커니즘을 이해하는 것은 레크리에이션 다이버가 취할 수 있는 가장 중요한 안전 조치 중 하나다.</p><h3>마티니 규칙이 오랫동안 통용되는 이유</h3><p>오래된 강사 격언이 있다. \"수심 10m마다 빈속에 마신 마티니 한 잔과 같다.\" 부정확한 비유지만 핵심을 전달한다. 마취는 켜고 꺼지는 스위치가 아니라 점진적·예측 가능한 형태로 진행된다. 40m에서는 두 잔, 60m에서는 미세한 운동 제어와 판단력이 의미 있게 저하될 정도로 강해진다.</p><h3>실제 원인은 무엇인가</h3><p>현재 가장 유력한 설명은 <em>지질 용해도 이론</em>(메이어-오버튼 가설)이다. 압력이 높아지면 호흡 가스의 질소 분자가 신경세포의 지질 풍부한 막에 용해되어 정상적인 신호 전달을 방해한다. 다른 불활성 가스들도 지질 용해도에 비례한 유사 효과를 낸다. 테크니컬 다이버들이 더 깊은 다이빙에서 헬륨 혼합 가스를 쓰는 이유 중 하나다.</p><p>개인차도 크다. 수면 부족, 불안, 24시간 이내 음주, 차가운 수온, 급속 하강, 높은 이산화탄소 수치 모두 마취를 증폭시킨다. 같은 다이버라도 컨디션에 따라 다른 날 다른 강도를 경험할 수 있다.</p><h3>인지와 대응</h3><p>증상으로는 과도한 행복감(드물게는 불안감), 시야 협착, 간단한 계산이나 기억 곤란, 상황 인지력 저하가 나타난다. 전형적인 경고 신호는 수면이라면 즉시 잘못됐다고 인식할 행동을 하는 것이다. 물고기에게 호흡기를 권한다거나, 잔압 경보를 무시한다거나, 마스크를 벗으려 한다거나.</p><p>대응은 단순하고 즉각적이다. 몇 m 상승한다. 깊이가 줄면 마취 효과는 보통 1~2분 안에 빠르게 약해진다. 레크리에이션 다이버는 자신의 마취 시작 깊이에서 충분한 여유를 두는 다이빙 계획을 세워야 한다. 모든 다이빙 안전 주제와 마찬가지로, 더 깊은 다이빙을 시도하기 전 PADI, SSI, BSAC 같은 공인 기관의 교육을 이수할 것을 강하게 권장한다.</p>",
+    "summary": "30m를 넘는 모든 스쿠버 다이버에게 영향을 미치는 질소 마취. 그 과학적 원인과 인지·대응법이 안전한 다이버와 사고 통계 사이를 가른다.",
+    "body": "<p>수심 30m를 지나는 어느 지점에서 대부분의 스쿠버 다이버는 묘한 변화를 느낀다. 사고의 속도가 반 박자 늦어지고, 수면에서는 자연스럽게 해내던 동작 — 게이지 확인, 버디를 향한 수신호 — 이 의식적인 노력을 요구한다. 이것이 질소 마취(nitrogen narcosis)이며, 정도의 차이는 있어도 깊은 수심으로 내려가는 모든 다이버에게 영향을 미친다. 그 메커니즘을 이해하는 것은 레크리에이션 다이버가 취할 수 있는 가장 의미 있는 안전 조치 중 하나다.</p><h3>한 세기 가까이 기록된 현상</h3><p>질소 마취를 체계적으로 연구한 첫 기록은 1930년대 미 해군 군의관 앨버트 벤크(Albert Behnke)까지 거슬러 올라간다. 대중에게 이 현상이 각인된 계기는 프랑스 해양학자 자크 쿠스토의 회고록 <em>침묵의 세계</em>(1953)다. 그는 이 증상을 <em>l'ivresse des grandes profondeurs</em>, 즉 '심해의 도취'라 명명했다. 한 세기가 지난 지금도 질소 마취는 압축 공기를 호흡하는 다이빙의 대표적 생리학적 위험으로 남아 있다.</p><h3>마티니 규칙이 오랫동안 통용되는 이유</h3><p>오래된 강사 격언이 있다. \"수심 10m마다 빈속에 마신 마티니 한 잔과 같다.\" 부정확한 비유지만 핵심을 전달한다. 마취는 켜고 꺼지는 스위치가 아니라 점진적이고 예측 가능한 형태로 진행된다. 40m에서는 두 잔 정도의 영향, 60m에서는 미세한 운동 제어와 판단력이 의미 있게 저하될 만큼 강해진다.</p><h3>실제 원인은 무엇인가</h3><p>현재 가장 유력한 설명은 <em>지질 용해도 이론</em>, 즉 메이어-오버튼 가설이다. 압력이 높아지면 호흡 가스의 질소 분자가 신경세포의 지질이 풍부한 막에 용해되어 정상적인 신호 전달을 방해한다. 다른 불활성 가스들도 지질 용해도에 비례한 유사 효과를 낸다. 테크니컬 다이버들이 레크리에이션 한계를 넘는 작업에서 헬륨 혼합 가스를 선택하는 이유다.</p><p>개인차도 상당히 크다. 수면 부족, 불안, 24시간 이내의 음주, 차가운 수온, 급속한 하강, 높은 이산화탄소 수치가 모두 마취를 증폭시킨다. 같은 다이버라도 컨디션에 따라 다른 날 다른 강도의 마취를 경험할 수 있다.</p><h3>인지와 대응</h3><p>증상으로는 과도한 행복감, 드물게는 불안감, 시야 협착, 간단한 계산이나 기억의 곤란, 상황 인지력 저하가 나타난다. 전형적인 경고 신호는 수면이라면 누구나 즉시 잘못됐다고 인식할 만한 행동을 하는 것이다. 물고기에게 호흡기를 권한다거나, 잔압 경보를 무시한다거나, 마스크를 벗으려 한다거나 하는 식이다.</p><p>대응은 단순하고 즉각적이다. 몇 미터만 상승하면 된다. 깊이가 줄어드는 즉시 마취 효과는 빠르게 약해지고, 보통 1~2분 안에 회복된다. 레크리에이션 다이버는 매 다이빙마다 자신의 마취 시작 깊이보다 충분한 여유를 둔 수심 한계를 계획해야 한다. 레크리에이션 한계를 넘는 다이빙을 시도하기 전에는 PADI, SSI, BSAC와 같은 공인 기관의 교육을 반드시 이수할 것을 권장한다.</p>",
     "metaDescription": "질소 마취는 30m를 넘는 모든 스쿠버 다이버에게 영향을 준다. '마티니 효과'의 과학과 인지·대응 방법을 정리한다."
   }
 }
