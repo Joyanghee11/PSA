@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, Inter, Gowun_Batang, Noto_Sans_KR } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
-// Editorial serif for headlines and brand wordmark
+// Editorial Latin serif for English wordmark and italics
 const fraunces = Fraunces({
   variable: "--font-serif",
   subsets: ["latin"],
@@ -12,12 +12,29 @@ const fraunces = Fraunces({
   style: ["normal", "italic"],
 });
 
-// Clean sans for body and UI
+// Clean Latin sans for UI and English body
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
   weight: ["300", "400", "500", "600", "700"],
+});
+
+// Korean emotional serif for Korean display headlines and brand
+// (Gowun Batang — soft, warm, magazine-editorial feel while remaining highly readable)
+const gowunBatang = Gowun_Batang({
+  variable: "--font-serif-kr",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "700"],
+});
+
+// Korean body sans — excellent readability across weights
+const notoSansKr = Noto_Sans_KR({
+  variable: "--font-sans-kr",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -42,7 +59,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${inter.variable} ${gowunBatang.variable} ${notoSansKr.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">

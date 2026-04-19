@@ -44,28 +44,48 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
             className="flex flex-col items-start leading-none select-none"
             aria-label="다이브 저널 · DiveJournal"
           >
+            {/* Korean main title — Gowun Batang 감성 명조 */}
             <span
-              className="font-serif text-headline"
-              style={{ fontSize: "26px", letterSpacing: "0.14em", fontWeight: 400 }}
+              className="font-headline text-headline"
+              style={{
+                fontSize: "38px",
+                fontWeight: 700,
+                letterSpacing: "-0.01em",
+                lineHeight: 1,
+              }}
             >
-              <span style={{ fontWeight: 700 }}>DIVE</span>
+              다이브 저널
+            </span>
+            {/* English subtitle — refined letter-spacing, thin divider */}
+            <span
+              className="text-muted-foreground mt-2 flex items-center"
+              style={{
+                fontSize: "10px",
+                letterSpacing: "0.45em",
+                fontWeight: 500,
+                fontFamily: "var(--font-sans), sans-serif",
+              }}
+            >
+              <span style={{ color: "var(--headline)", fontWeight: 600 }}>DIVE</span>
               <span
                 aria-hidden="true"
                 style={{
                   display: "inline-block",
-                  width: "26px",
+                  width: "18px",
                   borderTop: "1px solid var(--border)",
-                  verticalAlign: "middle",
-                  margin: "0 10px",
+                  margin: "0 8px",
                 }}
               />
-              <span style={{ fontStyle: "italic", color: "var(--accent)" }}>journal</span>
-            </span>
-            <span
-              className="hidden sm:inline text-muted-foreground mt-1.5"
-              style={{ fontSize: "9px", letterSpacing: "0.4em", fontWeight: 500 }}
-            >
-              다 이 브   저 널
+              <span
+                style={{
+                  fontStyle: "italic",
+                  fontFamily: "var(--font-serif), serif",
+                  color: "var(--accent)",
+                  letterSpacing: "0.2em",
+                }}
+              >
+                journal
+              </span>
             </span>
           </Link>
           <Link
@@ -80,11 +100,18 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
         </div>
       </div>
 
-      {/* Nav */}
-      <nav className="bg-nav-bg text-nav-text">
+      {/* Nav — Korean main + English sub per category */}
+      <nav className="border-b-thin bg-nav-bg text-nav-text">
         <div className="max-w-[1200px] mx-auto px-4">
-          <div className="md:hidden flex items-center justify-between h-10">
-            <Link href={`/${lang}`} className="text-sm font-bold">{dict.nav.home}</Link>
+          {/* Mobile toggle */}
+          <div className="md:hidden flex items-center justify-between h-12">
+            <Link
+              href={`/${lang}`}
+              className="font-headline"
+              style={{ fontSize: "16px", fontWeight: 700 }}
+            >
+              전체 기사
+            </Link>
             <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {menuOpen ? (
@@ -96,22 +123,67 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
             </button>
           </div>
 
-          <ul className={`${menuOpen ? "block pb-2" : "hidden"} md:flex md:items-center md:h-11 md:gap-0`}>
-            <li>
-              <Link href={`/${lang}`} className={`block px-3 py-2 md:py-0 text-sm font-medium hover:text-accent ${pathname === `/${lang}` ? "text-accent" : ""}`}>
-                {dict.nav.home}
+          <ul
+            className={`${menuOpen ? "block pb-3" : "hidden"} md:flex md:items-stretch md:flex-wrap md:justify-center md:gap-x-1 md:gap-y-0 md:py-3`}
+          >
+            {/* Home */}
+            <li className="md:flex">
+              <Link
+                href={`/${lang}`}
+                className={`group flex flex-col items-start md:items-center px-3 py-2 md:px-4 md:py-1.5 border-l-0 md:border-r border-border ${pathname === `/${lang}` ? "text-accent" : "hover:text-accent"}`}
+              >
+                <span
+                  className="font-headline"
+                  style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "-0.01em", lineHeight: 1.1 }}
+                >
+                  전체
+                </span>
+                <span
+                  className="text-muted-foreground group-hover:text-accent mt-0.5"
+                  style={{
+                    fontSize: "9px",
+                    letterSpacing: "0.28em",
+                    fontFamily: "var(--font-sans), sans-serif",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Home
+                </span>
               </Link>
             </li>
-            {siteConfig.categories.map((cat) => (
-              <li key={cat.slug}>
-                <Link
-                  href={`/${lang}/category/${cat.slug}`}
-                  className={`block px-3 py-2 md:py-0 text-sm font-medium hover:text-accent ${pathname.includes(`/category/${cat.slug}`) ? "text-accent" : ""}`}
-                >
-                  {cat.slug === "video" ? "📺 " : ""}{cat.label[lang]}
-                </Link>
-              </li>
-            ))}
+
+            {/* All categories */}
+            {siteConfig.categories.map((cat) => {
+              const isActive = pathname.includes(`/category/${cat.slug}`);
+              return (
+                <li key={cat.slug} className="md:flex">
+                  <Link
+                    href={`/${lang}/category/${cat.slug}`}
+                    className={`group flex flex-col items-start md:items-center px-3 py-2 md:px-4 md:py-1.5 border-r border-border last:border-r-0 ${isActive ? "text-accent" : "hover:text-accent"}`}
+                  >
+                    <span
+                      className="font-headline"
+                      style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "-0.01em", lineHeight: 1.1 }}
+                    >
+                      {cat.label.ko}
+                    </span>
+                    <span
+                      className="text-muted-foreground group-hover:text-accent mt-0.5"
+                      style={{
+                        fontSize: "9px",
+                        letterSpacing: "0.28em",
+                        fontFamily: "var(--font-sans), sans-serif",
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {cat.label.en}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </nav>
