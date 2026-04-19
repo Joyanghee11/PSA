@@ -22,6 +22,12 @@ echo "  다이브저널 자동 기사 생성"
 echo "  $(date '+%Y-%m-%d %H:%M:%S')"
 echo "========================================"
 
+# 기존 기사에서 이미 사용된 이미지 URL을 모두 추출 (중복 이미지 방지)
+USED_IMAGES=$(find content/articles -name "*.json" -exec grep -h '"imageUrl"' {} \; 2>/dev/null \
+  | sed 's/^[[:space:]]*"imageUrl":[[:space:]]*"//' \
+  | sed 's/",*$//' \
+  | sort -u)
+
 # claude -p로 기사 생성
 claude -p "다음 작업을 수행해줘:
 
@@ -37,13 +43,19 @@ claude -p "다음 작업을 수행해줘:
    - slug, publishedAt, updatedAt, status(published), category, tags
    - en: title, summary, body(HTML), metaDescription
    - ko: title, summary, body(HTML), metaDescription
-   - imageUrl: Unsplash에서 관련 이미지 URL (https://images.unsplash.com/photo-xxx?w=800&q=80 형태)
+   - imageUrl: Unsplash에서 관련 이미지 URL (https://images.unsplash.com/photo-xxx?w=800&h=450&fit=crop&q=80 형태)
    - sourceUrls: 원본 뉴스 URL
 
 4. 기사 본문은 각 언어로 300-500단어, HTML <p> 태그로 작성해줘.
    원본 뉴스를 그대로 복사하지 말고, 원본 정보를 바탕으로 새로운 기사를 작성해줘.
 
-5. 이미 같은 slug의 파일이 있으면 건너뛰어줘." \
+5. 이미 같은 slug의 파일이 있으면 건너뛰어줘.
+
+6. [중요] 아래 URL들은 이미 다른 기사에서 사용 중이므로 절대 그대로 재사용하지 마.
+   새 기사마다 서로 다른 Unsplash 이미지를 골라서 imageUrl 중복이 생기지 않도록 해.
+   가능하면 기사 주제(카테고리, 태그)와 관련된 이미지를 선택할 것.
+이미 사용 중인 이미지 URL 목록:
+${USED_IMAGES}" \
   --allowedTools "Bash,Read,Write,Edit" \
   --max-turns 20
 
