@@ -235,7 +235,7 @@ export default function AdminDashboard() {
                   title={article.status}
                 />
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
                     {article.pinned === "top" && (
                       <span className="px-1.5 py-0.5 text-[10px] font-bold bg-red-600 text-white rounded">📌 최상단</span>
                     )}
@@ -248,6 +248,27 @@ export default function AdminDashboard() {
                     >
                       {getCategoryLabel(article.category, "ko")}
                     </button>
+                    {article.evaluation && (
+                      <span
+                        title={
+                          (article.evaluation.gate === "pass"
+                            ? "패스 (사실 정확성 외 모든 항목 만점)"
+                            : "패스 실패 (사실 정확성 외 항목에 감점)") +
+                          (article.evaluation.notes ? `\n${article.evaluation.notes}` : "")
+                        }
+                        className={`px-1.5 py-0.5 text-[10px] font-bold rounded ${
+                          article.evaluation.gate === "pass"
+                            ? "bg-green-600 text-white"
+                            : article.evaluation.score >= 90
+                            ? "bg-yellow-500 text-white"
+                            : article.evaluation.score >= 80
+                            ? "bg-orange-500 text-white"
+                            : "bg-red-600 text-white"
+                        }`}
+                      >
+                        평가 {article.evaluation.score}점{article.evaluation.gate === "fail" ? " ✗" : " ✓"}
+                      </span>
+                    )}
                     <span className="text-xs text-muted-foreground">
                       {new Date(article.publishedAt).toLocaleDateString("ko")}
                     </span>
