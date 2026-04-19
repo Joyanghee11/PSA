@@ -2,12 +2,16 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
+// env 누락 시 정적 빌드가 깨지지 않도록 플레이스홀더 (런타임 호출 시에만 실패)
+const FALLBACK_URL = "https://placeholder.supabase.co";
+const FALLBACK_KEY = "placeholder-anon-key";
+
 export async function createClient() {
   const cookieStore = await cookies();
 
   return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    process.env.NEXT_PUBLIC_SUPABASE_URL || FALLBACK_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || FALLBACK_KEY,
     {
       cookies: {
         getAll() {
