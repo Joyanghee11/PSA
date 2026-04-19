@@ -124,25 +124,25 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
           </div>
 
           <ul
-            className={`${menuOpen ? "block pb-3" : "hidden"} md:flex md:items-stretch md:flex-wrap md:justify-center md:gap-x-1 md:gap-y-0 md:py-3`}
+            className={`${menuOpen ? "block pb-3" : "hidden"} md:flex md:items-stretch md:flex-nowrap md:justify-center md:py-2.5`}
           >
             {/* Home */}
             <li className="md:flex">
               <Link
                 href={`/${lang}`}
-                className={`group flex flex-col items-start md:items-center px-3 py-2 md:px-4 md:py-1.5 border-l-0 md:border-r border-border ${pathname === `/${lang}` ? "text-accent" : "hover:text-accent"}`}
+                className={`group flex flex-col items-start md:items-center px-3 py-2 md:px-2.5 md:py-1 border-l-0 md:border-r border-border whitespace-nowrap ${pathname === `/${lang}` ? "text-accent" : "hover:text-accent"}`}
               >
                 <span
                   className="font-headline"
-                  style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "-0.01em", lineHeight: 1.1 }}
+                  style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.1 }}
                 >
                   전체
                 </span>
                 <span
                   className="text-muted-foreground group-hover:text-accent mt-0.5"
                   style={{
-                    fontSize: "9px",
-                    letterSpacing: "0.28em",
+                    fontSize: "8px",
+                    letterSpacing: "0.15em",
                     fontFamily: "var(--font-sans), sans-serif",
                     fontWeight: 600,
                     textTransform: "uppercase",
@@ -160,19 +160,19 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
                 <li key={cat.slug} className="md:flex">
                   <Link
                     href={`/${lang}/category/${cat.slug}`}
-                    className={`group flex flex-col items-start md:items-center px-3 py-2 md:px-4 md:py-1.5 border-r border-border last:border-r-0 ${isActive ? "text-accent" : "hover:text-accent"}`}
+                    className={`group flex flex-col items-start md:items-center px-3 py-2 md:px-2.5 md:py-1 border-r border-border last:border-r-0 whitespace-nowrap ${isActive ? "text-accent" : "hover:text-accent"}`}
                   >
                     <span
                       className="font-headline"
-                      style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "-0.01em", lineHeight: 1.1 }}
+                      style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.1 }}
                     >
                       {cat.label.ko}
                     </span>
                     <span
                       className="text-muted-foreground group-hover:text-accent mt-0.5"
                       style={{
-                        fontSize: "9px",
-                        letterSpacing: "0.28em",
+                        fontSize: "8px",
+                        letterSpacing: "0.15em",
                         fontFamily: "var(--font-sans), sans-serif",
                         fontWeight: 600,
                         textTransform: "uppercase",
