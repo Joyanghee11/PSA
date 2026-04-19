@@ -1,7 +1,8 @@
 import { fetchAllRssFeeds } from "./fetchers/rss";
 import { scrapeAllTargets } from "./fetchers/web-scraper";
 import { processItems } from "./processor";
-import { generateArticle } from "./ai-writer";
+import { generateArticle, reviseArticle, getAnthropicClient } from "./ai-writer";
+import { iterateToPass } from "./evaluator";
 import { getAllArticles, writeArticle } from "@/lib/content";
 import type { ProcessedNewsItem } from "@/lib/types";
 
@@ -9,6 +10,8 @@ interface PipelineResult {
   fetchedCount: number;
   processedCount: number;
   generatedCount: number;
+  publishedCount: number;
+  draftCount: number;
   skippedCount: number;
   articles: string[];
   errors: string[];
@@ -21,10 +24,18 @@ export async function runDailyPipeline(
     fetchedCount: 0,
     processedCount: 0,
     generatedCount: 0,
+    publishedCount: 0,
+    draftCount: 0,
     skippedCount: 0,
     articles: [],
     errors: [],
   };
+
+  const client = getAnthropicClient();
+  if (!client) {
+    result.errors.push("ANTHROPIC_API_KEY not set — cannot run pipeline");
+    return result;
+  }
 
   console.log("[Pipeline] Starting daily pipeline...");
 
@@ -76,20 +87,39 @@ export async function runDailyPipeline(
 
       const group: ProcessedNewsItem[] = [item, ...related.slice(0, 2)];
 
-      const article = await generateArticle(group);
+      const draftArticle = await generateArticle(group);
 
-      if (article) {
-        writeArticle(article);
-        result.generatedCount++;
-        result.articles.push(article.slug);
-        console.log(
-          `[Pipeline] ✓ Published: ${article.slug} (${article.category})`
-        );
-      } else {
+      if (!draftArticle) {
         result.skippedCount++;
+        await sleep(2000);
+        continue;
       }
 
-      // Small delay between API calls
+      // 평가 루프: 게이트 통과 시 published, 3 라운드 후에도 실패하면 draft
+      const iteration = await iterateToPass(
+        draftArticle,
+        client,
+        (a, feedback) => reviseArticle(a, feedback, client),
+        3
+      );
+
+      writeArticle(iteration.article);
+      result.generatedCount++;
+      result.articles.push(iteration.article.slug);
+
+      if (iteration.article.status === "published") {
+        result.publishedCount++;
+        console.log(
+          `[Pipeline] ✓ Published (R${iteration.rounds}, score=${iteration.finalEvaluation.score}): ${iteration.article.slug}`
+        );
+      } else {
+        result.draftCount++;
+        console.log(
+          `[Pipeline] ⚠ Draft (gate fail after R${iteration.rounds}, score=${iteration.finalEvaluation.score}): ${iteration.article.slug}`
+        );
+      }
+
+      // 평가·수정 호출 사이 딜레이
       await sleep(2000);
     } catch (error) {
       const msg = `Failed to generate article for: ${item.title}`;
@@ -99,7 +129,7 @@ export async function runDailyPipeline(
   }
 
   console.log(
-    `[Pipeline] Complete. Generated: ${result.generatedCount}, Skipped: ${result.skippedCount}, Errors: ${result.errors.length}`
+    `[Pipeline] Complete. Generated: ${result.generatedCount} (published=${result.publishedCount}, draft=${result.draftCount}), Skipped: ${result.skippedCount}, Errors: ${result.errors.length}`
   );
 
   return result;

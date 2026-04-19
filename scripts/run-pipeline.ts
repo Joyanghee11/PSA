@@ -13,6 +13,8 @@ async function main() {
     console.log(`Fetched:    ${result.fetchedCount} items`);
     console.log(`Processed:  ${result.processedCount} items`);
     console.log(`Generated:  ${result.generatedCount} articles`);
+    console.log(`  Published (gate pass): ${result.publishedCount}`);
+    console.log(`  Draft     (gate fail): ${result.draftCount}`);
     console.log(`Skipped:    ${result.skippedCount}`);
     console.log(`Errors:     ${result.errors.length}`);
 
