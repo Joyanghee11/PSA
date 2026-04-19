@@ -39,12 +39,33 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
       {/* Logo */}
       <div className="bg-card">
         <div className="max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href={`/${lang}`} className="flex items-baseline gap-2">
-            <span className="text-3xl md:text-4xl font-black tracking-tight text-accent">
-              {lang === "ko" ? "다이브저널" : "DiveJournal"}
-            </span>
-            <span className="hidden sm:inline text-xs text-muted-foreground font-medium tracking-wide">
-              {lang === "ko" ? "DIVE JOURNAL" : "다이브저널"}
+          <Link href={`/${lang}`} className="flex items-center gap-3" aria-label="다이브저널 · DiveJournal">
+            <svg viewBox="0 0 48 48" width="40" height="40" className="flex-shrink-0" aria-hidden="true">
+              <rect width="48" height="48" rx="10" fill="var(--accent)" />
+              <path
+                d="M9 21 Q14.5 15.5 20 21 T31 21 L39 21"
+                stroke="#a5c8de"
+                strokeWidth="2.4"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9 30 Q14.5 24.5 20 30 T31 30 L39 30"
+                stroke="#3a7ba4"
+                strokeWidth="2.4"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="flex flex-col">
+              <span className="text-2xl md:text-3xl font-black tracking-tight text-headline leading-none">
+                {lang === "ko" ? "다이브저널" : "DiveJournal"}
+              </span>
+              <span className="hidden sm:inline text-[10px] text-muted-foreground font-semibold tracking-[0.2em] mt-1">
+                {lang === "ko" ? "DIVE JOURNAL" : "다이브저널"}
+              </span>
             </span>
           </Link>
           <Link

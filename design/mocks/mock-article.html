@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>다이브저널 — 기사 시안</title>
+<style>
+  :root {
+    --background: #fafbfc;
+    --foreground: #141c24;
+    --card: #ffffff;
+    --muted: #f1f4f7;
+    --muted-foreground: #6b7a87;
+    --accent: #0e3a5f;
+    --accent-blue: #0891b2;
+    --border: #d9e0e8;
+    --border-strong: #0e3a5f;
+    --headline: #061a2c;
+    --nav-bg: #082640;
+    --nav-text: #e4eff7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Pretendard', Roboto, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  .wide { max-width: 1200px; }
+
+  /* Topbar */
+  .topbar { background: var(--muted); border-bottom: 1px solid var(--border); font-size: 12px; color: var(--muted-foreground); }
+  .topbar .container { display: flex; justify-content: space-between; align-items: center; height: 32px; }
+
+  /* Masthead */
+  .masthead { background: var(--card); border-bottom: 1px solid var(--border); }
+  .masthead .container {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 20px;
+  }
+  .logo-row { display: flex; align-items: center; gap: 10px; }
+  .mark { width: 36px; height: 36px; }
+  .wordmark .ko { font-size: 20px; font-weight: 900; letter-spacing: -0.5px; color: var(--headline); line-height: 1; }
+  .wordmark .en { font-size: 9px; font-weight: 600; letter-spacing: 2.5px; color: var(--muted-foreground); margin-top: 3px; }
+
+  /* Article */
+  article.content { padding: 48px 0 32px; }
+
+  .breadcrumb { font-size: 12px; color: var(--muted-foreground); margin-bottom: 24px; letter-spacing: 0.5px; }
+  .breadcrumb a { color: inherit; text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent-blue); }
+
+  .cat-label {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    color: var(--accent); letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  h1.title {
+    font-size: 38px; font-weight: 900; letter-spacing: -1.2px;
+    line-height: 1.25; margin: 0 0 16px 0; color: var(--headline);
+    word-break: keep-all;
+  }
+  .summary { font-size: 18px; color: var(--muted-foreground); line-height: 1.6; margin: 0 0 24px 0; font-weight: 400; }
+  .meta {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13px; color: var(--muted-foreground);
+    padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .meta .sep { color: var(--border); }
+  .meta .score-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 8px; background: #059669; color: white;
+    border-radius: 4px; font-weight: 700; font-size: 11px;
+  }
+
+  .hero {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #0e3a5f 0%, #0891b2 100%);
+    border-radius: 4px; margin-bottom: 32px;
+  }
+
+  .body p { margin: 0 0 20px 0; font-size: 17px; line-height: 1.8; }
+  .body h3 {
+    font-size: 22px; font-weight: 800; letter-spacing: -0.5px;
+    color: var(--headline); margin: 36px 0 12px 0;
+  }
+  .body em { font-style: italic; color: var(--accent); }
+  .body strong { color: var(--headline); font-weight: 700; }
+  .body a { color: var(--accent-blue); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 32px 0; padding-top: 24px; border-top: 1px solid var(--border); }
+  .tag { font-size: 12px; padding: 4px 10px; border: 1px solid var(--border); color: var(--muted-foreground); border-radius: 2px; }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  .sources { background: var(--muted); border-left: 3px solid var(--accent); padding: 16px 20px; margin: 32px 0; border-radius: 0 4px 4px 0; font-size: 13px; }
+  .sources-label { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+  .sources a { color: var(--accent-blue); text-decoration: none; display: block; padding: 2px 0; word-break: break-all; }
+  .sources a:hover { text-decoration: underline; }
+
+  /* Comments */
+  .comments { margin-top: 56px; padding-top: 40px; border-top: 2px solid var(--border-strong); }
+  .comments h2 { margin: 0 0 20px 0; font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--headline); }
+  .comment-form textarea {
+    width: 100%; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 6px; font-family: inherit; font-size: 14px;
+    min-height: 100px; resize: vertical; background: var(--card);
+    color: var(--foreground);
+  }
+  .comment-form textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+  .comment-form .row { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+  .comment-form .count { font-size: 12px; color: var(--muted-foreground); }
+  .comment-form button { background: var(--accent); color: white; border: none; padding: 9px 20px; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; }
+  .comment-form button:hover { background: #061a2c; }
+
+  .comment { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin: 12px 0; }
+  .comment-head { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+  .comment-head .name { font-weight: 700; color: var(--headline); }
+  .comment-head .date { color: var(--muted-foreground); }
+  .comment-body { font-size: 14px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container wide" style="max-width:1200px;">
+    <span>2026.04.19 일요일</span>
+    <span>박민재 · <a href="#" style="color:inherit; text-decoration:none;">내 정보</a>  |  한 / EN  |  ☾</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="container wide" style="max-width:1200px;">
+    <div class="logo-row">
+      <svg class="mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <rect width="48" height="48" rx="10" fill="#0e3a5f"/>
+        <path d="M9 21 Q14.5 15.5 20 21 T31 21 L39 21" stroke="#a5c8de" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 30 Q14.5 24.5 20 30 T31 30 L39 30" stroke="#3a7ba4" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="wordmark">
+        <div class="ko">다이브저널</div>
+        <div class="en">DIVE JOURNAL</div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:var(--muted-foreground);">🔍 검색</div>
+  </div>
+</header>
+
+<article class="container">
+  <div class="content">
+    <div class="breadcrumb">홈 &nbsp;›&nbsp; 과학·안전 &nbsp;›&nbsp; 기사</div>
+
+    <span class="cat-label">Science</span>
+    <h1 class="title">질소 마취: 깊은 수심에서 일어나는 '마티니 효과'의 과학</h1>
+    <p class="summary">30m를 넘는 모든 스쿠버 다이버에게 영향을 미치는 질소 마취. 그 과학적 원인과 인지·대응법이 안전한 다이버와 사고 통계 사이를 가른다.</p>
+
+    <div class="meta">
+      <span>2026.04.19</span>
+      <span class="sep">·</span>
+      <span>4분 읽기</span>
+      <span class="sep">·</span>
+      <span class="score-badge">평가 100점 ✓</span>
+    </div>
+
+    <div class="hero"></div>
+
+    <div class="body">
+      <p>수심 30m를 지나는 어느 지점에서 대부분의 스쿠버 다이버는 묘한 변화를 느낀다. 사고의 속도가 반 박자 늦어지고, 수면에서는 자연스럽게 해내던 동작 — 게이지 확인, 버디를 향한 수신호 — 이 의식적인 노력을 요구한다. 이것이 질소 마취(nitrogen narcosis)이며, 정도의 차이는 있어도 깊은 수심으로 내려가는 모든 다이버에게 영향을 미친다.</p>
+
+      <h3>한 세기 가까이 기록된 현상</h3>
+      <p>질소 마취를 체계적으로 연구한 첫 기록은 1930년대 미 해군 군의관 앨버트 벤크(Albert Behnke)까지 거슬러 올라간다. 대중에게 이 현상이 각인된 계기는 프랑스 해양학자 자크 쿠스토의 회고록 <em>침묵의 세계</em>(1953)다. 그는 이 증상을 <em>l'ivresse des grandes profondeurs</em>, 즉 '심해의 도취'라 명명했다.</p>
+
+      <h3>실제 원인은 무엇인가</h3>
+      <p>현재 가장 유력한 설명은 <em>지질 용해도 이론</em>, 즉 메이어-오버튼 가설이다. 압력이 높아지면 호흡 가스의 질소 분자가 신경세포의 지질이 풍부한 막에 용해되어 정상적인 신호 전달을 방해한다.</p>
+
+      <p><strong>대응은 단순하고 즉각적이다.</strong> 몇 미터만 상승하면 된다. 깊이가 줄어드는 즉시 마취 효과는 빠르게 약해지고, 보통 1~2분 안에 회복된다.</p>
+    </div>
+
+    <div class="sources">
+      <div class="sources-label">참고 자료 · Sources</div>
+      <a href="#">https://en.wikipedia.org/wiki/Nitrogen_narcosis</a>
+      <a href="#">https://en.wikipedia.org/wiki/Meyer-Overton_hypothesis</a>
+      <a href="#">https://dan.org</a>
+    </div>
+
+    <div class="tags">
+      <span class="tag">#nitrogen-narcosis</span>
+      <span class="tag">#depth</span>
+      <span class="tag">#physiology</span>
+      <span class="tag">#scuba-safety</span>
+    </div>
+
+    <section class="comments">
+      <h2>댓글 (2)</h2>
+
+      <form class="comment-form">
+        <textarea placeholder="이 기사에 대한 의견을 남겨주세요..."></textarea>
+        <div class="row">
+          <span class="count">0/2000</span>
+          <button type="button">댓글 등록</button>
+        </div>
+      </form>
+
+      <div class="comment">
+        <div class="comment-head">
+          <span class="name">이수진</span>
+          <span class="date">2026.04.19 14:32</span>
+        </div>
+        <div class="comment-body">쿠스토 책에서 본 그 표현이었네요. 개인차가 컨디션에 따라 다르다는 부분이 공감됩니다 — 저도 컨디션 나쁜 날엔 25m에서도 이상해지는 느낌을 받아요.</div>
+      </div>
+
+      <div class="comment">
+        <div class="comment-head">
+          <span class="name">ocean_diver</span>
+          <span class="date">2026.04.19 11:08</span>
+        </div>
+        <div class="comment-body">좋은 정리 감사합니다. 테크니컬 다이빙에서 헬륨 혼합 가스 쓰는 이유가 이거였군요.</div>
+      </div>
+    </section>
+  </div>
+</article>
+
+</body>
+</html>

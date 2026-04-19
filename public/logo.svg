@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DiveJournal Mark (1:1)
+  Concept: rounded square mask representing a dive mask's viewport,
+  holding two stacked wave lines that suggest water surface and depth.
+  Reads cleanly at 16x16 (favicon) up to hero sizes.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="DiveJournal">
+  <rect width="48" height="48" rx="10" fill="#0e3a5f"/>
+  <!-- water surface (brighter) -->
+  <path d="M9 21 Q14.5 15.5 20 21 T31 21 L39 21"
+        stroke="#a5c8de" stroke-width="2.4"
+        fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- depth line (dimmer, slightly offset) -->
+  <path d="M9 30 Q14.5 24.5 20 30 T31 30 L39 30"
+        stroke="#3a7ba4" stroke-width="2.4"
+        fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

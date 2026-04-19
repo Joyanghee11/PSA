@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DiveJournal Mark — dark-mode variant.
+  Surface/depth waves shift to brighter tones on dark backgrounds.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="DiveJournal">
+  <rect width="48" height="48" rx="10" fill="#0a2136"/>
+  <path d="M9 21 Q14.5 15.5 20 21 T31 21 L39 21"
+        stroke="#e4eff7" stroke-width="2.4"
+        fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9 30 Q14.5 24.5 20 30 T31 30 L39 30"
+        stroke="#56c6e8" stroke-width="2.4"
+        fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
