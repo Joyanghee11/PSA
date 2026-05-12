@@ -46,3 +46,12 @@ next-env.d.ts
 .env*.local
 .vercel
 .claude/settings.local.json
+
+# PSA_safety: temporary analysis artifacts (sources, scripts, dumps)
+/tmp_analysis/
+
+# PSA_safety: PII — members data must NEVER be committed.
+# In production it is supplied via the SAFETY_MEMBERS_B64 environment variable.
+# For local development place this file at src/data/safety-members.json
+# (see docs/safety-deployment.md for the encoding script).
+/src/data/safety-members.json
