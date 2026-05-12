@@ -57,7 +57,24 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // 3. /account 경로 보호 (로그인한 사용자 전용)
+  // 3. /safety 보호 경로 (PSA_safety 세션 필수): course / exam / certificate
+  if (
+    pathname.startsWith("/safety/course") ||
+    pathname.startsWith("/safety/exam") ||
+    pathname.startsWith("/safety/certificate")
+  ) {
+    const token = request.cookies.get("psa-safety-token")?.value;
+    if (!token) {
+      return NextResponse.redirect(new URL("/safety", request.url));
+    }
+    try {
+      await jwtVerify(token, getJwtSecret());
+    } catch {
+      return NextResponse.redirect(new URL("/safety", request.url));
+    }
+  }
+
+  // 4. /account 경로 보호 (로그인한 사용자 전용)
   if (pathname.startsWith("/account")) {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
