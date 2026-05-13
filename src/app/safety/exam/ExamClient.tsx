@@ -176,11 +176,11 @@ function IntroScreen({
   error: string;
 }) {
   return (
-    <div className="max-w-2xl mx-auto px-6 py-12">
-      <p className="text-xs uppercase tracking-[0.22em] text-accent">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <p className="text-[11px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.22em] text-accent">
         Final Examination
       </p>
-      <h1 className="font-[family-name:var(--font-serif-kr)] text-3xl sm:text-4xl text-headline mt-3 leading-tight">
+      <h1 className="font-[family-name:var(--font-serif-kr)] text-2xl sm:text-3xl lg:text-4xl text-headline mt-3 leading-tight">
         수중레저 안전교육
         <br />
         최종 평가
@@ -296,12 +296,14 @@ function TakingScreen({
   const pct = Math.round((answeredCount / total) * 100);
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-10">
-      <div className="sticky top-0 z-10 -mx-6 px-6 py-3 bg-background/95 backdrop-blur border-b border-border">
-        <div className="flex items-baseline justify-between text-sm">
-          <span className="font-medium text-headline">최종 평가 — 25문항</span>
-          <span className="text-muted-foreground tabular-nums">
-            {answeredCount} / {total} 응답 ({pct}%)
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <div className="sticky top-0 z-10 -mx-4 sm:-mx-6 px-4 sm:px-6 py-2.5 sm:py-3 bg-background/95 backdrop-blur border-b border-border">
+        <div className="flex items-baseline justify-between text-[13px] sm:text-sm gap-3">
+          <span className="font-medium text-headline truncate">
+            최종 평가 — 25문항
+          </span>
+          <span className="text-muted-foreground tabular-nums shrink-0">
+            {answeredCount}/{total} ({pct}%)
           </span>
         </div>
         <div className="mt-2 h-1.5 rounded-full bg-muted overflow-hidden">
@@ -312,33 +314,33 @@ function TakingScreen({
         </div>
       </div>
 
-      <ol className="mt-8 space-y-6">
+      <ol className="mt-6 sm:mt-8 space-y-4 sm:space-y-6">
         {exam.questions.map((q, i) => (
           <li
             key={q.id}
-            className="rounded-lg border border-border bg-card p-5"
+            className="rounded-lg border border-border bg-card p-4 sm:p-5"
           >
-            <div className="flex items-baseline gap-3 mb-3">
-              <span className="font-[family-name:var(--font-serif)] text-accent text-lg shrink-0 w-8 tabular-nums">
+            <div className="flex items-baseline gap-2 sm:gap-3 mb-3">
+              <span className="font-[family-name:var(--font-serif)] text-accent text-base sm:text-lg shrink-0 w-7 sm:w-8 tabular-nums">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <p
-                className="text-[15px] leading-relaxed text-foreground"
+                className="text-[14px] sm:text-[15px] leading-relaxed text-foreground"
                 style={{ wordBreak: "keep-all" }}
               >
                 {q.q}
               </p>
             </div>
-            <ul className="ml-11 space-y-1.5">
+            <ul className="ml-9 sm:ml-11 space-y-1.5">
               {q.choices.map((c, ci) => {
                 const checked = answers[q.id] === ci;
                 return (
                   <li key={ci}>
                     <label
-                      className={`flex items-baseline gap-3 px-3 py-2 rounded-md cursor-pointer transition ${
+                      className={`flex items-baseline gap-2.5 sm:gap-3 px-3 py-2.5 sm:py-2 rounded-md cursor-pointer transition ${
                         checked
                           ? "bg-accent/10 ring-1 ring-accent/40"
-                          : "hover:bg-muted"
+                          : "hover:bg-muted active:bg-muted"
                       }`}
                     >
                       <input
@@ -347,10 +349,10 @@ function TakingScreen({
                         value={ci}
                         checked={checked}
                         onChange={() => setAnswer(q.id, ci)}
-                        className="accent-[color:var(--accent)] mt-0.5"
+                        className="accent-[color:var(--accent)] mt-0.5 w-4 h-4"
                       />
                       <span
-                        className="text-[14px] leading-relaxed text-foreground/90"
+                        className="text-[13.5px] sm:text-[14px] leading-relaxed text-foreground/90"
                         style={{ wordBreak: "keep-all" }}
                       >
                         {String.fromCharCode(0x2460 + ci)} {c}
@@ -364,11 +366,11 @@ function TakingScreen({
         ))}
       </ol>
 
-      <div className="mt-8 sticky bottom-0 -mx-6 px-6 py-4 bg-background/95 backdrop-blur border-t border-border">
+      <div className="mt-6 sm:mt-8 sticky bottom-0 -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 sm:py-4 bg-background/95 backdrop-blur border-t border-border">
         {error && (
           <p
             role="alert"
-            className="mb-3 text-sm text-[color:var(--accent-warm)] text-center"
+            className="mb-3 text-[13px] sm:text-sm text-[color:var(--accent-warm)] text-center"
           >
             {error}
           </p>
@@ -376,11 +378,11 @@ function TakingScreen({
         <button
           onClick={onSubmit}
           disabled={submitting}
-          className="w-full px-6 py-4 rounded-md bg-accent text-accent-foreground text-base font-medium hover:opacity-90 disabled:opacity-50"
+          className="w-full px-5 sm:px-6 py-3.5 sm:py-4 rounded-md bg-accent text-accent-foreground text-[15px] sm:text-base font-medium hover:opacity-90 disabled:opacity-50"
         >
           {submitting
             ? "채점 중..."
-            : `제출하기  (${answeredCount}/${total} 응답)`}
+            : `제출하기  (${answeredCount}/${total})`}
         </button>
       </div>
     </div>
@@ -405,23 +407,23 @@ function ResultScreen({
 }) {
   const passed = result.passed;
   return (
-    <div className="max-w-3xl mx-auto px-6 py-12">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <div
-        className={`rounded-2xl p-8 text-center ${
+        className={`rounded-2xl p-6 sm:p-8 text-center ${
           passed
             ? "bg-accent/5 border-2 border-accent"
             : "bg-[color:var(--accent-warm)]/5 border-2 border-[color:var(--accent-warm)]"
         }`}
       >
         <p
-          className="text-xs uppercase tracking-[0.24em] font-medium"
+          className="text-[11px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.24em] font-medium"
           style={{ color: passed ? "var(--accent)" : "var(--accent-warm)" }}
         >
           {passed ? "PASS · 합격" : "FAIL · 불합격"}
         </p>
-        <p className="mt-3 text-[64px] sm:text-[80px] leading-none font-[family-name:var(--font-serif)] text-headline tabular-nums">
+        <p className="mt-3 text-[56px] sm:text-[80px] leading-none font-[family-name:var(--font-serif)] text-headline tabular-nums">
           {result.percent}
-          <span className="text-3xl text-muted-foreground">/100</span>
+          <span className="text-2xl sm:text-3xl text-muted-foreground">/100</span>
         </p>
         <p className="mt-3 text-sm text-muted-foreground">
           {result.correct} / {result.total} 정답 · {result.attempts}회차 응시

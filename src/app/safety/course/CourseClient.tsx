@@ -238,48 +238,48 @@ export function CourseClient({ chapters, session: initialSession }: Props) {
     <div className="flex flex-col min-h-[calc(100vh-128px)] bg-muted/30">
       {/* Top progress bar */}
       <div className="border-b border-border bg-background">
-        <div className="max-w-[1200px] mx-auto px-6 py-3">
-          <div className="flex items-baseline justify-between gap-4">
-            <div className="flex items-baseline gap-3 min-w-0">
-              <span className="text-xs uppercase tracking-[0.18em] text-accent font-semibold shrink-0">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-2.5 sm:py-3">
+          {/* Row 1: identity + chapter */}
+          <div className="flex items-baseline justify-between gap-3">
+            <div className="flex items-baseline gap-2 sm:gap-3 min-w-0">
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.18em] text-accent font-semibold shrink-0">
                 {initialSession.nameKo}
               </span>
-              <span className="text-xs text-muted-foreground shrink-0">
+              <span className="text-[10px] sm:text-xs text-muted-foreground shrink-0 hidden xs:inline">
                 #{initialSession.instructorNo}
               </span>
-              <span className="text-xs text-muted-foreground truncate">
+              <span className="text-[11px] sm:text-xs text-muted-foreground truncate">
                 · {current.chapterNumber} {current.chapterTitle}
               </span>
             </div>
-            <div className="flex items-baseline gap-4 shrink-0">
-              {savingMessage && (
-                <span className="text-xs text-accent hidden sm:inline">
-                  {savingMessage}
-                </span>
-              )}
-              <span className="text-xs text-muted-foreground tabular-nums">
-                필수 {completedRequired}/{REQUIRED_CHAPTERS.length} ·{" "}
-                슬라이드 {currentIndex + 1}/{totalSlides}
-              </span>
-              <button
-                onClick={handleLogout}
-                className="text-xs text-muted-foreground hover:text-foreground"
-              >
-                로그아웃
-              </button>
+            <button
+              onClick={handleLogout}
+              className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground shrink-0"
+            >
+              로그아웃
+            </button>
+          </div>
+          {/* Row 2: progress strip + counters */}
+          <div className="mt-2 flex items-center gap-3">
+            <div className="flex-1 h-1 rounded-full bg-muted overflow-hidden">
+              <div
+                className="h-full bg-accent transition-all"
+                style={{ width: `${overallPct}%` }}
+              />
             </div>
+            <span className="text-[10px] sm:text-xs text-muted-foreground tabular-nums shrink-0">
+              필수 {completedRequired}/{REQUIRED_CHAPTERS.length}  ·{" "}
+              {currentIndex + 1}/{totalSlides}
+            </span>
           </div>
-          <div className="mt-2 h-1 rounded-full bg-muted overflow-hidden">
-            <div
-              className="h-full bg-accent transition-all"
-              style={{ width: `${overallPct}%` }}
-            />
-          </div>
+          {savingMessage && (
+            <p className="mt-1.5 text-[11px] text-accent">{savingMessage}</p>
+          )}
         </div>
       </div>
 
-      {/* Slide canvas */}
-      <div className="flex-1 overflow-auto px-4 sm:px-8 py-8 flex items-start justify-center">
+      {/* Slide canvas — page-level scroll on mobile, contained scroll on sm+ */}
+      <div className="flex-1 sm:overflow-auto px-3 sm:px-8 py-4 sm:py-8 flex items-start justify-center">
         <SlideRenderer
           slide={current.slide}
           chapterTitle={`${current.chapterNumber} · ${current.chapterTitle}`}
@@ -294,19 +294,20 @@ export function CourseClient({ chapters, session: initialSession }: Props) {
       </div>
 
       {/* Bottom nav */}
-      <div className="border-t border-border bg-background">
-        <div className="max-w-[1200px] mx-auto px-6 py-3 flex items-center justify-between gap-3">
+      <div className="border-t border-border bg-background sticky bottom-0">
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-3">
           <button
             onClick={() => goTo(currentIndex - 1)}
             disabled={currentIndex <= 0}
-            className="px-5 py-2 rounded-md border border-border text-sm hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-3 sm:px-5 py-2.5 sm:py-2 rounded-md border border-border text-sm hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+            aria-label="이전 슬라이드"
           >
             ← 이전
           </button>
-          <p className="text-[11px] text-muted-foreground hidden sm:block">
+          <p className="text-[11px] text-muted-foreground hidden lg:block">
             ←/→ 키 또는 Space로 슬라이드를 넘길 수 있습니다
           </p>
-          {primaryAction}
+          <div className="shrink-0">{primaryAction}</div>
         </div>
       </div>
     </div>
