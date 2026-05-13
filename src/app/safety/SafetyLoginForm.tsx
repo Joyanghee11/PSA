@@ -62,8 +62,9 @@ export function SafetyLoginForm() {
     }
   }
 
+  // 16px font-size on mobile prevents iOS Safari from auto-zooming on focus.
   const baseInput =
-    "w-full px-3.5 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent transition";
+    "w-full px-3.5 py-3 sm:py-2.5 rounded-lg border border-border bg-background text-foreground text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent transition";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4" noValidate>
@@ -92,7 +93,7 @@ export function SafetyLoginForm() {
         />
       </Field>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3">
         <Field label="한글성명">
           <input
             required

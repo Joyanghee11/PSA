@@ -9,14 +9,14 @@ export default async function SafetyEntryPage() {
   }
 
   return (
-    <div className="max-w-[1100px] mx-auto px-6 py-10 grid lg:grid-cols-[1fr_420px] gap-10">
+    <div className="max-w-[1100px] mx-auto px-4 sm:px-6 py-6 sm:py-10 grid lg:grid-cols-[1fr_420px] gap-6 sm:gap-10">
       {/* Hero / programme info */}
-      <section className="space-y-6">
+      <section className="space-y-5 sm:space-y-6">
         <div className="space-y-3">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">
+          <p className="text-[11px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.2em] text-accent">
             PSAI KOREA · 회원 전용 안전교육
           </p>
-          <h1 className="font-[family-name:var(--font-serif-kr)] text-4xl sm:text-5xl leading-tight text-headline">
+          <h1 className="font-[family-name:var(--font-serif-kr)] text-3xl sm:text-4xl lg:text-5xl leading-tight text-headline">
             수중레저
             <br />
             <em className="not-italic text-accent">안전교육</em>{" "}

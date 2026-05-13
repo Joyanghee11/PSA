@@ -67,27 +67,31 @@ export function SlideRenderer({
     <div
       // colorScheme: light prevents the OS dark-mode auto-tint on form controls.
       style={{ colorScheme: "light", background: C.card, color: C.ink }}
-      className="psa-slide w-full max-w-[1080px] aspect-[16/10] rounded-lg overflow-hidden flex flex-col shadow-[0_2px_8px_rgba(15,20,20,0.08),0_24px_48px_-24px_rgba(15,20,20,0.18)]"
+      // Mobile: full-width with auto height (no fixed aspect, content-driven).
+      //   The OUTER page scroll handles overflow — the slide itself does not
+      //   clip, so users do not encounter a nested scroll trap.
+      // sm+: editorial 16:10 frame with internal scroll.
+      className="psa-slide w-full max-w-[1080px] sm:min-h-0 sm:aspect-[16/10] rounded-md sm:rounded-lg sm:overflow-hidden flex flex-col shadow-[0_2px_8px_rgba(15,20,20,0.06)] sm:shadow-[0_2px_8px_rgba(15,20,20,0.08),0_24px_48px_-24px_rgba(15,20,20,0.18)]"
     >
       <header
-        className="px-10 sm:px-14 pt-6 pb-3 flex items-baseline justify-between"
+        className="px-5 sm:px-10 lg:px-14 pt-4 sm:pt-6 pb-2.5 sm:pb-3 flex items-baseline justify-between gap-3"
         style={{ borderBottom: `1px solid ${C.border}` }}
       >
         <div
-          className="text-[11px] uppercase tracking-[0.22em] font-medium"
+          className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] sm:tracking-[0.22em] font-medium truncate"
           style={{ color: C.muted }}
         >
           {chapterTitle}
         </div>
         <div
-          className="text-[11px] tabular-nums"
+          className="text-[10px] sm:text-[11px] tabular-nums shrink-0"
           style={{ color: C.muted }}
         >
           {slideIndex + 1} / {totalInChapter}
         </div>
       </header>
       <div
-        className="flex-1 overflow-auto px-10 sm:px-14 py-8"
+        className="flex-1 sm:overflow-auto px-5 sm:px-10 lg:px-14 py-5 sm:py-8"
         style={{ background: C.card, color: C.ink }}
       >
         {renderBody(slide, { onCheckpointPassed, alreadyPassed })}
@@ -158,8 +162,10 @@ function Eyebrow({ text, tone = "tide" }: { text?: string; tone?: "tide" | "cora
 function Title({ children, size = "lg" }: { children: React.ReactNode; size?: "lg" | "xl" }) {
   return (
     <h2
-      className={`font-[family-name:var(--font-serif-kr)] leading-[1.15] ${
-        size === "xl" ? "text-[44px] sm:text-[52px]" : "text-[28px] sm:text-[34px]"
+      className={`font-[family-name:var(--font-serif-kr)] leading-[1.18] ${
+        size === "xl"
+          ? "text-[32px] sm:text-[44px] lg:text-[52px]"
+          : "text-[22px] sm:text-[28px] lg:text-[34px]"
       }`}
       style={{ color: C.ink, letterSpacing: "-0.01em", wordBreak: "keep-all" }}
     >
@@ -172,7 +178,7 @@ function Intro({ children }: { children: React.ReactNode }) {
   if (!children) return null;
   return (
     <p
-      className="mt-4 text-[15.5px] leading-[1.75] max-w-[44em]"
+      className="mt-3 sm:mt-4 text-[14px] sm:text-[15.5px] leading-[1.7] sm:leading-[1.75] max-w-[44em]"
       style={{ color: C.inkSoft, wordBreak: "keep-all" }}
     >
       {children}
@@ -220,12 +226,11 @@ function CoverBody({ slide }: { slide: CoverSlide }) {
   const isCoral = slide.accent === "coral";
   return (
     <div className="h-full flex flex-col justify-center items-start py-2 relative">
-      {/* large faded chapter mark in background */}
+      {/* large faded chapter mark in background — scales down on mobile */}
       <div
         aria-hidden
-        className="absolute right-0 top-0 font-[family-name:var(--font-serif)] select-none pointer-events-none"
+        className="absolute right-0 top-0 font-[family-name:var(--font-serif)] select-none pointer-events-none text-[120px] sm:text-[180px] lg:text-[240px]"
         style={{
-          fontSize: "240px",
           lineHeight: 1,
           color: isCoral ? C.warmSoft : C.accentSoft,
           fontWeight: 300,
@@ -236,20 +241,20 @@ function CoverBody({ slide }: { slide: CoverSlide }) {
 
       <div className="relative">
         <p
-          className="text-[11px] uppercase tracking-[0.32em] font-bold"
+          className="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] sm:tracking-[0.32em] font-bold"
           style={{ color: isCoral ? C.warm : C.accent }}
         >
           {slide.eyebrow}
         </p>
         <h1
-          className="mt-8 font-[family-name:var(--font-serif-kr)] text-[56px] sm:text-[68px] leading-[1.05] max-w-[16ch]"
+          className="mt-5 sm:mt-8 font-[family-name:var(--font-serif-kr)] text-[34px] sm:text-[48px] lg:text-[68px] leading-[1.08] max-w-[16ch]"
           style={{ color: C.ink, letterSpacing: "-0.015em", wordBreak: "keep-all" }}
         >
           {slide.title}
         </h1>
         {slide.titleEn && (
           <p
-            className="mt-4 italic font-[family-name:var(--font-serif)] text-[22px]"
+            className="mt-3 sm:mt-4 italic font-[family-name:var(--font-serif)] text-[15px] sm:text-[18px] lg:text-[22px]"
             style={{ color: C.muted }}
           >
             {slide.titleEn}
@@ -257,14 +262,14 @@ function CoverBody({ slide }: { slide: CoverSlide }) {
         )}
         {slide.subtitle && (
           <p
-            className="mt-8 text-[16px] leading-[1.7] max-w-[44em]"
+            className="mt-5 sm:mt-8 text-[14px] sm:text-[16px] leading-[1.7] max-w-[44em]"
             style={{ color: C.inkSoft, wordBreak: "keep-all" }}
           >
             {slide.subtitle}
           </p>
         )}
         <div
-          className="mt-10 h-[2px] w-32"
+          className="mt-6 sm:mt-10 h-[2px] w-24 sm:w-32"
           style={{ background: isCoral ? C.warm : C.accent }}
         />
       </div>
@@ -357,7 +362,7 @@ function DefinitionBody({ slide }: { slide: DefinitionSlide }) {
       <Eyebrow text={slide.eyebrow ?? "용어 정의"} />
       <Title>{slide.title}</Title>
       <div
-        className="mt-7 rounded-lg p-7"
+        className="mt-5 sm:mt-7 rounded-lg p-5 sm:p-7"
         style={{
           background: C.accentSoft,
           border: `1.5px solid ${C.accentBorder}`,
@@ -365,14 +370,14 @@ function DefinitionBody({ slide }: { slide: DefinitionSlide }) {
       >
         <div className="flex items-baseline gap-3 flex-wrap">
           <p
-            className="font-[family-name:var(--font-serif-kr)] text-[32px]"
+            className="font-[family-name:var(--font-serif-kr)] text-[24px] sm:text-[32px]"
             style={{ color: C.ink, letterSpacing: "-0.01em" }}
           >
             {slide.term}
           </p>
           {slide.termEn && (
             <p
-              className="italic font-[family-name:var(--font-serif)] text-[16px]"
+              className="italic font-[family-name:var(--font-serif)] text-[13px] sm:text-[16px]"
               style={{ color: C.muted }}
             >
               {slide.termEn}
@@ -380,7 +385,7 @@ function DefinitionBody({ slide }: { slide: DefinitionSlide }) {
           )}
         </div>
         <p
-          className="mt-3 text-[15.5px] leading-[1.75]"
+          className="mt-3 text-[14px] sm:text-[15.5px] leading-[1.7] sm:leading-[1.75]"
           style={{ color: C.inkSoft, wordBreak: "keep-all" }}
         >
           {slide.definition}
@@ -883,11 +888,16 @@ function QuizCheckpointBody({
   const correctCount = slide.questions.filter(
     (q) => answers[q.id] === q.correctIndex
   ).length;
+  const allCorrect = correctCount === slide.questions.length;
 
   function handleCheck() {
     if (!allAnswered) return;
     setChecked(true);
-    onPassed();
+    // Only mark this checkpoint passed when EVERY answer is correct.
+    // Otherwise the learner must use 다시 풀기 and retry.
+    if (correctCount === slide.questions.length) {
+      onPassed();
+    }
   }
 
   function handleRetry() {
@@ -1018,11 +1028,11 @@ function QuizCheckpointBody({
               )}
               {checked && isWrong && (
                 <p
-                  className="ml-11 mt-1 text-[12px]"
+                  className="ml-11 mt-1 text-[12px] leading-relaxed"
                   style={{ color: C.warm }}
                 >
-                  ※ 틀린 문항이지만 다음으로 진행할 수 있습니다. 정답을
-                  확인하고 본문으로 돌아가 복습해 주세요.
+                  ※ 이 문항은 오답입니다. 모든 문항을 정답으로 맞혀야 다음
+                  슬라이드로 진행할 수 있습니다.
                 </p>
               )}
             </li>
@@ -1031,14 +1041,14 @@ function QuizCheckpointBody({
       </ol>
 
       <div
-        className="mt-6 pt-4 flex items-center justify-between gap-3"
+        className="mt-6 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
         style={{ borderTop: `1px solid ${C.border}` }}
       >
         {!checked ? (
           <>
-            <p className="text-[12.5px]" style={{ color: C.muted }}>
+            <p className="text-[12.5px] leading-relaxed" style={{ color: C.muted }}>
               {allAnswered
-                ? "모든 문항 응답 완료. 정답을 확인하면 다음 슬라이드로 진행할 수 있습니다."
+                ? "모든 문항 응답 완료. 정답 확인 후 모든 문항을 맞춰야 다음 슬라이드로 진행됩니다."
                 : `${
                     slide.questions.length -
                     Object.keys(answers).length
@@ -1048,7 +1058,7 @@ function QuizCheckpointBody({
               type="button"
               onClick={handleCheck}
               disabled={!allAnswered}
-              className="px-5 py-2.5 rounded-md text-[13px] font-semibold transition disabled:cursor-not-allowed"
+              className="w-full sm:w-auto px-5 py-3 rounded-md text-[13px] font-semibold transition disabled:cursor-not-allowed shrink-0"
               style={{
                 background: allAnswered ? C.accent : C.cardSoft,
                 color: allAnswered ? C.card : C.mutedSoft,
@@ -1058,20 +1068,46 @@ function QuizCheckpointBody({
               정답 확인
             </button>
           </>
-        ) : (
+        ) : allCorrect ? (
           <>
-            <p className="text-[13px] font-medium" style={{ color: C.ink }}>
-              점수: {correctCount} / {slide.questions.length} 정답  ·{" "}
-              <span style={{ color: C.accent }}>다음 슬라이드로 진행 가능</span>
+            <p
+              className="text-[13.5px] font-medium leading-relaxed"
+              style={{ color: C.accent }}
+            >
+              ✓ 전 문항 정답 ({correctCount}/{slide.questions.length}) — 다음
+              슬라이드로 진행할 수 있습니다.
             </p>
             <button
               type="button"
               onClick={handleRetry}
-              className="px-4 py-2 rounded-md text-[12.5px]"
+              className="w-full sm:w-auto px-4 py-2.5 rounded-md text-[12.5px] shrink-0"
               style={{
                 background: "transparent",
                 color: C.muted,
                 border: `1px solid ${C.border}`,
+              }}
+            >
+              다시 풀기
+            </button>
+          </>
+        ) : (
+          <>
+            <p
+              className="text-[13px] font-medium leading-relaxed"
+              style={{ color: C.warm }}
+            >
+              ✗ {slide.questions.length - correctCount}문항 오답 ({correctCount}/
+              {slide.questions.length} 정답) — 모두 맞혀야 다음으로 진행할 수
+              있습니다. 정답을 검토하고 다시 풀어 주세요.
+            </p>
+            <button
+              type="button"
+              onClick={handleRetry}
+              className="w-full sm:w-auto px-5 py-3 rounded-md text-[13px] font-semibold shrink-0"
+              style={{
+                background: C.warm,
+                color: "#FFFFFF",
+                border: `1px solid ${C.warm}`,
               }}
             >
               다시 풀기
