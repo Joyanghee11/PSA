@@ -8,6 +8,8 @@ export interface SafetyMemberRecord {
   level: string;
   status: string;
   center: string;
+  /** Phone number from PSA roster (Korean format, may have hyphens stripped). */
+  contactNo: string;
 }
 
 export interface SafetyMembersFile {
