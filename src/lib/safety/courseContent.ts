@@ -96,6 +96,7 @@ const chapter1Slides: Slide[] = [
     id: "ch1-structure",
     type: "table",
     title: "법률 구성 체계",
+    // 「연안사고 예방에 관한 법률」 본문은 5장 25조와 부칙으로 구성.
     intro: "연안사고예방법은 총 5장 25개 조문 및 부칙으로 구성됩니다.",
     columns: ["장", "내용", "조문"],
     rows: [
