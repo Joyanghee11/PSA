@@ -58,9 +58,45 @@ export function ExamClient({
       if (examPassed) {
         await fetch("/api/safety/exam/reset", { method: "POST" });
       }
-      const res = await fetch("/api/safety/exam");
+
+      // Self-healing race guard: if the user lands here from the course's
+      // last slide via prefetched RSC, the server cookie may briefly say
+      // `isCourseComplete=false`. Re-stamp the required chapters once before
+      // the exam GET so we never get spuriously stuck on a 403.
+      //
+      // IMPORTANT: post sequentially. The progress route is a read-modify-
+      // write on the JWT cookie payload — if we POST in parallel, all
+      // requests read the same old cookie and the last writer wins, losing
+      // the other chapter additions.
+      try {
+        for (const ch of ["ch1", "ch4", "addendum"]) {
+          await fetch("/api/safety/progress", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ completedChapter: ch }),
+          });
+        }
+      } catch {
+        // ignore — the exam GET below will surface a real auth/state error
+      }
+
+      // Fetch the exam. On 403 (course-incomplete), retry once after a
+      // short delay to absorb any remaining cookie propagation delay.
+      const tryFetch = () => fetch("/api/safety/exam", { cache: "no-store" });
+      let res = await tryFetch();
+      if (res.status === 403) {
+        await new Promise((r) => setTimeout(r, 600));
+        res = await tryFetch();
+      }
       if (!res.ok) {
-        setError("시험을 불러오지 못했습니다. 다시 시도해 주세요.");
+        const data = (await res.json().catch(() => ({}))) as { error?: string };
+        if (data.error === "course-incomplete") {
+          setError(
+            "학습 진도가 서버에 아직 반영되지 않았습니다. 「학습 다시 보기」를 눌러 마지막 슬라이드를 한 번 더 통과한 후 다시 시도해 주세요."
+          );
+        } else {
+          setError(`시험을 불러오지 못했습니다 (${data.error ?? res.status})`);
+        }
         return;
       }
       const data = (await res.json()) as ExamPayload;

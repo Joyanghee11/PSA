@@ -8,7 +8,6 @@ import {
   useState,
   useTransition,
 } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SlideRenderer } from "@/components/safety/SlideRenderer";
 import type { SafetyChapter } from "@/lib/safety/slideTypes";
@@ -72,6 +71,8 @@ export function CourseClient({ chapters, session: initialSession }: Props) {
   );
   const [passedQuizzes, setPassedQuizzes] = useState<Set<string>>(new Set());
   const [savingMessage, setSavingMessage] = useState("");
+  const [handoffPending, setHandoffPending] = useState(false);
+  const [handoffError, setHandoffError] = useState("");
 
   const current = flatSlides[currentIndex];
   const isOnQuiz = current.slide.type === "quizCheckpoint";
@@ -189,6 +190,53 @@ export function CourseClient({ chapters, session: initialSession }: Props) {
     });
   }
 
+  /**
+   * Race-safe handoff to /safety/exam (or /safety/certificate). The client
+   * may "know" the course is complete before the server-side JWT cookie has
+   * been updated by the latest postProgress fetch. Without this guard, the
+   * navigation can land on /safety/exam SSR while the cookie still says
+   * isCourseComplete=false, triggering a redirect back to /safety/course.
+   *
+   * We explicitly POST every required chapter (and the current lastPage),
+   * AWAITING each response so the Set-Cookie has been applied before the
+   * navigation triggers a fresh SSR.
+   */
+  async function handleHandoff(destination: string) {
+    if (handoffPending) return;
+    setHandoffPending(true);
+    setHandoffError("");
+    try {
+      // Mark every required chapter so the server is unambiguous, even if
+      // the local client state already includes them. The server's progress
+      // route is idempotent for already-completed chapters.
+      for (const ch of REQUIRED_CHAPTERS) {
+        const res = await fetch("/api/safety/progress", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ completedChapter: ch }),
+        });
+        if (!res.ok) {
+          throw new Error(`progress sync failed (${res.status})`);
+        }
+      }
+      await fetch("/api/safety/progress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lastPage: currentIndex + 1 }),
+      });
+      // Hard navigation here to guarantee the browser sends the updated
+      // cookie that the prior POSTs set; router.push uses prefetched RSC
+      // that may have been computed against the old cookie value.
+      window.location.assign(destination);
+    } catch (e) {
+      setHandoffError(
+        (e as Error).message ||
+          "진행 정보 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요."
+      );
+      setHandoffPending(false);
+    }
+  }
+
   const overallPct = Math.round(((currentIndex + 1) / totalSlides) * 100);
   const completedRequired = REQUIRED_CHAPTERS.filter((c) =>
     completed.includes(c)
@@ -207,20 +255,21 @@ export function CourseClient({ chapters, session: initialSession }: Props) {
       </button>
     );
   } else if (isOnLastSlide && allRequiredComplete) {
-    primaryAction = initialSession.examPassed ? (
-      <Link
-        href="/safety/certificate"
-        className="px-5 py-2 rounded-md bg-accent text-accent-foreground text-sm font-medium hover:opacity-90"
+    const destination = initialSession.examPassed
+      ? "/safety/certificate"
+      : "/safety/exam";
+    const label = initialSession.examPassed
+      ? "🎓 이수증 발급"
+      : "📝 최종 시험 응시";
+    primaryAction = (
+      <button
+        type="button"
+        onClick={() => handleHandoff(destination)}
+        disabled={handoffPending}
+        className="px-5 py-2 rounded-md bg-accent text-accent-foreground text-sm font-medium hover:opacity-90 disabled:opacity-60 disabled:cursor-wait"
       >
-        🎓 이수증 발급
-      </Link>
-    ) : (
-      <Link
-        href="/safety/exam"
-        className="px-5 py-2 rounded-md bg-accent text-accent-foreground text-sm font-medium hover:opacity-90"
-      >
-        📝 최종 시험 응시
-      </Link>
+        {handoffPending ? "이동 준비 중..." : label}
+      </button>
     );
   } else {
     primaryAction = (
@@ -274,6 +323,11 @@ export function CourseClient({ chapters, session: initialSession }: Props) {
           </div>
           {savingMessage && (
             <p className="mt-1.5 text-[11px] text-accent">{savingMessage}</p>
+          )}
+          {handoffError && (
+            <p className="mt-1.5 text-[11px] text-[color:var(--accent-warm)]">
+              {handoffError}
+            </p>
           )}
         </div>
       </div>
