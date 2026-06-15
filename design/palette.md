@@ -1,103 +1,91 @@
-# 색상 시스템 — Tidal Editorial (Round 2)
+# 다이브 저널 (DiveJournal) — Design System
 
-컨셉: 차가운 바다를 **따뜻한 종이 위에 편집한 잡지**.
-독자 타겟: 30대 여성 프리다이버.
-레퍼런스: Kinfolk, Cereal, Magazine B의 절제된 편집 감성.
+> 바다를 정확하게 — 프리다이빙과 스쿠버의 신뢰받는 보도
+> A serious Korean-first digital broadsheet for freediving and scuba.
 
-**핵심 원칙**: 크림색 종이(Canvas) 위에 심해 잉크(Ink)로 타이포그래피가 중심이 되고,
-티드(Tide) 청록이 포인트로, 산호(Coral)가 아주 드문 감정 포인트로 사용된다.
+## 1. Direction
+Digital broadsheet, not lifestyle magazine. The defining move is the **sans-headline / sans-body** system on a cool paper-gray canvas with near-black ink, signed by a controlled dark-red Korean masthead rule. We deliberately move **away** from the old cream `#f4efe7` + muted teal `#2d4a50` + Gowun Batang softness toward density, structure, and high contrast — the 조선비즈 / 한겨레 digital / Axios / Reuters register.
 
----
+Reference outlets: 조선비즈, The Atlantic, Axios, 한겨레 digital, Reuters.
 
-## Palette (Light — 기본)
+## 2. Typography
+| Slot | CSS var | Family | Use |
+|---|---|---|---|
+| KO headline | `--font-sans-kr` | **IBM Plex Sans KR** (500/600/700) | Masthead wordmark, headlines, nav, subheads, UI labels, kickers |
+| KO body | `--font-serif-kr` | **Gothic A1** (400/500) | **Korean body + decks** — note the slot is named "serif" but now holds a SANS face on purpose |
+| Latin serif | `--font-serif` | **Source Serif 4** (400/600 + italic) | Latin pull-quotes & rare English display only |
+| Latin sans | `--font-sans` | **IBM Plex Sans** (400/500/600) | "DIVE journal" lockup, datelines, bylines, numerals, English nav subs |
 
-| 역할 | Hex | 이름 | 용도 |
-|------|-----|------|------|
-| 바탕 | `#f4efe7` | **Canvas** (아이보리 크림) | 페이지 전체 배경 |
-| 종이 | `#fbf8f3` | **Paper** | 카드·기사 박스 배경 |
-| 잉크 | `#1a2427` | **Ink** | 본문 텍스트 |
-| 헤드라인 | `#0d1517` | **Deep Ink** | 제목, 대비 극대화 |
-| 스톤 | `#6b6e6a` | **Stone** | 보조 텍스트 |
-| 연한 돌 | `#dcd4c9` | **Sand Line** | 헤어라인 경계 |
-| 티드 | `#2d4a50` | **Tide** | 주 포인트, 링크, CTA |
-| 샐로우 | `#6a9b9b` | **Shallow** | 호버·보조 포인트 |
-| 산호 | `#b85c52` | **Coral** | 드문 감정 포인트 (pull quote 등) |
-| 쉘 | `#d4b5a5` | **Shell** | 카테고리 태그 배경 |
+**Why Gothic A1 for Korean body (the key decision):** all three judges flagged Noto Serif KR as the one genuinely magazine-leaning choice left, and noted the named references (조선비즈 / 한겨레 digital / Reuters) all run **sans** Korean body. Gothic A1 is a clean, high-x-height Korean sans that out-reads serif Hangul for dense, scannable reporting and is internally consistent with the "broadsheet not magazine" thesis. Sans headlines + sans body, differentiated by **weight and size**, is the digital-broadsheet signature.
 
-## Palette (Dark)
+Rules: Korean always `word-break: keep-all`. Body 17–18px / line-height 1.8. H1 IBM Plex Sans KR 600, 30–36px, letter-spacing -0.3px. Load only the listed weights (no 800/900) to keep CJK webfont weight down; `display: swap`.
 
-| 역할 | Hex |
-|------|-----|
-| 바탕 | `#12181a` |
-| 종이 | `#1c2224` |
-| 잉크 | `#e8e2d9` |
-| 헤드라인 | `#faf6f0` |
-| 스톤 | `#a09d94` |
-| 티드 | `#6a9b9b` |
-| 산호 | `#d47c70` |
+## 3. Color — the 15 named variables
+### Light (`:root`)
+| Variable | Hex | Role |
+|---|---|---|
+| `--background` | `#F4F5F6` | Cool paper-gray canvas |
+| `--foreground` | `#15181C` | Body ink (16.3:1 on bg) |
+| `--card` | `#FBFBFA` | Barely-warm off-white card |
+| `--card-foreground` | `#1C2025` | Ink on card (15.8:1) |
+| `--muted` | `#ECEDEE` | Meta strips / badges bg |
+| `--muted-foreground` | `#5A5E66` | Datelines, decks (5.96:1) |
+| `--accent` | `#7A1420` | Dark-red broadsheet RULE only |
+| `--accent-foreground` | `#FBFBFA` | On the rare accent surface |
+| `--accent-blue` | `#1463B0` | Links + lead/science section + diving through-line (5.59:1) |
+| `--accent-warm` | `#9A5A12` | 장비 / 다이버 식단 kicker (5.0:1 — true AA, tightened from #B0641A) |
+| `--border` | `#DAD8D2` | Hairline |
+| `--border-strong` | `#B4B2A9` | Heavy section rule |
+| `--headline` | `#0E1115` | Display ink |
+| `--nav-bg` | `#FBFBFA` | Masthead / nav band |
+| `--nav-text` | `#15181C` | Nav labels (17.2:1) |
 
-## Semantic (상태 전용, 브랜드 팔레트와 분리)
+### Dark (`.dark`)
+| Variable | Hex | Role |
+|---|---|---|
+| `--background` | `#0E1115` | True near-black newsroom |
+| `--foreground` | `#E8E7E2` | 15.3:1 |
+| `--card` | `#15181C` | |
+| `--card-foreground` | `#E8E7E2` | 14.4:1 |
+| `--muted` | `#1C2025` | |
+| `--muted-foreground` | `#9AA0A6` | 7.2:1 / 6.7:1 on card |
+| `--accent` | `#8E2230` | Dark-red rule only |
+| `--accent-foreground` | `#F2F1EC` | |
+| `--accent-blue` | `#5AAAEC` | Links (7.1:1 on card — raised from #4FA3E8 to clear AA comfortably on `--card`, per judge note) |
+| `--accent-warm` | `#E0A24E` | 8.0:1 on card |
+| `--border` | `#2A2E33` | |
+| `--border-strong` | `#3F454C` | |
+| `--headline` | `#F2F1EC` | |
+| `--nav-bg` | `#15181C` | |
+| `--nav-text` | `#F2F1EC` | 15.8:1 |
 
-| 역할 | Hex |
-|------|-----|
-| 파괴 | `#9a3b33` (Deep coral) |
-| 성공 | `#5e7a5f` (Moss) |
-| 주의 | `#c89a46` (Amber) |
+### Extra NAMED properties (documented, not hardcoded — fixes the "unlisted color" critique)
+| Variable | Light | Dark | Role |
+|---|---|---|---|
+| `--accent-teal` | `#0F6E56` | `#3FB89C` | 스쿠버 section + nameplate sea/depth signal (4.81:1 light / 7.25:1 dark) |
+| `--badge-verified` | `#147D63` | `#36C9A4` | 검증됨 evaluation badge (4.64:1 / 8.52:1) |
+| `--danger` | `#C8322B` | `#E5685F` | **Destructive/danger ONLY** — kept bright and clearly distinct from `--accent` dark red |
+| `--danger-foreground` | `#FBFBFA` | `#15181C` | |
 
----
+All body/link/label pairs verified ≥ 4.5:1 WCAG AA in both modes; ink-on-canvas exceeds 14:1.
 
-## CSS 변수 (globals.css)
+## 4. Accent discipline (three tiers + status)
+1. **`--accent` dark red** — masthead rule, section divider tabs, pull-quote left rules. NEVER a fill, NEVER on buttons, NEVER body text. (As a *text* color it fails contrast on the dark card — by design it is only ever a graphical rule.)
+2. **`--accent-blue`** — the single interactive/link color AND the diving brand through-line.
+3. **Section coding** — `--accent-blue` (프리다이빙/과학/다이빙 포인트), `--accent-teal` (스쿠버), `--accent-warm` (장비/다이버 식단), neutral `--muted-foreground` for the rest. Color encodes section, never decoration.
+4. **Status** — `--badge-verified` green for 검증됨; `--danger` for destructive. The dark-red masthead accent and the destructive red are intentionally separated so adjacent UI never reads as an alert.
 
-### :root
-```css
-:root {
-  --background: #f4efe7;      /* Canvas */
-  --foreground: #1a2427;      /* Ink */
-  --card: #fbf8f3;            /* Paper */
-  --card-foreground: #1a2427;
-  --muted: #ede7dc;
-  --muted-foreground: #6b6e6a; /* Stone */
-  --accent: #2d4a50;          /* Tide */
-  --accent-foreground: #fbf8f3;
-  --accent-blue: #2d4a50;     /* 링크도 Tide */
-  --accent-warm: #b85c52;     /* Coral (드문 포인트) */
-  --border: #dcd4c9;          /* Sand Line */
-  --border-strong: #1a2427;
-  --headline: #0d1517;        /* Deep Ink */
-  --nav-bg: #f4efe7;          /* 네비도 Canvas */
-  --nav-text: #1a2427;
-  --serif: "Fraunces", "Noto Serif KR", ui-serif, Georgia, serif;
-  --sans: "Inter", "Pretendard", ui-sans-serif, system-ui, sans-serif;
-}
-```
+## 5. Diving identity (topic-fit signal — disciplined, not nautical)
+Two structural cues give the paper a sea/depth identity without kitsch:
+- **Cool institutional blue** as the link + brand through-line (water, not warmth).
+- **Depth-gauge section divider**: a `--border-strong` rule with a short colored section tab and thin 1px **graduation ticks** along the rule — reads as a measured depth scale / instrument reading. See `.section-divider` in `globals.css`.
+- The nameplate tagline `바다를 정확하게` is set in `--accent-teal`, signing the masthead with the sea.
 
-### .dark
-```css
-.dark {
-  --background: #12181a;
-  --foreground: #e8e2d9;
-  --card: #1c2224;
-  --card-foreground: #e8e2d9;
-  --muted: #1c2224;
-  --muted-foreground: #a09d94;
-  --accent: #6a9b9b;
-  --accent-foreground: #12181a;
-  --accent-blue: #6a9b9b;
-  --accent-warm: #d47c70;
-  --border: #2e3638;
-  --border-strong: #a09d94;
-  --headline: #faf6f0;
-  --nav-bg: #12181a;
-  --nav-text: #e8e2d9;
-}
-```
+## 6. Components
+- **Masthead**: 4px `--accent` rule → flush-left `다이브 저널` (IBM Plex Sans KR 600 ~30px) + `DIVE journal` (IBM Plex Sans 11px tracked) → right folio (date + tagline) → 1px `--border` hairline.
+- **Nav**: single dense scrollable row, 12 two-line items (KO 13px / EN 10px), active = 2px section-color underline. Never wraps, never collapses to a hamburger.
+- **Cards** (`.news-card`): `--card`, 1px `--border`, 6px radius, 16px padding, no shadow, led by colored kicker.
+- **Article**: ~680px measure, IBM Plex Sans KR H1, Gothic A1 body 17–18px/1.8, meta rule in hairlines, `.pullquote` with 3px `--accent` square-cornered left rule.
 
-## Typography 시스템
-
-| 역할 | 폰트 | 스타일 |
-|------|------|--------|
-| 디스플레이 제목 | Fraunces 700–900 | `letter-spacing: -0.02em`, 크게 |
-| 소제목 | Fraunces 500–600 italic | 본문 중간 섹션 구분 |
-| 본문 | Inter 400 + Pretendard 400 | 17px, line-height 1.75 |
-| 보조·메타 | Inter 500 small caps | `letter-spacing: 0.2em` |
-| pull quote | Fraunces 300 italic | 큰 크기, 헤어라인 경계 |
+## 7. Implementation
+A `globals.css` `:root`/`.dark` revalue (15 names unchanged + 4 new named props) + `layout.tsx` font swap + `Header.tsx` restructure. No architectural refactor. Comments, auth, evaluation badges, and dark mode all ride the same tokens. Remove all cream/teal/Gowun Batang remnants.

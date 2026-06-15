@@ -3,401 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DiveJournal — Article (Round 2)</title>
+<title>다이브 저널 — 기사 (Digital Broadsheet)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300..700&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Gothic+A1:wght@300;400;500;700&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --canvas: #f4efe7;
-    --paper: #fbf8f3;
-    --ink: #1a2427;
-    --deep-ink: #0d1517;
-    --stone: #6b6e6a;
-    --sand: #dcd4c9;
-    --tide: #2d4a50;
-    --shallow: #6a9b9b;
-    --coral: #b85c52;
-    --shell: #d4b5a5;
-    --serif: "Fraunces", "Noto Serif KR", Georgia, serif;
-    --sans: "Inter", "Pretendard", ui-sans-serif, system-ui, sans-serif;
+  :root{
+    --background:#f4f5f6;--foreground:#15181c;--card:#fbfbfa;--muted:#ecedee;--muted-foreground:#5a5e66;
+    --accent:#7a1420;--accent-blue:#1463b0;--accent-teal:#0f6e56;--badge-verified:#147d63;
+    --border:#dad8d2;--border-strong:#b4b2a9;--headline:#0e1115;--nav-bg:#fbfbfa;--nav-text:#15181c;
+    --kr-head:"IBM Plex Sans KR",sans-serif;--kr-body:"Gothic A1",sans-serif;--latin:"IBM Plex Sans",sans-serif;--serif:"Source Serif 4",serif;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--canvas); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
-  a { color: inherit; }
-  em { font-style: italic; }
-  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  .wide { max-width: 1200px; }
-
-  /* Masthead */
-  .top { border-bottom: 1px solid var(--sand); color: var(--stone); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
-  .top .container { display: flex; justify-content: space-between; align-items: center; height: 36px; max-width: 1200px; }
-
-  .masthead { text-align: center; padding: 40px 24px 28px; border-bottom: 1px solid var(--sand); }
-  .masthead h1 { font-family: var(--serif); font-size: 34px; font-weight: 400; letter-spacing: 0.14em; color: var(--deep-ink); line-height: 1; }
-  .masthead h1 .dive { font-weight: 700; }
-  .masthead h1 .sep { display: inline-block; width: 44px; border-top: 1px solid var(--sand); vertical-align: middle; margin: 0 12px; }
-  .masthead h1 .journal { font-style: italic; color: var(--tide); }
-  .masthead .kor { font-size: 10px; letter-spacing: 0.5em; color: var(--stone); margin-top: 10px; }
-
-  /* Article opening */
-  article { padding: 72px 0 24px; }
-  .breadcrumb { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone); margin-bottom: 32px; text-align: center; }
-  .breadcrumb span.sep { color: var(--sand); margin: 0 8px; }
-
-  .opener { text-align: center; padding: 0 0 56px; }
-  .opener .kicker { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--coral); font-weight: 600; margin-bottom: 24px; }
-  .opener h1.title {
-    font-family: var(--serif); font-size: clamp(32px, 5vw, 56px);
-    font-weight: 400; letter-spacing: -0.02em; line-height: 1.1;
-    color: var(--deep-ink); margin-bottom: 22px; word-break: keep-all;
-  }
-  .opener h1.title em { font-weight: 300; }
-  .opener .subtitle {
-    font-family: var(--serif); font-style: italic; font-weight: 300;
-    font-size: clamp(15px, 1.5vw, 18px); line-height: 1.55;
-    color: var(--stone); max-width: 600px; margin: 0 auto;
-  }
-  .meta-strip {
-    max-width: 720px; margin: 40px auto 0;
-    border-top: 1px solid var(--sand); border-bottom: 1px solid var(--sand);
-    padding: 16px 0;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--stone); font-weight: 600;
-    text-align: center;
-  }
-  @media (max-width: 640px) { .meta-strip { grid-template-columns: repeat(2, 1fr); row-gap: 12px; } }
-  .meta-strip .label { display: block; color: var(--sand); font-size: 9px; letter-spacing: 0.3em; margin-bottom: 6px; font-weight: 600; }
-  .meta-strip .val { color: var(--deep-ink); font-weight: 600; }
-
-  /* Hero image */
-  .hero-img {
-    max-width: 1200px; margin: 56px auto 16px; aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #2d4a50 0%, #6a9b9b 50%, #d4b5a5 100%);
-  }
-  .hero-caption {
-    max-width: 1200px; margin: 0 auto; padding: 0 24px;
-    font-family: var(--serif); font-style: italic; font-size: 12px;
-    color: var(--stone); text-align: right;
-  }
-
-  /* Body */
-  .body { padding: 56px 0 24px; }
-  .body > .container > p { font-size: 17px; line-height: 1.85; margin-bottom: 22px; color: var(--ink); }
-  .body > .container > p:first-of-type::first-letter {
-    font-family: var(--serif); font-weight: 400; float: left;
-    font-size: 76px; line-height: 0.9; padding: 6px 10px 0 0; color: var(--tide);
-  }
-  .body em { color: var(--tide); font-style: italic; }
-  .body strong { color: var(--deep-ink); font-weight: 600; }
-  .body a { color: var(--tide); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
-
-  /* Section header */
-  .body h2 {
-    font-family: var(--serif); font-size: 26px; font-weight: 500;
-    letter-spacing: -0.01em; color: var(--deep-ink);
-    margin: 48px 0 14px; line-height: 1.3; word-break: keep-all;
-  }
-  .body h2 em { font-weight: 400; }
-  .body h3 {
-    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--stone); font-weight: 700; margin: 48px 0 14px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .body h3::before, .body h3::after {
-    content: ""; flex: 1; border-top: 1px solid var(--sand);
-  }
-
-  /* Pull quote */
-  .pull-quote { margin: 56px 0; padding: 48px 0; border-top: 1px solid var(--sand); border-bottom: 1px solid var(--sand); text-align: center; }
-  .pull-quote blockquote {
-    font-family: var(--serif); font-weight: 300; font-style: italic;
-    font-size: clamp(22px, 3vw, 30px); line-height: 1.4;
-    color: var(--deep-ink); max-width: 640px; margin: 0 auto;
-    letter-spacing: -0.005em;
-  }
-  .pull-quote cite {
-    display: block; font-family: var(--sans); font-style: normal;
-    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--stone); margin-top: 20px; font-weight: 600;
-  }
-
-  /* Figure inside article */
-  .figure { margin: 48px -32px; }
-  @media (max-width: 720px) { .figure { margin: 48px 0; } }
-  .figure .img { aspect-ratio: 3/2; background: linear-gradient(160deg, #d4b5a5, #6a9b9b); }
-  .figure figcaption {
-    font-family: var(--serif); font-style: italic; font-size: 13px;
-    color: var(--stone); padding: 10px 4px 0; line-height: 1.5;
-  }
-
-  /* Sources */
-  .sources {
-    margin: 48px 0 0; padding: 24px 0 24px;
-    border-top: 1px solid var(--sand); border-bottom: 1px solid var(--sand);
-  }
-  .sources h4 {
-    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--stone); font-weight: 700; margin-bottom: 12px;
-  }
-  .sources a { display: block; font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--tide); padding: 3px 0; word-break: break-all; text-decoration: none; }
-  .sources a:hover { text-decoration: underline; }
-
-  /* Tags */
-  .tags { margin: 32px 0 0; display: flex; flex-wrap: wrap; gap: 8px 14px; }
-  .tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); font-weight: 500; }
-
-  /* Author end */
-  .author-strip {
-    margin: 48px 0; padding: 32px 0;
-    border-top: 1px solid var(--sand); display: flex; gap: 20px; align-items: center;
-  }
-  .author-strip .avatar {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: linear-gradient(135deg, #d4b5a5, #6a9b9b); flex-shrink: 0;
-  }
-  .author-strip .name { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--deep-ink); }
-  .author-strip .bio { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--stone); margin-top: 4px; }
-
-  /* Related */
-  .related { background: var(--paper); padding: 72px 0; border-top: 1px solid var(--sand); }
-  .related .section-heading { display: flex; justify-content: space-between; align-items: baseline; max-width: 1200px; margin: 0 auto 32px; padding: 0 24px; }
-  .related h3 { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--stone); font-weight: 600; }
-  .related .more { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--tide); text-decoration: none; }
-  .related-grid { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-  @media (max-width: 800px) { .related-grid { grid-template-columns: 1fr; } }
-  .related .card .img { aspect-ratio: 4/5; margin-bottom: 14px; }
-  .related .card.a .img { background: linear-gradient(170deg, #d4b5a5, #b85c52); }
-  .related .card.b .img { background: linear-gradient(170deg, #6a9b9b, #2d4a50); }
-  .related .card.c .img { background: linear-gradient(170deg, #1a2427, #6a9b9b); }
-  .related .card .cat { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--tide); margin-bottom: 8px; font-weight: 600; }
-  .related .card h4 { font-family: var(--serif); font-size: 19px; font-weight: 500; line-height: 1.3; color: var(--deep-ink); word-break: keep-all; }
-
-  /* Comments */
-  .comments { padding: 72px 0; }
-  .comments h2 { font-family: var(--serif); font-size: 24px; font-weight: 500; color: var(--deep-ink); margin-bottom: 8px; }
-  .comments .meta-line { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--stone); margin-bottom: 32px; }
-  .comment-form textarea {
-    width: 100%; padding: 16px; border: 1px solid var(--sand);
-    background: var(--paper); font-family: var(--sans); font-size: 15px;
-    min-height: 110px; resize: vertical; color: var(--ink);
-    border-radius: 0; line-height: 1.65;
-  }
-  .comment-form textarea:focus { outline: 1px solid var(--tide); border-color: var(--tide); }
-  .comment-form .row { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
-  .comment-form .count { font-family: var(--serif); font-style: italic; font-size: 12px; color: var(--stone); }
-  .comment-form button {
-    background: transparent; color: var(--tide); border: 1px solid var(--tide);
-    padding: 10px 24px; font-family: var(--sans); font-size: 11px;
-    letter-spacing: 0.3em; text-transform: uppercase; cursor: pointer;
-    font-weight: 600; transition: all .2s;
-  }
-  .comment-form button:hover { background: var(--tide); color: var(--paper); }
-
-  .comment { margin: 24px 0; padding: 20px 0; border-bottom: 1px solid var(--sand); }
-  .comment-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-  .comment-head .name { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--deep-ink); }
-  .comment-head .date { font-family: var(--serif); font-style: italic; font-size: 12px; color: var(--stone); }
-  .comment-body { font-size: 14.5px; line-height: 1.7; color: var(--ink); }
-
-  /* Footer */
-  footer { border-top: 1px solid var(--sand); padding: 40px 0; font-size: 11px; color: var(--stone); letter-spacing: 0.14em; text-transform: uppercase; text-align: center; }
-  footer .brand-sm { font-family: var(--serif); font-size: 14px; letter-spacing: 0.2em; color: var(--deep-ink); text-transform: none; margin-bottom: 8px; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--background);color:var(--foreground);font-family:var(--kr-body);font-size:15px;line-height:1.8;word-break:keep-all;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .rule{height:4px;background:var(--accent)}
+  .nameplate{background:var(--nav-bg);border-bottom:1px solid var(--border);text-align:center;padding:14px 0}
+  .nameplate .ko{font-family:var(--kr-head);font-weight:600;font-size:24px;letter-spacing:-0.5px;color:var(--headline)}
+  .nameplate .en{font-family:var(--latin);font-size:9px;letter-spacing:3px;color:var(--muted-foreground);margin-top:4px}
+  .col{max-width:680px;margin:0 auto;padding:0 24px}
+  article{padding:48px 0}
+  .breadcrumb{font-family:var(--latin);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-foreground);margin-bottom:24px}
+  .kicker{font-family:var(--kr-head);font-weight:600;font-size:12px;color:var(--accent-blue);display:inline-flex;align-items:center;gap:8px;margin-bottom:14px}
+  .kicker::before{content:"";width:24px;height:3px;background:var(--accent-blue)}
+  h1{font-family:var(--kr-head);font-weight:600;font-size:clamp(30px,4vw,36px);line-height:1.2;letter-spacing:-0.3px;color:var(--headline);margin-bottom:16px}
+  .deck{font-family:var(--kr-body);font-weight:400;font-size:18px;line-height:1.6;color:var(--muted-foreground);margin-bottom:20px}
+  .metarule{display:flex;gap:8px;align-items:center;font-family:var(--latin);font-size:12px;color:var(--muted-foreground);font-variant-numeric:tabular-nums;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 0;margin-bottom:28px}
+  .badge{font-family:var(--kr-head);font-weight:600;font-size:11px;color:var(--badge-verified);border:1px solid var(--badge-verified);border-radius:3px;padding:1px 6px}
+  .hero{aspect-ratio:16/9;background:linear-gradient(135deg,#1463b0,#0e1115);margin-bottom:8px}
+  .cap{font-family:var(--latin);font-size:12px;color:var(--muted-foreground);text-align:right;margin-bottom:28px}
+  .body p{font-size:17px;line-height:1.8;margin-bottom:1.1em;color:var(--foreground)}
+  .body h2{font-family:var(--kr-head);font-weight:600;font-size:22px;color:var(--headline);margin:1.8em 0 .5em}
+  .body strong{font-weight:700;color:var(--headline)}
+  .body a{color:var(--accent-blue);text-decoration:underline;text-underline-offset:3px}
+  .pullquote{border-left:3px solid var(--accent);padding-left:16px;margin:28px 0;font-family:var(--kr-head);font-weight:500;font-size:21px;line-height:1.5;color:var(--foreground)}
+  .sources{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0;margin:32px 0}
+  .sources h4{font-family:var(--latin);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-foreground);margin-bottom:8px}
+  .sources a{display:block;color:var(--accent-blue);font-size:13px;padding:2px 0}
+  .tags{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:8px}
+  .tags span{font-family:var(--latin);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-foreground)}
+  /* comments */
+  .comments{border-top:2px solid var(--border-strong);margin-top:48px;padding-top:32px}
+  .comments h3{font-family:var(--kr-head);font-weight:600;font-size:18px;color:var(--headline);margin-bottom:18px}
+  textarea{width:100%;border:1px solid var(--border);background:var(--card);font-family:var(--kr-body);font-size:14px;padding:14px;min-height:96px;resize:vertical}
+  .comments button{margin-top:10px;background:transparent;border:1px solid var(--accent-blue);color:var(--accent-blue);font-family:var(--latin);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:9px 20px;cursor:pointer}
+  .comment{border-bottom:1px solid var(--border);padding:16px 0}
+  .comment .h{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+  .comment .h .n{font-family:var(--kr-head);font-weight:600;color:var(--headline)}
+  .comment .h .d{font-family:var(--latin);color:var(--muted-foreground);font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
+<div class="rule"></div>
+<div class="nameplate"><div class="ko">다이브 저널</div><div class="en">DIVE JOURNAL</div></div>
 
-<div class="top">
-  <div class="container">
-    <span>April 19, 2026</span>
-    <span>이수진 · <a href="#">Account</a></span>
-  </div>
-</div>
-
-<header class="masthead">
-  <h1>
-    <span class="dive">DIVE</span><span class="sep"></span><span class="journal">journal</span>
-  </h1>
-  <div class="kor">다 이 브   저 널</div>
-</header>
-
-<article>
-  <div class="breadcrumb">
-    Home <span class="sep">·</span> Science <span class="sep">·</span> Essay No. 142
-  </div>
-
-  <div class="opener container">
-    <div class="kicker">Science &nbsp;·&nbsp; Essay</div>
-    <h1 class="title">The <em>martini</em> effect, a century after Cousteau.</h1>
-    <p class="subtitle">
-      수심 30m를 지나면 누구나 반 박자 느려진다. 쿠스토가 '심해의 도취'라 이름 붙인
-      그 감각을, 오늘의 우리는 어떻게 길들일 수 있을까.
-    </p>
-
-    <div class="meta-strip">
-      <div><span class="label">Author</span><span class="val">By the Editors</span></div>
-      <div><span class="label">Issue</span><span class="val">No. 14 · Spring</span></div>
-      <div><span class="label">Length</span><span class="val">4 min read</span></div>
-      <div><span class="label">Rating</span><span class="val">★ 100 · Pass</span></div>
-    </div>
-  </div>
-
-  <div class="hero-img"></div>
-  <p class="hero-caption">Photograph · <em>Silent World</em> expedition archive, 1953</p>
+<article class="col">
+  <div class="breadcrumb">홈 · 과학 · 기사 No. 143</div>
+  <span class="kicker">과학</span>
+  <h1>포유류 잠수 반사 — 물을 위해 설계된 몸</h1>
+  <p class="deck">심박이 느려지고 혈액이 가슴으로 모인다. 1940년대 숄란데르가 기록한 이 반사는 우리 몸이 여전히 물에 대해 기억하고 있는 것이다.</p>
+  <div class="metarule"><span>편집부</span><span>·</span><span>2026.06.16</span><span>·</span><span>읽는 시간 4분</span><span class="badge">검증됨 100</span></div>
+  <div class="hero"></div>
+  <p class="cap">사진 · 침묵의 세계 탐사 아카이브, 1953</p>
 
   <div class="body">
-    <div class="container">
-      <p>
-        수심 30m를 지나는 어느 지점에서, 대부분의 스쿠버 다이버는 묘한 변화를 느낀다.
-        사고의 속도가 반 박자 늦어지고, 수면에서는 자연스럽게 해내던 동작 —
-        게이지 확인, 버디를 향한 수신호 — 이 의식적인 노력을 요구한다.
-        이것이 <em>질소 마취</em>(nitrogen narcosis)다. 정도의 차이는 있어도,
-        깊은 수심으로 내려가는 모든 다이버에게 영향을 미친다.
-      </p>
-
-      <p>
-        그 메커니즘을 이해하는 것은 레크리에이션 다이버가 취할 수 있는
-        가장 의미 있는 안전 조치 중 하나다. 그리고 때로는, 가장 시적인 체험의 해석이기도 하다.
-      </p>
-
-      <h3>I. One century of observation</h3>
-
-      <p>
-        질소 마취를 체계적으로 연구한 첫 기록은 1930년대 미 해군 군의관
-        앨버트 벤크(Albert Behnke)까지 거슬러 올라간다. 대중에게 이 현상이
-        각인된 계기는 프랑스 해양학자 자크 쿠스토의 회고록 <em>침묵의 세계</em>(1953)다.
-        그는 이 증상을 <em>l'ivresse des grandes profondeurs</em>,
-        즉 '심해의 도취'라 명명했다.
-      </p>
-
-      <div class="pull-quote">
-        <blockquote>
-          "어떤 다이버는 물고기에게 호흡기를 권한다.
-          어떤 다이버는 미소 지으며 마스크를 벗는다.
-          그것은 기쁨의 얼굴을 하고 찾아온다."
-        </blockquote>
-        <cite>— Jacques Cousteau, The Silent World</cite>
-      </div>
-
-      <h3>II. What actually happens</h3>
-
-      <p>
-        현재 가장 유력한 설명은 <em>지질 용해도 이론</em>, 즉 메이어-오버튼 가설이다.
-        압력이 높아지면 호흡 가스의 질소 분자가 신경세포의 지질이 풍부한 막에 용해되어
-        정상적인 신호 전달을 방해한다. 다른 불활성 가스들도 지질 용해도에 비례한
-        유사 효과를 낸다. 테크니컬 다이버들이 더 깊은 작업에서 헬륨 혼합 가스를
-        선택하는 이유다.
-      </p>
-
-      <figure class="figure">
-        <div class="img"></div>
-        <figcaption>
-          "The slow ascent" — 호흡의 시차를 들여다보는 다이버. Photograph · Uyen Do, 2025.
-        </figcaption>
-      </figure>
-
-      <p>
-        개인차도 상당히 크다. <strong>수면 부족, 불안, 24시간 이내의 음주, 차가운 수온,
-        급속한 하강, 높은 이산화탄소 수치</strong>가 모두 마취를 증폭시킨다. 같은 다이버라도
-        컨디션에 따라 다른 날 다른 강도의 마취를 경험할 수 있다.
-      </p>
-
-      <h3>III. Recognition, and a gentle return</h3>
-
-      <p>
-        대응은 단순하고 즉각적이다. 몇 미터만 상승하면 된다. 깊이가 줄어드는 즉시
-        마취 효과는 빠르게 약해지고, 보통 1~2분 안에 회복된다. 레크리에이션 다이버는
-        매 다이빙마다 자신의 마취 시작 깊이보다 충분한 여유를 둔 수심 한계를 계획해야 한다.
-        공인 교육 기관 — <a href="#">PADI</a>, <a href="#">SSI</a>, <a href="#">BSAC</a> — 의
-        교육을 이수하는 것이 시작이다.
-      </p>
-
-      <div class="sources">
-        <h4>Further reading</h4>
-        <a href="#">Wikipedia · Nitrogen narcosis</a>
-        <a href="#">Wikipedia · Meyer-Overton hypothesis</a>
-        <a href="#">Divers Alert Network · dan.org</a>
-      </div>
-
-      <div class="tags">
-        <span class="tag">#nitrogen-narcosis</span>
-        <span class="tag">#depth</span>
-        <span class="tag">#physiology</span>
-        <span class="tag">#scuba-safety</span>
-        <span class="tag">#diving-science</span>
-      </div>
-
-      <div class="author-strip">
-        <div class="avatar"></div>
-        <div>
-          <div class="name">The Editors</div>
-          <div class="bio">다이브 저널의 편집팀이 씁니다. 깊이와 호흡의 이야기를 모읍니다.</div>
-        </div>
-      </div>
-    </div>
+    <p>차가운 물수건을 얼굴에 가만히 대보자. 숨을 참기도 전에, 몇 초 안에 심박은 10~15% 느려진다. 누가 가르쳐준 적도 없는 반응이다. 이것은 당신보다 오래된 것이다.</p>
+    <h2>바다에서 물려받은 것</h2>
+    <p>이 현상의 이름은 <strong>포유류 잠수 반사</strong>다. 공기를 호흡하는 모든 포유류가 공유 조상의 수생 기원에서 물려받은 흔적이다. 깊이 잠수하는 웨델 바다표범은 심박이 분당 10회 이하까지 떨어진다.</p>
+    <div class="pullquote">"어떤 다이버는 물고기에게 호흡기를 권한다. 그것은 기쁨의 얼굴을 하고 찾아온다."</div>
+    <h2>실제 원인은 무엇인가</h2>
+    <p>현재 가장 유력한 설명은 지질 용해도 이론, 즉 메이어-오버튼 가설이다. 압력이 높아지면 질소 분자가 신경세포 막에 용해되어 정상적인 신호 전달을 방해한다. 자세한 내용은 <a href="#">DAN 안전 자료</a>를 참고하라.</p>
   </div>
+
+  <div class="sources">
+    <h4>참고 자료</h4>
+    <a href="#">Wikipedia · Mammalian diving reflex</a>
+    <a href="#">Wikipedia · Per Fredrik Scholander</a>
+    <a href="#">Divers Alert Network · dan.org</a>
+  </div>
+  <div class="tags"><span>#mammalian-dive-reflex</span><span>#physiology</span><span>#bradycardia</span><span>#freediving</span></div>
+
+  <section class="comments">
+    <h3>댓글 2</h3>
+    <textarea placeholder="이 기사를 읽고 떠오른 생각을 남겨주세요..."></textarea>
+    <div><button>댓글 등록</button></div>
+    <div class="comment"><div class="h"><span class="n">이수진</span><span class="d">2026.06.16 14:32</span></div><div>컨디션에 따라 다른 강도로 찾아온다는 부분이 특히 공감돼요.</div></div>
+    <div class="comment"><div class="h"><span class="n">ocean_diver</span><span class="d">2026.06.16 11:08</span></div><div>테크니컬 다이빙에서 헬륨 쓰는 이유가 이거였군요.</div></div>
+  </section>
 </article>
-
-<section class="related">
-  <div class="section-heading">
-    <h3>Read Next</h3>
-    <a href="#" class="more">More from the Spring issue →</a>
-  </div>
-  <div class="related-grid">
-    <article class="card a">
-      <div class="img"></div>
-      <div class="cat">Training</div>
-      <h4>Frenzel, <em>quietly</em>.</h4>
-    </article>
-    <article class="card b">
-      <div class="img"></div>
-      <div class="cat">Wellness</div>
-      <h4>물 한 잔이 바꾸는 것들.</h4>
-    </article>
-    <article class="card c">
-      <div class="img"></div>
-      <div class="cat">Portrait</div>
-      <h4>그녀의 <em>첫 숨</em>.</h4>
-    </article>
-  </div>
-</section>
-
-<section class="comments">
-  <div class="container">
-    <h2>Letters &amp; Thoughts</h2>
-    <div class="meta-line">Two readers left notes.</div>
-
-    <form class="comment-form" onsubmit="event.preventDefault()">
-      <textarea placeholder="이 기사를 읽고 떠오른 생각을 남겨주세요..."></textarea>
-      <div class="row">
-        <span class="count">0 / 2000</span>
-        <button type="button">Send a letter →</button>
-      </div>
-    </form>
-
-    <div class="comment">
-      <div class="comment-head">
-        <span class="name">이수진</span>
-        <span class="date">April 19, 2026 · 14:32</span>
-      </div>
-      <div class="comment-body">쿠스토 책에서 본 그 표현이었네요. 컨디션에 따라 다른 강도로 찾아온다는 부분이 특히 공감이 돼요 — 저도 잠이 부족한 날엔 25m에서도 이상해지는 느낌이 있어요.</div>
-    </div>
-
-    <div class="comment">
-      <div class="comment-head">
-        <span class="name">ocean_diver</span>
-        <span class="date">April 19, 2026 · 11:08</span>
-      </div>
-      <div class="comment-body">테크니컬 다이빙에서 헬륨을 쓰는 이유가 이거였군요. 지질 용해도 이론 링크 감사합니다.</div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="brand-sm">DIVE · journal</div>
-  © 2026 DiveJournal · A quiet magazine for the underwater
-</footer>
-
 </body>
 </html>

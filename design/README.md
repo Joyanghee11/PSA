@@ -1,8 +1,12 @@
-# 다이브저널 · DiveJournal — Design System
+# 다이브 저널 · DiveJournal — Design System
 
-이 폴더는 다이브저널 서비스의 브랜드 자산과 디자인 스펙을 보관한다.
-**컨셉**: 깊은 바다의 절제된 느낌 + 저널리즘의 신뢰감
-**톤앤매너**: 조용한(quiet), 정돈된(tidy), 전문적인(professional)
+**Current direction: Digital Broadsheet** (전문 한국어 인터넷 신문).
+The canonical spec lives in [palette.md](palette.md) — colors, fonts, accent
+discipline, and component treatments. Read that first.
+
+**컨셉**: 차가운 페이퍼 그레이 위의 묵직한 잉크 + 절제된 다크레드 마스트헤드 룰.
+조선비즈 / 한겨레 디지털 / Reuters 의 디지털 브로드시트 레지스터.
+한글이 메인(IBM Plex Sans KR 헤드라인 + Gothic A1 본문), 영어가 서브.
 
 ---
 
@@ -11,36 +15,31 @@
 ```
 design/
 ├── README.md            ← 이 문서
-├── palette.md           ← 색상 시스템과 CSS 변수 매핑
-├── logo.svg             ← 마크 (아이콘 단독, 1:1)
-├── logo-full.svg        ← 마크 + 한영 워드마크 (가로)
-├── logo-dark.svg        ← 다크 모드용 마크
+├── palette.md           ← 색·폰트·컴포넌트 정식 스펙 (canonical)
+├── logo.svg             ← (구) 타이포 워드마크 — 현재 로고는 순수 텍스트(IBM Plex Sans KR)로 대체됨
+├── logo-full.svg        ← (구)
+├── logo-dark.svg        ← (구)
 └── mocks/
-    ├── mock-home.html   ← 홈 화면 시안
-    └── mock-article.html ← 기사 페이지 시안
+    ├── mock-home.html   ← 브로드시트 1면 시안 (lead zone · 주요 기사 · 많이 본 기사)
+    └── mock-article.html ← 신문 기사 시안 (kicker · metarule · pullquote · 댓글)
 ```
 
-## 디자인 원칙
+> 로고: 디지털 브로드시트에서는 별도 아이콘 없이 **타이포그래픽 네임플레이트**
+> ('다이브 저널' IBM Plex Sans KR 600 + 'DIVE journal' 영문 서브)가 마크 역할을
+> 한다. 기존 `logo*.svg`(Tidal 시절 세리프 워드마크)는 참고용으로만 남겨둠.
 
-1. **절제가 먼저**
-   빨간 포인트를 남발하던 과거 한국 신문 감성 대신,
-   공백·타이포그래피·얇은 선으로 정보 위계를 만든다.
+## 디자인 원칙 (요약 — 자세히는 palette.md)
 
-2. **물의 색을 기본으로**
-   남색·시안·안개색의 3계열로 구성. 빨간색은 완전 배제,
-   대신 "경고/삭제" 같은 상태 전용으로만 보존.
-
-3. **이중 언어 공존**
-   한글(Pretendard 계열)과 영문(Inter/시스템 산세리프)이
-   같은 줄에 있을 때 자간·굵기가 자연스럽도록 한다.
-
-4. **깊이는 색의 명도로 표현**
-   표면에 가까울수록 옅은 색, 깊을수록 진한 색.
-   헤드라인 = 가장 깊은 색, 본문 < 헤드라인 < 부제.
+1. **밀도와 구조** — 여백보다 정보. 헤어라인 + 볼드 룰의 신문 리듬.
+2. **다크레드는 룰 전용** — `--accent`(#7a1420)는 마스트헤드 룰·섹션 탭·풀쿼트
+   선에만. 버튼·본문·채움색으로 절대 쓰지 않음. 위험/삭제는 별도 `--danger`.
+3. **차가운 기관색 블루** — 링크·다이빙 정체성의 through-line(`--accent-blue`).
+4. **섹션 컬러코딩** — 블루(프리다이빙/과학/포인트)·틸(스쿠버)·오커(장비/식단),
+   나머지는 중립. 색은 섹션을 인코딩하며 장식이 아님.
+5. **한글 우선** — 모든 한글 `word-break: keep-all`, 사이즈·굵기로 위계.
 
 ## 적용 범위
 
-- **색상**: `src/app/globals.css`의 CSS custom properties
-- **로고**: `src/components/layout/Header.tsx`의 텍스트 로고 자리
-- **카드·버튼**: Tailwind 유틸리티 그대로, 색 변수만 교체
-- **이메일**: `Confirm sign up` 템플릿에 이미 반영됨 (Supabase 대시보드)
+- **색상·유틸리티**: `src/app/globals.css` (CSS 변수 + .nav-index/.section-divider 등)
+- **폰트**: `src/app/layout.tsx` (next/font/google)
+- **마스트헤드·네비**: `src/components/layout/Header.tsx`

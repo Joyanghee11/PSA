@@ -1,40 +1,47 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter, Gowun_Batang, Noto_Sans_KR } from "next/font/google";
+import {
+  IBM_Plex_Sans_KR,
+  Gothic_A1,
+  IBM_Plex_Sans,
+  Source_Serif_4,
+} from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
-// Editorial Latin serif for English wordmark and italics
-const fraunces = Fraunces({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-});
-
-// Clean Latin sans for UI and English body
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-// Korean emotional serif for Korean display headlines and brand
-// (Gowun Batang — soft, warm, magazine-editorial feel while remaining highly readable)
-const gowunBatang = Gowun_Batang({
+// Korean headline / display sans — confident digital-broadsheet voice.
+// NOTE: mapped to the --font-serif-kr slot for backward compatibility with the
+// existing headline CSS rules. The slot name says "serif" but now holds a SANS
+// Korean face — intentional (see design/palette.md).
+const plexKr = IBM_Plex_Sans_KR({
   variable: "--font-serif-kr",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
-// Korean body sans — excellent readability across weights
-const notoSansKr = Noto_Sans_KR({
+// Korean body sans — high-legibility gothic for dense, scannable reporting
+const gothicA1 = Gothic_A1({
   variable: "--font-sans-kr",
   subsets: ["latin"],
   display: "swap",
   weight: ["300", "400", "500", "700"],
+});
+
+// Latin labels, datelines, bylines, numerals (tabular-nums for timestamps)
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600"],
+});
+
+// Latin editorial serif — pull quotes / English long-read display only
+const sourceSerif = Source_Serif_4({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "600"],
+  style: ["normal", "italic"],
 });
 
 export const viewport: Viewport = {
@@ -66,7 +73,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${fraunces.variable} ${inter.variable} ${gowunBatang.variable} ${notoSansKr.variable} h-full antialiased`}
+      className={`${sourceSerif.variable} ${plexSans.variable} ${plexKr.variable} ${gothicA1.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">

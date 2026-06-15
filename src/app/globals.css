@@ -2,25 +2,34 @@
 @plugin "@tailwindcss/typography";
 
 /* =========================================================
-   DiveJournal — Tidal Editorial theme
+   DiveJournal — Digital Broadsheet theme
+   Professional Korean-first online newspaper.
+   Cool paper-gray canvas, near-black ink, controlled dark-red
+   masthead rule, navy institutional links, sea-teal section signal.
    See design/palette.md for the full system.
    ========================================================= */
 :root {
-  --background: #f4efe7;         /* Canvas */
-  --foreground: #1a2427;         /* Ink */
-  --card: #fbf8f3;               /* Paper */
-  --card-foreground: #1a2427;
-  --muted: #ede7dc;
-  --muted-foreground: #6b6e6a;   /* Stone */
-  --accent: #2d4a50;             /* Tide */
-  --accent-foreground: #fbf8f3;
-  --accent-blue: #2d4a50;        /* Links also Tide */
-  --accent-warm: #b85c52;        /* Coral — sparse use */
-  --border: #dcd4c9;             /* Sand Line */
-  --border-strong: #1a2427;
-  --headline: #0d1517;           /* Deep Ink */
-  --nav-bg: #f4efe7;             /* Nav lives on canvas, thin dividers */
-  --nav-text: #1a2427;
+  --background: #f4f5f6;         /* cool paper gray — newsprint, not cream */
+  --foreground: #15181c;         /* near-black ink (body) */
+  --card: #fbfbfa;               /* article zone, lifts off the canvas */
+  --card-foreground: #1c2025;
+  --muted: #ecedee;
+  --muted-foreground: #5a5e66;   /* meta / datelines */
+  --accent: #7a1420;             /* CONTROLLED broadsheet oxblood — rule only */
+  --accent-foreground: #fbfbfa;
+  --accent-blue: #1463b0;        /* institutional navy — links, datelines */
+  --accent-warm: #9a5a12;        /* dark ochre — equipment/kitchen sections */
+  --border: #dad8d2;             /* hairline */
+  --border-strong: #b4b2a9;      /* bold section rule */
+  --headline: #0e1115;           /* headline ink */
+  --nav-bg: #fbfbfa;             /* solid nameplate bar */
+  --nav-text: #15181c;
+
+  /* Extra named tokens (off the 15-name contract but explicit) */
+  --accent-teal: #0f6e56;        /* 스쿠버 / sea-depth section + nameplate tagline */
+  --badge-verified: #147d63;     /* 검증됨 evaluation badge */
+  --danger: #c8322b;             /* destructive ONLY — never the masthead red */
+  --danger-foreground: #fbfbfa;
 }
 
 @theme inline {
@@ -34,6 +43,10 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-blue: var(--accent-blue);
   --color-accent-warm: var(--accent-warm);
+  --color-accent-teal: var(--accent-teal);
+  --color-badge-verified: var(--badge-verified);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-headline: var(--headline);
@@ -46,152 +59,237 @@
 }
 
 .dark {
-  --background: #12181a;
-  --foreground: #e8e2d9;
-  --card: #1c2224;
-  --card-foreground: #e8e2d9;
-  --muted: #1c2224;
-  --muted-foreground: #a09d94;
-  --accent: #6a9b9b;
-  --accent-foreground: #12181a;
-  --accent-blue: #6a9b9b;
-  --accent-warm: #d47c70;
-  --border: #2e3638;
-  --border-strong: #a09d94;
-  --headline: #faf6f0;
-  --nav-bg: #12181a;
-  --nav-text: #e8e2d9;
+  --background: #0e1115;
+  --foreground: #e8e7e2;
+  --card: #15181c;
+  --card-foreground: #e8e7e2;
+  --muted: #1c2025;
+  --muted-foreground: #9aa0a6;
+  --accent: #8e2230;
+  --accent-foreground: #f2f1ec;
+  --accent-blue: #5aaaec;
+  --accent-warm: #e0a24e;
+  --border: #2a2e33;
+  --border-strong: #3f454c;
+  --headline: #f2f1ec;
+  --nav-bg: #15181c;
+  --nav-text: #f2f1ec;
+
+  --accent-teal: #3fb89c;
+  --badge-verified: #36c9a4;
+  --danger: #e5685f;
+  --danger-foreground: #15181c;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  /* Korean first: Noto Sans KR for body, Inter handles Latin subset via per-char fallback */
+  /* Korean body: Gothic A1 (gothic sans, high legibility for dense reporting).
+     Latin glyphs fall through to IBM Plex Sans. */
   font-family: var(--font-sans-kr), var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 15px;
   line-height: 1.8;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.003em;
   -webkit-font-smoothing: antialiased;
   word-break: keep-all;
 }
 
-/* -------- Editorial headline class --------
-   Korean-first: Gowun Batang (감성적·가독성 좋은 한글 명조).
-   Latin glyphs fall through to Fraunces automatically because
-   Gowun Batang only covers Korean + basic punctuation.
+/* Korean wrapping safeguard */
+:lang(ko), .ko, [lang="ko"] { word-break: keep-all; }
+
+/* -------- Headline class --------
+   Korean-first: IBM Plex Sans KR (confident broadsheet sans). The
+   --font-serif-kr slot holds a SANS face here (see palette.md).
 */
 .font-headline {
-  font-family: var(--font-serif-kr), var(--font-serif), "Noto Serif KR", Georgia, serif;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  line-height: 1.25;
+  font-family: var(--font-serif-kr), var(--font-sans-kr), "Noto Sans KR", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   color: var(--headline);
   word-break: keep-all;
 }
 
 .font-subheadline {
-  font-family: var(--font-serif-kr), var(--font-serif), "Noto Serif KR", Georgia, serif;
-  font-weight: 400;
+  font-family: var(--font-serif-kr), var(--font-sans-kr), "Noto Sans KR", sans-serif;
+  font-weight: 500;
   letter-spacing: -0.01em;
-  line-height: 1.4;
+  line-height: 1.35;
   word-break: keep-all;
 }
 
-/* Latin-only editorial italic accent (kickers, pull-quotes) */
+/* Latin editorial serif accent (pull-quotes / English display only) */
 .font-italic-serif {
-  font-family: var(--font-serif), "Noto Serif KR", Georgia, serif;
+  font-family: var(--font-serif), Georgia, serif;
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
 }
 
-/* -------- Editorial small caps utility --------
-   For category tags, section kickers.
-*/
+/* Small-caps Latin label utility (kickers, section subs) */
 .smallcaps {
-  font-family: var(--font-sans), "Pretendard", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.28em;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 600;
 }
 
-/* -------- Section title (editorial hairline header) --------
-   Replaces the old red-bar section title with a subtle
-   small-caps label over a hairline divider.
-*/
+/* Tabular numerals for datelines / timestamps */
+.dateline {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.2px;
+  color: var(--muted-foreground);
+}
+.nameplate-tagline {
+  font-family: var(--font-serif-kr), var(--font-sans-kr), sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent-teal);
+}
+
+/* -------- Masthead rule — signature broadsheet stroke (rule only) -------- */
+.masthead-rule { height: 4px; background: var(--accent); width: 100%; }
+.masthead-hairline { border-bottom: 1px solid var(--border); }
+
+/* -------- 12-category index strip — single dense scrollable row -------- */
+.nav-index {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow-x: auto;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border-strong);
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to right, #000 94%, transparent);
+          mask-image: linear-gradient(to right, #000 94%, transparent);
+}
+.nav-index::-webkit-scrollbar { display: none; }
+.nav-item { display: inline-flex; flex-direction: column; align-items: center; padding: 9px 13px; text-decoration: none; }
+.nav-item .ko {
+  font-family: var(--font-serif-kr), var(--font-sans-kr), sans-serif;
+  font-weight: 500; font-size: 13px;
+  color: var(--nav-text);
+  word-break: keep-all;
+}
+.nav-item .en {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 500; font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+}
+.nav-item:hover .ko, .nav-item[aria-current="page"] .ko { color: var(--headline); font-weight: 600; }
+.nav-item[aria-current="page"] { box-shadow: inset 0 -2px 0 0 var(--seccolor, var(--accent)); }
+.nav-item:hover .en, .nav-item[aria-current="page"] .en { color: var(--seccolor, var(--accent)); }
+
+/* -------- Section title — newspaper rule with colored tab -------- */
 .section-title {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 2rem;
-  padding-bottom: 0.875rem;
-  border-bottom: 1px solid var(--border);
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--border-strong);
 }
-.section-title::before { content: none; }
+.section-title::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: var(--seccolor, var(--accent));
+  flex-shrink: 0;
+  order: -1;
+}
 .section-title span {
-  /* Korean-first: Gowun Batang headline for magazine section markers.
-     Latin glyphs fall through to Fraunces automatically. */
-  font-family: var(--font-serif-kr), var(--font-serif), "Noto Serif KR", Georgia, serif;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.015em;
+  font-family: var(--font-serif-kr), var(--font-sans-kr), "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   text-transform: none;
   color: var(--headline);
+  margin-right: auto;
 }
 
-/* -------- Category label --------
-   Uppercase small-caps kicker above article titles.
-   Restrained letter-spacing so Korean reads naturally.
+/* -------- Category kicker (above cards & headlines) --------
+   Color encodes section (navy default). NEVER the dark-red accent.
 */
 .cat-label {
   display: inline-block;
-  font-family: var(--font-sans-kr), var(--font-sans), sans-serif;
-  font-size: 13px;
+  font-family: var(--font-serif-kr), var(--font-sans-kr), sans-serif;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--seccolor, var(--accent-blue));
 }
 
-/* -------- Prose (article body) --------
-   Editorial reading experience: serif headings, wide leading,
-   tide-colored links, occasional italic accent.
-*/
+/* -------- Verified / evaluation badge -------- */
+.badge-verified {
+  font-family: var(--font-serif-kr), var(--font-sans-kr), sans-serif;
+  font-weight: 600; font-size: 11px;
+  color: var(--badge-verified);
+  border: 1px solid var(--badge-verified);
+  border-radius: 3px; padding: 1px 6px; line-height: 1.4;
+}
+
+/* -------- Flat newsroom card -------- */
+.news-card {
+  background: var(--card); color: var(--card-foreground);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 16px; box-shadow: none;
+}
+
+/* -------- Pull quote — single-sided rule, square corners -------- */
+.pullquote {
+  border-left: 3px solid var(--accent); border-radius: 0;
+  padding-left: 16px; margin: 24px 0;
+  font-family: var(--font-serif-kr), var(--font-sans-kr), sans-serif;
+  font-weight: 500; font-size: 20px;
+  color: var(--foreground);
+}
+
+/* -------- Prose (article body) — gothic body, plex-kr headings -------- */
 .prose {
   --tw-prose-body: var(--foreground) !important;
   --tw-prose-headings: var(--headline) !important;
   --tw-prose-bold: var(--headline) !important;
-  --tw-prose-links: var(--accent) !important;
+  --tw-prose-links: var(--accent-blue) !important;
   --tw-prose-counters: var(--muted-foreground) !important;
   --tw-prose-bullets: var(--muted-foreground) !important;
-  font-family: var(--font-sans), "Pretendard", sans-serif;
+  font-family: var(--font-sans-kr), var(--font-sans), sans-serif;
   font-size: 17px;
-  line-height: 1.85;
+  line-height: 1.8;
+  word-break: keep-all;
 }
-.prose p { color: var(--foreground) !important; margin-bottom: 1.25em; }
+.prose p { color: var(--foreground) !important; margin-bottom: 1.1em; }
 .prose h1, .prose h2, .prose h3, .prose h4 {
-  font-family: var(--font-serif-kr), var(--font-serif), "Noto Serif KR", Georgia, serif;
+  font-family: var(--font-serif-kr), var(--font-sans-kr), "Noto Sans KR", sans-serif;
   color: var(--headline) !important;
   letter-spacing: -0.01em;
-  font-weight: 700;
+  font-weight: 600;
 }
-.prose h3 { font-size: 1.25rem; margin-top: 2.5em; }
+.prose h2 { font-size: 1.35rem; margin-top: 1.8em; }
+.prose h3 { font-size: 1.15rem; margin-top: 1.6em; }
 .prose em {
-  font-family: var(--font-serif), "Noto Serif KR", Georgia, serif;
   font-style: italic;
-  color: var(--accent) !important;
+  color: var(--foreground) !important;
 }
-.prose strong, .prose b { color: var(--headline) !important; font-weight: 600; }
+.prose strong, .prose b { color: var(--headline) !important; font-weight: 700; }
 .prose a {
-  color: var(--accent) !important;
+  color: var(--accent-blue) !important;
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
 }
 
-/* -------- Thin border utils --------
-   The editorial voice relies on hairlines, not heavy rules.
-*/
+/* -------- Destructive states use --danger, NEVER --accent -------- */
+.btn-danger { background: var(--danger); color: var(--danger-foreground); border: none; }
+.text-danger { color: var(--danger); }
+
+/* -------- Border utils -------- */
 .border-t-thin { border-top: 1px solid var(--border); }
 .border-b-thin { border-bottom: 1px solid var(--border); }
-.border-b-thick { border-bottom: 1px solid var(--border-strong); }
+.border-b-thick { border-bottom: 2px solid var(--border-strong); }
