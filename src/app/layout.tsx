@@ -1,46 +1,47 @@
 import type { Metadata, Viewport } from "next";
 import {
-  IBM_Plex_Sans_KR,
-  Gothic_A1,
+  Nanum_Myeongjo,
+  Gowun_Dodum,
   IBM_Plex_Sans,
-  Source_Serif_4,
+  Newsreader,
 } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
-// Korean headline / display sans — confident digital-broadsheet voice.
-// NOTE: mapped to the --font-serif-kr slot for backward compatibility with the
-// existing headline CSS rules. The slot name says "serif" but now holds a SANS
-// Korean face — intentional (see design/palette.md).
-const plexKr = IBM_Plex_Sans_KR({
+// Korean headline serif — Nanum Myeongjo (refined 명조). The elegant serif
+// headline is the core "warm editorial broadsheet" move: it softens the rigid
+// all-sans look and reads sophisticated. Mapped to the --font-serif-kr slot.
+const nanumMyeongjo = Nanum_Myeongjo({
   variable: "--font-serif-kr",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "700", "800"],
+});
+
+// Korean body — Gowun Dodum (warm humanist sans). Keeps running text crisp and
+// readable while carrying more warmth than a neutral gothic.
+const gowunDodum = Gowun_Dodum({
+  variable: "--font-sans-kr",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
+
+// Latin structural chrome — nav, datelines, folios, labels, tabular figures
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
 
-// Korean body sans — high-legibility gothic for dense, scannable reporting
-const gothicA1 = Gothic_A1({
-  variable: "--font-sans-kr",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400", "500", "700"],
-});
-
-// Latin labels, datelines, bylines, numerals (tabular-nums for timestamps)
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600"],
-});
-
-// Latin editorial serif — pull quotes / English long-read display only
-const sourceSerif = Source_Serif_4({
+// Latin editorial serif — Newsreader, for the 'DIVE journal' wordmark, italic
+// kickers, and English display. Refined, news-grade, with a magazine touch.
+const newsreader = Newsreader({
   variable: "--font-serif",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
 });
 
@@ -73,7 +74,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${sourceSerif.variable} ${plexSans.variable} ${plexKr.variable} ${gothicA1.variable} h-full antialiased`}
+      className={`${newsreader.variable} ${plexSans.variable} ${nanumMyeongjo.variable} ${gowunDodum.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">

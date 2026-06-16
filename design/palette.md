@@ -89,3 +89,39 @@ Two structural cues give the paper a sea/depth identity without kitsch:
 
 ## 7. Implementation
 A `globals.css` `:root`/`.dark` revalue (15 names unchanged + 4 new named props) + `layout.tsx` font swap + `Header.tsx` restructure. No architectural refactor. Comments, auth, evaluation badges, and dark mode all ride the same tokens. Remove all cream/teal/Gowun Batang remnants.
+
+---
+
+# v3 — Warm Editorial Broadsheet (Tidal Broadsheet) ⭐ CURRENT
+
+## 블렌드 변경 요약 — Tidal Broadsheet (Warm Editorial Broadsheet)
+
+기존 "Digital Broadsheet"(차갑고 딱딱함)의 신문 신뢰 구조는 그대로 유지하되, 이전 "Tidal" 매거진의 따뜻함·세련됨을 다시 섞었습니다. 구조 리팩터링 없이 **CSS 변수 값 + 폰트 2개 바인딩 + 헤더 경미 조정**만으로 구현됩니다.
+
+### 1. 따뜻함 (너무 딱딱하다 → 부드럽게)
+- 종이: 차가운 회색 `#f4f5f6` → **따뜻한 아이보리 신문지 `#f3eee3`** (R−B ≈ +15, 옛 크림과 옛 회색의 중간, 노란 라이프스타일 톤은 배제).
+- 전경색: 청흑색 `#15181c` → **따뜻한 근흑색 `#1a1712`**. 모든 중성색(테두리·muted·muted-fg)을 따뜻한 베이지 축으로 재구성.
+- 다크모드도 동일하게 따뜻하게: bg `#14120d`(커피 블랙), text `#ece6da`(따뜻한 종이흰색).
+- 수직 리듬 ~15–20% 여유 확대. `word-break: keep-all` 전 한글 유지.
+
+### 2. 풍부한 색 (색을 더 풍부하게)
+- 레드 `#7a1420` → **따뜻한 `#8a222a`** (7.6:1). 마스트헤드 룰을 넘어 네임플레이트·활성 카테고리·키커·풀쿼트 마크까지 확장.
+- **섹션 색 시스템이 색의 주 엔진**: 4색(레드/네이비 `#15568f`/티얼 `#0e6450`/오커 `#8a4f12`)만 12개 섹션을 순환 → 무지개처럼 번잡해지지 않음.
+- 신규 2차 따뜻한 액센트 **--accent-warm2 테라코타**. *판정단 약점 해결*: 텍스트용으로는 `#a85a20`(아이보리 위 4.6:1, AA 통과)로 강화하고, 8–12% 알파 **틴트 필드와 대형 워드마크 전용**으로 용도를 명확히 분리(작은 텍스트에는 절대 사용 안 함).
+- **사용 상한(usage ceiling)을 코드에 명문화**: 블록당 섹션 색 1개, 카드당 틴트 필드 1개(상단 보더 또는 워시 중 택1), 틴트 알파 8–12% → "풍부함"이 "탁함"으로 가지 않도록 보장.
+
+### 3. 폰트 세련 (폰트도 세련되게)
+- **헤드라인을 산세리프 → 명조 세리프로** 전환이 핵심: KO 헤드라인 `--font-serif-kr` = **Nanum Myeongjo**(h1/h2, weight 800) — 한겨레 토요판/NYT weekend 계열의 품격 세리프.
+- *판정단 약점 해결(명조 가늘어짐)*: 소형 헤드(h3/h4, ~24px 이하)는 더 견고한 **Noto Serif KR 600**으로 자동 전환 → 가는 명조가 작은 크기에서 부서져 보이는 위험 제거.
+- 본문 `--font-sans-kr` = **Gowun Dodum**(휴머니스트 산세, 따뜻한 터미널) — 본문 전용.
+- *판정단 약점 해결(캡션 흐려짐)*: 데이트라인·캡션·메타데이터는 **IBM Plex Sans + Noto Sans KR**로 라우팅해 작은 크롬 텍스트의 선명도 유지.
+- Latin: `--font-serif` = **Newsreader**(이탤릭 키커·'DIVE journal' 워드마크), `--font-sans` = **IBM Plex Sans**(구조 크롬). 데이트라인·폴리오·뎁스게이지는 tabular figures.
+
+### 4. 헤더
+- 4px 마스트헤드 룰 유지 + `#8a222a` 재채색, 하단 1px `--border-strong` 헤어라인 더블룰.
+- 네임플레이트 '다이브 저널' → Nanum Myeongjo 800. 'DIVE journal' → Newsreader 이탤릭, 테라코타(대형 디스플레이=안전).
+- 12개 카테고리 인덱스 내비 구조 100% 유지. 변화는 값뿐: 활성 항목 **레이블 자체가 섹션 색**, 호버 시 8% 섹션 틴트 워시 + 2px 언더라인, nav-bg 아이보리 밴드.
+
+### 5. 대비 검증 (양 모드 AA)
+- 본문: 라이트 `#1a1712`/`#f3eee3` ≈ 15:1, 다크 `#ece6da`/`#14120d` ≈ 14:1.
+- 텍스트용 액센트(아이보리 위): 레드 7.6:1 · 네이비 5.9:1 · 티얼 6.2:1 · 오커 5.9:1 · 테라코타 4.6:1 — **전부 AA 통과**(이전 오커 4.72→5.9, 테라코타 3.26→4.6으로 약점 보강). 다크모드 액센트는 커피블랙 위에서 모두 AA 이상으로 재조정.

@@ -33,8 +33,9 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
 
   return (
     <header>
-      {/* Signature broadsheet masthead rule */}
+      {/* Signature broadsheet double-rule (4px warmed crimson + hairline) */}
       <div className="masthead-rule" />
+      <div style={{ height: "1px", background: "var(--border-strong)" }} />
 
       {/* Utility strip */}
       <div className="bg-nav-bg border-b border-border">
@@ -59,21 +60,22 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
           >
             <span
               className="font-headline text-headline"
-              style={{ fontSize: "30px", fontWeight: 600, letterSpacing: "-0.5px", lineHeight: 1 }}
+              style={{ fontSize: "34px", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1 }}
             >
               다이브 저널
             </span>
             <span
-              className="hidden sm:inline pb-0.5 text-muted-foreground"
+              className="hidden sm:inline pb-1"
               style={{
-                fontFamily: "var(--font-sans), sans-serif",
-                fontSize: "11px",
+                fontFamily: "var(--font-serif), serif",
+                fontStyle: "italic",
+                fontSize: "16px",
                 fontWeight: 500,
-                letterSpacing: "3px",
+                letterSpacing: "0.01em",
+                color: "var(--accent-warm2)",
               }}
             >
-              <span style={{ color: "var(--headline)" }}>DIVE</span>{" "}
-              <span style={{ textTransform: "lowercase" }}>journal</span>
+              DIVE&nbsp;journal
             </span>
           </Link>
 
