@@ -392,14 +392,21 @@ body {
 .abyss h1, .abyss h2, .abyss h3 { color: #f4f8fb; }
 .abyss .muted { color: var(--abyss-muted); }
 
-/* 커버 스토리 */
-.cover { position: relative; min-height: min(78vh, 720px); display: grid; align-items: end; border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-3); isolation: isolate; }
-.cover img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transform: scale(1.04); transition: transform 1.6s cubic-bezier(.2,.7,.2,1); }
-.cover:hover img.bg { transform: scale(1.0); }
-.cover::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(7,14,30,0) 30%, rgba(7,14,30,.55) 62%, rgba(7,14,30,.92) 100%); }
-.cover .cover-body { padding: clamp(24px, 4vw, 56px); color: #fff; max-width: 860px; }
-.cover h1 { font-family: var(--font-serif-kr), var(--font-serif), serif; font-weight: 800; font-size: clamp(30px, 1.1rem + 3.4vw, 64px); line-height: 1.08; letter-spacing: -0.03em; color: #fff; text-wrap: balance; }
-.cover p { color: rgba(255,255,255,.82); }
+/* 커버 스토리 — 흰 지면, 글 왼쪽·사진 오른쪽 */
+.cover-story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(28px, 4vw, 64px); align-items: center; }
+.cover-story__media { order: 2; aspect-ratio: 16 / 10; border-radius: 18px; overflow: hidden; background: var(--muted); box-shadow: var(--shadow-2); }
+.cover-story__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.cover-story:hover .cover-story__media img { transform: scale(1.03); }
+.cover-story__body { display: grid; gap: 18px; align-content: center; }
+.cover-story__title { font-size: clamp(28px, 1rem + 2.4vw, 50px); line-height: 1.16; }
+.cover-story__lead { font-size: 17px; line-height: 1.75; color: var(--muted-foreground); display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 900px) {
+  .cover-story { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .cover-story__media { order: 0; border-radius: 14px; }
+  .cover-story__body { gap: 12px; }
+  .cover-story__lead { font-size: 16px; -webkit-line-clamp: 3; }
+}
+@media (prefers-reduced-motion: reduce) { .cover-story__media img { transition: none; } }
 
 /* 번호 목록(인기 기사) */
 .ranked { counter-reset: rank; }

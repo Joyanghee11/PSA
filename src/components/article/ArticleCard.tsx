@@ -28,21 +28,21 @@ export function ArticleCard({
 
   if (variant === "horizontal") {
     return (
-      <article className="group grid grid-cols-[1fr_140px] md:grid-cols-[1fr_220px] gap-5 py-6 border-b border-border last:border-b-0">
-        <div className="min-w-0">
-          <CategoryBadge category={article.category} lang={lang} />
-          <Link href={href}>
-            <h3 className="text-[19px] md:text-[22px] font-subheadline mt-1.5 text-headline group-hover:text-accent transition-colors line-clamp-2">{content.title}</h3>
-          </Link>
-          <p className="text-[15px] text-muted-foreground mt-2 line-clamp-2 leading-relaxed">{content.summary}</p>
-          <span className="text-xs text-muted-foreground mt-3 block">{formatRelativeDate(article.publishedAt, lang)}</span>
-        </div>
+      <article className={`group grid ${article.imageUrl ? "grid-cols-[112px_1fr] sm:grid-cols-[200px_1fr] md:grid-cols-[240px_1fr]" : "grid-cols-1"} gap-4 sm:gap-6 items-start py-5 sm:py-6 border-b border-border first:pt-0 last:border-b-0`}>
         {article.imageUrl && (
           <Link href={href} className="block aspect-[4/3] rounded-xl overflow-hidden bg-muted shadow-[var(--shadow-1)] group-hover:shadow-[var(--shadow-2)] transition-shadow">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={article.imageUrl} alt={article.imageAlt || content.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </Link>
         )}
+        <div className="min-w-0">
+          <CategoryBadge category={article.category} lang={lang} />
+          <Link href={href}>
+            <h3 className="text-[16.5px] sm:text-[20px] md:text-[22px] font-subheadline mt-1 sm:mt-1.5 text-headline group-hover:text-accent transition-colors line-clamp-2">{content.title}</h3>
+          </Link>
+          <p className="hidden sm:block text-[15px] text-muted-foreground mt-2 line-clamp-2 leading-relaxed">{content.summary}</p>
+          <span className="text-xs text-muted-foreground mt-2 sm:mt-3 block">{formatRelativeDate(article.publishedAt, lang)}</span>
+        </div>
       </article>
     );
   }

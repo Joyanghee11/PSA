@@ -27,13 +27,13 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
     <header className="mag-header">
       <div className="masthead-rule" />
       <div className="mag-container">
-        <div className="flex h-[68px] items-center justify-between gap-6">
+        <div className="flex h-[60px] md:h-[68px] items-center justify-between gap-4 md:gap-6">
           <Link href={`/${lang}`} className="flex items-baseline gap-2.5 select-none" aria-label="다이브 저널 · Dive Journal">
             <span className="wordmark whitespace-nowrap text-[22px] sm:text-[26px] md:text-[30px]">다이브 저널</span>
-            <span className="wordmark-en hidden sm:inline text-[15px]">Dive Journal</span>
+            <span className="wordmark-en hidden lg:inline whitespace-nowrap text-[15px]">Dive Journal</span>
           </Link>
 
-          <nav className="primary-nav hidden md:flex items-center gap-7" aria-label={ko ? "주요 메뉴" : "Primary"}>
+          <nav className="primary-nav hidden md:flex items-center gap-5 lg:gap-7" aria-label={ko ? "주요 메뉴" : "Primary"}>
             {primary.map((item) => (
               <Link key={item.href} href={item.href} aria-current={item.match(pathname) ? "page" : undefined}>
                 {item.label}
