@@ -32,7 +32,7 @@ export const companyInfo = {
 
   // 소개
   about: {
-    ko: "다이브저널은 전 세계 프리다이빙 및 다이빙 소식을 AI 기술을 활용하여 한국어와 영어로 매일 전달하는 인터넷 신문입니다. 대한민국 경기도에 등록된 정식 인터넷 신문으로, 프리다이빙 대회, 기록, 훈련, 안전, 장비, 해양 환경 등 다이빙과 관련된 모든 분야의 뉴스를 빠르고 정확하게 보도합니다.",
-    en: "Dive Journal is an AI-powered internet newspaper that delivers worldwide freediving and diving news daily in Korean and English. Registered as an official internet newspaper in Gyeonggi-do, South Korea, we cover all areas of diving including competitions, records, training, safety, equipment, and marine environment.",
+    ko: "다이브 저널은 프리다이빙과 스쿠버, 수중 사진을 다루는 웹 매거진입니다. 국내외 소식과 깊이 있는 기사를 전하고, 수중 사진작가의 작품을 소개하는 갤러리와 누구나 참여하는 온라인 사진 콘테스트를 운영합니다. 경기도에 등록된 인터넷신문입니다.",
+    en: "Dive Journal is a web magazine about freediving, scuba and underwater photography. We publish news and in-depth stories, run a gallery that connects collectors with underwater photographers, and host online photo contests open to everyone. Registered internet newspaper, Gyeonggi-do, Korea.",
   },
 } as const;

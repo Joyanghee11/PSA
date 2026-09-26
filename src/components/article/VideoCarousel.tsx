@@ -14,11 +14,14 @@ export function VideoCarousel({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
 
-  // 랜덤 순서로 셔플
+  // 날마다 순서를 바꾼다. 렌더 중 Math.random 을 쓰면 서버와 브라우저 결과가 달라
+  // 하이드레이션이 깨지므로, 날짜(KST)를 씨앗으로 한 결정적 셔플을 쓴다.
   const shuffled = useMemo(() => {
-    const arr = [...articles];
+    const arr = [...articles].sort((a, b) => a.slug.localeCompare(b.slug));
+    let seed = Number(new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10).replace(/-/g, ""));
+    const rand = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);
     for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(rand() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr;

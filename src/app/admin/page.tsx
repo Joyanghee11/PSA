@@ -117,6 +117,8 @@ export default function AdminDashboard() {
             <Link href="/ko" className="text-sm text-muted-foreground hover:text-foreground">사이트 보기</Link>
           </div>
           <div className="flex items-center gap-3">
+            <Link href="/admin/gallery" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">갤러리 승인</Link>
+            <Link href="/admin/contests" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">콘테스트</Link>
             <Link href="/admin/safety" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">🎓 안전교육</Link>
             <Link href="/admin/ads" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">광고 관리</Link>
             <Link href="/admin/create" className="px-4 py-2 bg-accent text-accent-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">+ 새 기사 작성</Link>

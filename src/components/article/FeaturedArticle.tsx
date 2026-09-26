@@ -1,56 +1,39 @@
 import Link from "next/link";
 import type { Article, Lang } from "@/lib/types";
-import { formatDate } from "@/lib/utils";
-import { CategoryBadge } from "./CategoryBadge";
+import { formatDate, getCategoryLabel } from "@/lib/utils";
 
-export function FeaturedArticle({
-  article,
-  lang,
-}: {
-  article: Article;
-  lang: Lang;
-}) {
+/** 커버 스토리: 사진을 가득 채우고 제목을 사진 위에 얹는다 */
+export function FeaturedArticle({ article, lang }: { article: Article; lang: Lang }) {
   const content = article[lang];
+  const href = `/${lang}/article/${article.slug}`;
+
+  if (!article.imageUrl) {
+    return (
+      <Link href={href} className="block abyss rounded-[22px] p-10 md:p-16 shadow-[var(--shadow-3)]">
+        <span className="kicker">{lang === "ko" ? "커버 스토리" : "Cover story"}</span>
+        <h1 className="font-headline !text-white text-[34px] md:text-[56px] mt-4 max-w-[900px]">{content.title}</h1>
+        <p className="muted mt-5 text-lg max-w-[720px] line-clamp-3">{content.summary}</p>
+      </Link>
+    );
+  }
 
   return (
-    <article className="group">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
-        {/* Image - takes 7 cols */}
-        {article.imageUrl && (
-          <div className="md:col-span-7">
-            <Link href={`/${lang}/article/${article.slug}`} className="block">
-              <div className="aspect-[16/9] overflow-hidden bg-muted">
-                <img
-                  src={article.imageUrl}
-                  alt={article.imageAlt || content.title}
-                  className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                />
-              </div>
-            </Link>
-          </div>
-        )}
-        {/* Text - takes 5 cols */}
-        <div className={`${article.imageUrl ? "md:col-span-5" : "md:col-span-12"} flex flex-col justify-center`}>
-          <CategoryBadge category={article.category} lang={lang} />
-          <Link href={`/${lang}/article/${article.slug}`}>
-            <h2 className="text-[24px] md:text-[30px] font-headline mt-2 group-hover:text-accent-blue transition-colors">
-              {content.title}
-            </h2>
-          </Link>
-          <p className="text-[15px] text-muted-foreground mt-3 leading-relaxed line-clamp-4">
-            {content.summary}
-          </p>
-          <div className="flex items-center gap-2 mt-4">
-            <span className="text-xs text-muted-foreground">
-              {formatDate(article.publishedAt, lang)}
-            </span>
-            <span className="text-xs text-muted-foreground">|</span>
-            <span className="text-xs text-muted-foreground">
-              {lang === "ko" ? "다이브저널" : "Dive Journal"}
-            </span>
-          </div>
+    <Link href={href} className="cover group rise">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={article.imageUrl} alt={article.imageAlt || content.title} className="bg" />
+      <div className="cover-body">
+        <span className="kicker !text-[var(--lagoon)]">
+          {lang === "ko" ? "커버 스토리" : "Cover story"} · {getCategoryLabel(article.category, lang)}
+        </span>
+        <h1 className="mt-4">{content.title}</h1>
+        <p className="mt-5 text-[17px] leading-relaxed max-w-[680px] line-clamp-3">{content.summary}</p>
+        <div className="mt-6 flex items-center gap-4 text-sm text-white/70">
+          <span>{formatDate(article.publishedAt, lang)}</span>
+          <span className="inline-flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all">
+            {lang === "ko" ? "기사 읽기" : "Read the story"} <span aria-hidden>→</span>
+          </span>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

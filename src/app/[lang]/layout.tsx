@@ -30,7 +30,7 @@ export default async function LangLayout({
       <StickyBanners />
       <AdSlot position="header-top" />
       <Header lang={lang as Lang} dict={dict} />
-      <main className="flex-1 max-w-[1200px] mx-auto px-4 py-6 w-full">
+      <main className="flex-1 w-full mag-container pt-8 pb-20">
         {children}
       </main>
       <AdSlot position="footer-above" />

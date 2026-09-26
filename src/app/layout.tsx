@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     default: "다이브 저널 - Dive Journal",
     template: "%s | 다이브 저널",
   },
-  description: "전 세계 프리다이빙 소식을 전하는 AI 인터넷 신문",
+  description: "프리다이빙·스쿠버·수중 사진 웹 매거진. 저널, 갤러리, 사진 콘테스트.",
     verification: {
           google: "NUkGNP5ffmfBvIFziSJIKVtlPRFyHMrT8BL_M5NLL30",
           other: {

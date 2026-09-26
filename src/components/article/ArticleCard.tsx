@@ -13,108 +13,57 @@ export function ArticleCard({
   variant?: "default" | "compact" | "horizontal" | "headline";
 }) {
   const content = article[lang];
+  const href = `/${lang}/article/${article.slug}`;
 
-  // Compact: title only with dot separator
   if (variant === "compact") {
     return (
-      <article className="py-2.5 border-b border-border last:border-b-0">
-        <Link href={`/${lang}/article/${article.slug}`} className="group flex items-start gap-2">
-          <span className="text-accent mt-1.5 text-[6px]">●</span>
-          <h3 className="text-[15px] font-semibold leading-snug group-hover:text-accent-blue transition-colors line-clamp-2" style={{ wordBreak: "keep-all" }}>
-            {content.title}
-          </h3>
+      <article className="py-3.5 border-b border-border last:border-b-0">
+        <Link href={href} className="group block">
+          <h3 className="text-[15.5px] font-subheadline leading-snug text-headline group-hover:text-accent transition-colors line-clamp-2">{content.title}</h3>
+          <span className="text-xs text-muted-foreground mt-1 block">{formatRelativeDate(article.publishedAt, lang)}</span>
         </Link>
       </article>
     );
   }
 
-  // Horizontal: image left, text right
   if (variant === "horizontal") {
     return (
-      <article className="group flex gap-4 py-4 border-b border-border last:border-b-0">
-        {article.imageUrl && (
-          <Link href={`/${lang}/article/${article.slug}`} className="flex-shrink-0">
-            <div className="w-[140px] h-[90px] md:w-[180px] md:h-[110px] overflow-hidden bg-muted">
-              <img
-                src={article.imageUrl}
-                alt={article.imageAlt || content.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-          </Link>
-        )}
-        <div className="flex-1 min-w-0">
+      <article className="group grid grid-cols-[1fr_140px] md:grid-cols-[1fr_220px] gap-5 py-6 border-b border-border last:border-b-0">
+        <div className="min-w-0">
           <CategoryBadge category={article.category} lang={lang} />
-          <Link href={`/${lang}/article/${article.slug}`}>
-            <h3 className="text-[16px] font-subheadline mt-1 group-hover:text-accent-blue transition-colors line-clamp-2">
-              {content.title}
-            </h3>
+          <Link href={href}>
+            <h3 className="text-[19px] md:text-[22px] font-subheadline mt-1.5 text-headline group-hover:text-accent transition-colors line-clamp-2">{content.title}</h3>
           </Link>
-          <p className="text-sm text-muted-foreground mt-1 line-clamp-2 leading-relaxed">
-            {content.summary}
-          </p>
-          <span className="text-xs text-muted-foreground mt-1 block">
-            {formatRelativeDate(article.publishedAt, lang)}
-          </span>
+          <p className="text-[15px] text-muted-foreground mt-2 line-clamp-2 leading-relaxed">{content.summary}</p>
+          <span className="text-xs text-muted-foreground mt-3 block">{formatRelativeDate(article.publishedAt, lang)}</span>
         </div>
-      </article>
-    );
-  }
-
-  // Headline: big title, prominent
-  if (variant === "headline") {
-    return (
-      <article className="group">
         {article.imageUrl && (
-          <Link href={`/${lang}/article/${article.slug}`} className="block mb-3">
-            <div className="aspect-[16/9] overflow-hidden bg-muted">
-              <img
-                src={article.imageUrl}
-                alt={article.imageAlt || content.title}
-                className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-              />
-            </div>
+          <Link href={href} className="block aspect-[4/3] rounded-xl overflow-hidden bg-muted shadow-[var(--shadow-1)] group-hover:shadow-[var(--shadow-2)] transition-shadow">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={article.imageUrl} alt={article.imageAlt || content.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </Link>
         )}
-        <CategoryBadge category={article.category} lang={lang} />
-        <Link href={`/${lang}/article/${article.slug}`}>
-          <h2 className="text-[22px] md:text-[26px] font-headline mt-2 group-hover:text-accent-blue transition-colors">
-            {content.title}
-          </h2>
-        </Link>
-        <p className="text-[15px] text-muted-foreground mt-2 leading-relaxed line-clamp-3">
-          {content.summary}
-        </p>
-        <span className="text-xs text-muted-foreground mt-2 block">
-          {formatRelativeDate(article.publishedAt, lang)}
-        </span>
       </article>
     );
   }
 
-  // Default card with image on top
+  const big = variant === "headline";
   return (
-    <article className="group">
+    <article className="lift h-full flex flex-col">
       {article.imageUrl && (
-        <Link href={`/${lang}/article/${article.slug}`} className="block mb-2">
-          <div className="aspect-[16/10] overflow-hidden bg-muted">
-            <img
-              src={article.imageUrl}
-              alt={article.imageAlt || content.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-          </div>
+        <Link href={href} className={`media block ${big ? "aspect-[16/10]" : "aspect-[4/3]"}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={article.imageUrl} alt={article.imageAlt || content.title} loading="lazy" className="w-full h-full object-cover" />
         </Link>
       )}
-      <CategoryBadge category={article.category} lang={lang} />
-      <Link href={`/${lang}/article/${article.slug}`}>
-        <h3 className="text-[16px] font-subheadline mt-1 group-hover:text-accent-blue transition-colors line-clamp-2">
-          {content.title}
-        </h3>
-      </Link>
-      <p className="text-sm text-muted-foreground mt-1 line-clamp-2 leading-relaxed">
-        {content.summary}
-      </p>
+      <div className="p-5 md:p-6 flex flex-col flex-1">
+        <CategoryBadge category={article.category} lang={lang} />
+        <Link href={href}>
+          <h3 className={`${big ? "text-[22px] md:text-[26px] font-headline" : "text-[18px] font-subheadline"} mt-1.5 text-headline hover:text-accent transition-colors line-clamp-3`}>{content.title}</h3>
+        </Link>
+        <p className="text-[14.5px] text-muted-foreground mt-2.5 line-clamp-3 leading-relaxed">{content.summary}</p>
+        <span className="text-xs text-muted-foreground mt-auto pt-4">{formatRelativeDate(article.publishedAt, lang)}</span>
+      </div>
     </article>
   );
 }
