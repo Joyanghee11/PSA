@@ -44,7 +44,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   });
 
   const [cover, ...rest] = sorted;
-  const issue = rest.slice(0, 3);
+  const trending = rest.slice(0, 3);
   const main = rest.slice(3, 8);
   const latest = rest.slice(8, 14);
   const more = rest.slice(14, 22);
@@ -65,11 +65,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       {/* 커버 스토리 히어로 */}
       <DeepHero
         image={cover.imageUrl}
-        kicker={`${new Date().toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "Asia/Seoul" })} · Cover Story`}
+        kicker="Cover Story"
         displayTop="Into the"
         displayEm="deep blue."
         name={cover[lang].title}
-        lead={cover[lang].summary || (ko ? "프리다이빙과 스쿠버, 수중 사진을 읽는 웹 매거진. 이번 호의 커버 스토리부터 시작하세요." : "A web magazine of freediving, scuba and underwater photography. Start with this issue's cover story.")}
+        lead={cover[lang].summary || (ko ? "프리다이빙과 스쿠버, 수중 사진을 읽는 웹 매거진. 지금 가장 주목할 이야기부터 시작하세요." : "A web magazine of freediving, scuba and underwater photography. Start with the cover story.")}
         primary={{ href: `/${lang}/article/${cover.slug}`, label: ko ? "커버 스토리 읽기" : "Read the cover story" }}
         secondary={{ href: `/${lang}/gallery`, label: ko ? "갤러리 둘러보기" : "Visit the gallery" }}
         stats={[
@@ -77,23 +77,20 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           contest
             ? { value: phaseLabel(contest, ko), word: true, eyebrow: "Photo Contest", strong: ko ? contest.title_ko : contest.title_en || contest.title_ko, label: contestPhaseOf(contest) === "closed" ? (ko ? "수상작 보기" : "See the winners") : `~ ${fmtDate(contestPhaseOf(contest) === "submitting" ? contest.submit_ends_at : contest.vote_ends_at, ko)}`, href: `/${lang}/contest/${contest.slug}` }
             : { value: ko ? "준비 중" : "Soon", word: true, eyebrow: "Photo Contest", label: ko ? "온라인 수중 사진 콘테스트" : "Online underwater photo contest", href: `/${lang}/contest` },
-          artworkCount > 0
-            ? { value: String(artworkCount), unit: ko ? "점" : "", eyebrow: "The Gallery", label: ko ? "작가와 직접 연결되는 작품" : "works, direct from the artist", href: `/${lang}/gallery` }
-            : { value: ko ? "작가 모집" : "Open", word: true, eyebrow: "The Gallery", label: ko ? "수중 사진작가의 작품을 기다립니다" : "Calling underwater photographers", href: `/${lang}/gallery/new` },
+          ...(artworkCount > 0
+            ? [{ value: String(artworkCount), unit: ko ? "점" : "", eyebrow: "The Gallery", label: ko ? "작가와 직접 연결되는 작품" : "works, direct from the artist", href: `/${lang}/gallery` }]
+            : []),
         ]}
       />
 
-      {/* 이번 호 */}
-      {issue.length > 0 && (
+      {/* Trending — 화제의 기사 */}
+      {trending.length > 0 && (
         <section>
           <div className="mag-section-head">
-            <div>
-              <span className="kicker">{ko ? "In this issue" : "In this issue"}</span>
-              <h2 className="mt-2">{ko ? "이번 호의 이야기" : "This issue"}</h2>
-            </div>
+            <h2 className="en-head">Trending</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-7">
-            {issue.map((a, i) => (
+            {trending.map((a, i) => (
               <div key={a.slug} className={`rise rise-${i + 2}`}>
                 <ArticleCard article={a} lang={lang} variant={i === 0 ? "headline" : "default"} />
               </div>
@@ -105,15 +102,14 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       {/* 주요 기사 + 많이 읽은 기사 */}
       <section className="grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8">
-          <div className="mag-section-head"><h2>{ko ? "저널" : "The Journal"}</h2></div>
+          <div className="mag-section-head"><h2 className="en-head">Must Read</h2></div>
           {main.map((a) => (
             <ArticleCard key={a.slug} article={a} lang={lang} variant="horizontal" />
           ))}
         </div>
         <aside className="lg:col-span-4 space-y-12">
           <div className="lift p-6 md:p-7">
-            <span className="kicker">{ko ? "Editors' picks" : "Editors' picks"}</span>
-            <h3 className="font-subheadline text-xl mt-2 mb-2">{ko ? "편집부 추천" : "Recommended"}</h3>
+            <h3 className="en-head !text-[26px] mb-1">Editors&apos; Picks</h3>
             <ol className="ranked">
               {mostRead.map((a) => (
                 <li key={a.slug}>
@@ -124,7 +120,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </div>
           {latest.length > 0 && (
             <div>
-              <h3 className="font-subheadline text-lg border-b-2 border-headline pb-2">{ko ? "최신 기사" : "Latest"}</h3>
+              <h3 className="en-head !text-[26px] border-b border-border pb-3">Latest</h3>
               {latest.map((a) => (
                 <ArticleCard key={a.slug} article={a} lang={lang} variant="compact" />
               ))}
@@ -140,7 +136,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           <div className="grid lg:grid-cols-12 gap-10 items-end mb-12">
             <div className="lg:col-span-7">
               <span className="kicker">The Gallery</span>
-              <h2 className="font-headline text-[34px] md:text-[52px] mt-3 leading-[1.05]">{ko ? "작가의 바다를 소장하세요" : "Collect the artist's ocean"}</h2>
+              <h2 className="en-head !text-white !text-[40px] md:!text-[60px] mt-3 !leading-[1.02]">Collect the <em>artist&apos;s ocean.</em></h2>
             </div>
             <div className="lg:col-span-5 lg:text-right">
               <p className="muted leading-relaxed">{ko ? "수중 사진작가의 작품을 크기와 재료, 에디션까지 자세히 소개하고 작가와 바로 연결합니다." : "Size, medium and edition in full, with a direct line to the artist."}</p>
@@ -157,7 +153,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               ))}
             </div>
           ) : (
-            <p className="muted">{ko ? "첫 전시를 준비하고 있습니다. 작가님의 작품을 기다립니다." : "The first exhibition is being hung."}</p>
+            <p className="muted">{ko ? "곧 첫 전시가 열립니다." : "The first exhibition opens soon."}</p>
           )}
         </div>
       </section>
@@ -186,7 +182,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
       {videos.length > 0 && (
         <section>
-          <div className="mag-section-head"><h2>{ko ? "영상" : "Watch"}</h2></div>
+          <div className="mag-section-head"><h2 className="en-head">Watch</h2></div>
           <VideoCarousel articles={videos} lang={lang} />
         </section>
       )}
@@ -195,7 +191,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
       {more.length > 0 && (
         <section>
-          <div className="mag-section-head"><h2>{ko ? "더 읽을거리" : "More stories"}</h2></div>
+          <div className="mag-section-head"><h2 className="en-head">More Stories</h2></div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
             {more.map((a) => (
               <ArticleCard key={a.slug} article={a} lang={lang} />

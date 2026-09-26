@@ -538,7 +538,7 @@ a.deep-stat:hover { transform: translateZ(26px) translateX(-4px); border-color: 
   .deep-hero__bg { transform: none; } .deep-stack__in { transition: none; } .deep-cue i::after { animation: none; }
 }
 
-/* 브랜드 로고: 밝은 화면은 남색, 다크 모드는 밝은색 */
-.brand-logo--light { display: none; }
-.dark .brand-logo--navy { display: none; }
-.dark .brand-logo--light { display: block; }
+/* 영문 섹션 제목 — 히어로와 같은 세리프, 이탤릭 강조는 금색 */
+.en-head { font-family: var(--font-serif), "Iowan Old Style", Palatino, Georgia, serif !important; font-weight: 500 !important; font-size: clamp(30px, 1.2rem + 1.8vw, 46px); letter-spacing: -0.02em; line-height: 1.05; color: var(--headline); }
+.en-head em { font-style: italic; color: #b89455; }
+.abyss .en-head em { color: #d6b274; }

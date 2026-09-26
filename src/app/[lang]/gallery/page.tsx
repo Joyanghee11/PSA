@@ -33,9 +33,9 @@ export default async function GalleryPage({ params }: { params: Promise<{ lang: 
         primary={{ href: `/${lang}/gallery/new`, label: ko ? "작품 등록하기" : "Submit your work" }}
         secondary={{ href: `/${lang}/gallery/mine`, label: ko ? "내 작품" : "My works" }}
         stats={[
-          artworks.some((a) => a.status === "approved")
-            ? { value: String(artworks.filter((a) => a.status === "approved").length), unit: ko ? "점" : "", eyebrow: "On view", label: ko ? "지금 전시 중인 작품" : "works on view" }
-            : { value: ko ? "작가 모집" : "Open call", word: true, eyebrow: "First exhibition", label: ko ? "첫 전시를 함께할 작가를 찾습니다" : "Looking for our first artists" },
+          ...(artworks.some((a) => a.status === "approved")
+            ? [{ value: String(artworks.filter((a) => a.status === "approved").length), unit: ko ? "점" : "", eyebrow: "On view", label: ko ? "지금 전시 중인 작품" : "works on view" }]
+            : []),
           { value: ko ? "직거래" : "Direct", word: true, eyebrow: "No commission", label: ko ? "작가와 구매자가 직접 약속합니다" : "Artist and buyer deal directly" },
           { value: ko ? "검수" : "Curated", word: true, eyebrow: "Reviewed", label: ko ? "편집부 확인 후 게시됩니다" : "Every work is reviewed" },
         ]}
@@ -45,9 +45,8 @@ export default async function GalleryPage({ params }: { params: Promise<{ lang: 
       <div className="mt-16" />
       {artworks.length === 0 ? (
         <div className="text-center py-24">
-          <p className="font-headline text-2xl">{ko ? "첫 전시를 준비하고 있습니다" : "The first exhibition is being hung"}</p>
-          <p className="text-muted-foreground mt-3">{ko ? "작가님의 작품을 기다립니다. 등록한 작품은 확인 후 게시됩니다." : "Submit your work. Each piece is reviewed before it goes up."}</p>
-          <Link href={`/${lang}/gallery/new`} className="btn btn-primary mt-8">{ko ? "작품 등록하기" : "Submit your work"}</Link>
+          <p className="font-headline text-2xl">{ko ? "곧 첫 전시가 열립니다" : "The first exhibition opens soon"}</p>
+          <p className="text-muted-foreground mt-3">{ko ? "등록된 작품은 편집부 확인 후 이곳에 전시됩니다." : "Works appear here after review."}</p>
         </div>
       ) : (
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-10 [column-fill:_balance]">

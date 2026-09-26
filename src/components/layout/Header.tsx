@@ -22,21 +22,15 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
   // 카테고리 줄은 기사를 읽는 화면에서만 보인다. 갤러리·콘테스트는 자기 탐색을 쓴다.
   const showRail = primary[0].match(pathname);
 
-  const now = new Date();
-  const issue = ko
-    ? `${now.getFullYear()}년 ${now.getMonth() + 1}월호`
-    : now.toLocaleDateString("en-US", { month: "long", year: "numeric" }) + " Issue";
 
   return (
     <header className="mag-header">
       <div className="masthead-rule" />
       <div className="mag-container">
-        <div className="flex h-[72px] items-center justify-between gap-6">
-          <Link href={`/${lang}`} className="flex items-center select-none shrink-0" aria-label="다이브 저널 · Dive Journal">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/brand/logo-navy-h120.png" alt="DIVE JOURNAL 다이브저널" width={215} height={120} className="brand-logo brand-logo--navy h-[46px] md:h-[52px] w-auto" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/brand/logo-light-h120.png" alt="" aria-hidden width={215} height={120} className="brand-logo brand-logo--light h-[46px] md:h-[52px] w-auto" />
+        <div className="flex h-[68px] items-center justify-between gap-6">
+          <Link href={`/${lang}`} className="flex items-baseline gap-2.5 select-none" aria-label="다이브 저널 · Dive Journal">
+            <span className="wordmark whitespace-nowrap text-[22px] sm:text-[26px] md:text-[30px]">다이브 저널</span>
+            <span className="wordmark-en hidden sm:inline text-[15px]">Dive Journal</span>
           </Link>
 
           <nav className="primary-nav hidden md:flex items-center gap-7" aria-label={ko ? "주요 메뉴" : "Primary"}>
@@ -48,7 +42,6 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3 text-xs shrink-0">
-            <span className="hidden lg:inline dateline">{issue}</span>
             <Link href={`/${lang}/search`} aria-label={dict.nav.search} className="grid place-items-center w-9 h-9 rounded-full hover:bg-muted transition-colors">
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-5.2-5.2M17 10.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" />
