@@ -36,8 +36,6 @@ export default async function GalleryPage({ params }: { params: Promise<{ lang: 
           ...(artworks.some((a) => a.status === "approved")
             ? [{ value: String(artworks.filter((a) => a.status === "approved").length), unit: ko ? "점" : "", eyebrow: "On view", label: ko ? "지금 전시 중인 작품" : "works on view" }]
             : []),
-          { value: ko ? "직거래" : "Direct", word: true, eyebrow: "No commission", label: ko ? "작가와 구매자가 직접 약속합니다" : "Artist and buyer deal directly" },
-          { value: ko ? "검수" : "Curated", word: true, eyebrow: "Reviewed", label: ko ? "편집부 확인 후 게시됩니다" : "Every work is reviewed" },
         ]}
         scrollCue={artworks.length > 0}
       />

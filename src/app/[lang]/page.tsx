@@ -71,7 +71,6 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         name={cover[lang].title}
         lead={cover[lang].summary || (ko ? "프리다이빙과 스쿠버, 수중 사진을 읽는 웹 매거진. 지금 가장 주목할 이야기부터 시작하세요." : "A web magazine of freediving, scuba and underwater photography. Start with the cover story.")}
         primary={{ href: `/${lang}/article/${cover.slug}`, label: ko ? "커버 스토리 읽기" : "Read the cover story" }}
-        secondary={{ href: `/${lang}/gallery`, label: ko ? "갤러리 둘러보기" : "Visit the gallery" }}
         stats={[
           { value: String(nonVideo.length), unit: ko ? "편" : "", eyebrow: "The Journal", label: ko ? "프리다이빙·스쿠버 기사" : "stories on freediving & scuba", href: `/${lang}/search` },
           contest
@@ -141,7 +140,6 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <div className="lg:col-span-5 lg:text-right">
               <p className="muted leading-relaxed">{ko ? "수중 사진작가의 작품을 크기와 재료, 에디션까지 자세히 소개하고 작가와 바로 연결합니다." : "Size, medium and edition in full, with a direct line to the artist."}</p>
               <div className="mt-5 flex lg:justify-end gap-3">
-                <Link href={`/${lang}/gallery`} className="btn btn-lagoon">{ko ? "갤러리 둘러보기" : "Enter the gallery"}</Link>
                 <Link href={`/${lang}/gallery/new`} className="btn btn-ghost !text-white !border-white/30 hover:!border-white">{ko ? "작품 등록" : "Submit work"}</Link>
               </div>
             </div>
