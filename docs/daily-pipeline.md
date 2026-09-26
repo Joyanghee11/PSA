@@ -52,7 +52,7 @@ git pull --ff-only origin main
 - 최근 7일 안의 뉴스를 우선한다. 프리다이빙 관련을 2편 이상 넣는다.
 - 이미 다룬 주제는 뺀다. `content/articles` 전체의 `slug`·제목·`sourceUrls` 와 대조한다.
 - 쓸 만한 새 뉴스가 5편에 못 미치면 상시 기사로 채운다
-  (카테고리 `freediving-training`, `freediving-safety`, `science`, `diving-spot`,
+  (카테고리 `freediving`, `science`, `diving-spot`,
   `workout`, `recipe` 등. 이미 쓴 주제와 겹치지 않게).
 - 카테고리는 [src/lib/types.ts](../src/lib/types.ts) 의 `Category` 값만 쓴다.
   레거시로 표시된 값은 쓰지 않는다.
