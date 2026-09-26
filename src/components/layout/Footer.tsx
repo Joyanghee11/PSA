@@ -12,17 +12,16 @@ export function Footer({ dict, lang }: { dict: Dictionary; lang: Lang }) {
   const contact = companyInfo.contact;
 
   return (
-    <footer className="bg-[#1a1a1a] text-[#999] mt-auto">
+    <footer className="abyss text-[#93a9b8] mt-auto">
       {/* Upper footer */}
-      <div className="border-b border-[#333]">
-        <div className="max-w-[1200px] mx-auto px-4 py-6">
+      <div className="border-b border-white/10">
+        <div className="mag-container py-14">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             {/* Brand + About */}
             <div className="md:col-span-5">
               <Link href={`/${lang}`}>
-                <span className="text-2xl font-black text-white tracking-tight">
-                  {lang === "ko" ? "다이브저널" : "DiveJournal"}
-                </span>
+                <span className="wordmark !text-white text-[30px]">{lang === "ko" ? "다이브 저널" : "Dive Journal"}</span>
+                <span className="wordmark-en ml-2 !text-[var(--lagoon)]">{lang === "ko" ? "Dive Journal" : "A magazine of the sea"}</span>
               </Link>
               <p className="text-sm leading-relaxed mt-3 text-[#aaa]">
                 {companyInfo.about[lang]}
@@ -35,7 +34,7 @@ export function Footer({ dict, lang }: { dict: Dictionary; lang: Lang }) {
               </Link>
             </div>
 
-            {/* Categories */}
+            {/* Sections */}
             <div className="md:col-span-3">
               <h4 className="text-xs font-bold text-[#ccc] uppercase tracking-widest mb-3">
                 {dict.nav.categories}
@@ -89,7 +88,7 @@ export function Footer({ dict, lang }: { dict: Dictionary; lang: Lang }) {
       </div>
 
       {/* Registration info - Korean newspaper standard */}
-      <div className="max-w-[1200px] mx-auto px-4 py-5">
+      <div className="mag-container py-8">
         <div className="text-xs text-[#666] leading-relaxed space-y-1">
           <p>
             {lang === "ko" ? (
@@ -138,13 +137,13 @@ export function Footer({ dict, lang }: { dict: Dictionary; lang: Lang }) {
           </p>
         </div>
 
-        <div className="border-t border-[#333] mt-4 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#555]">
+        <div className="border-t border-white/10 mt-4 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#555]">
           <p>
             {lang === "ko"
               ? `Copyright © ${new Date().getFullYear()} 다이브저널. 모든 기사의 저작권은 다이브저널에 있으며 무단 전재, 복사, 배포를 금합니다.`
               : `Copyright © ${new Date().getFullYear()} Dive Journal. All rights reserved.`}
           </p>
-          <p className="text-[#555]">Powered by Claude AI</p>
+          <p className="flex gap-4"><Link href={`/${lang}/gallery`} className="hover:text-white">{lang === "ko" ? "갤러리" : "Gallery"}</Link><Link href={`/${lang}/contest`} className="hover:text-white">{lang === "ko" ? "콘테스트" : "Contest"}</Link><Link href="/admin" className="hover:text-white">Admin</Link></p>
         </div>
       </div>
     </footer>

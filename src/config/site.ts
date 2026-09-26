@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "다이브 저널",
   nameEn: "Dive Journal",
-  description: "전 세계 프리다이빙·스쿠버 소식을 전하는 AI 인터넷 신문",
-  descriptionEn: "AI-powered worldwide diving news",
+  description: "프리다이빙·스쿠버·수중 사진 웹 매거진",
+  descriptionEn: "A web magazine of freediving, scuba and underwater photography",
   url: "https://divejournal.co.kr",
   defaultLang: "ko" as const,
 

@@ -6,7 +6,7 @@ export const defaultLocale: Lang = "ko";
 const dictionaries = {
   ko: {
     siteName: "다이브 저널",
-    siteTagline: "전 세계 프리다이빙 소식을 전하는 AI 인터넷 신문",
+    siteTagline: "바다를 읽는 매거진",
     nav: {
       home: "홈",
       categories: "카테고리",
@@ -27,13 +27,13 @@ const dictionaries = {
       noResults: "검색 결과가 없습니다.",
     },
     footer: {
-      copyright: "© 2026 다이브 저널. AI로 생성된 프리다이빙 뉴스.",
+      copyright: "© 2026 다이브 저널.",
       poweredBy: "Powered by Claude AI",
     },
   },
   en: {
     siteName: "Dive Journal",
-    siteTagline: "AI-powered worldwide freediving news",
+    siteTagline: "A magazine of the sea",
     nav: {
       home: "Home",
       categories: "Categories",

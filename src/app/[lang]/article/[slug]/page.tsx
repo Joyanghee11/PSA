@@ -62,52 +62,37 @@ export default async function ArticlePage({
   const content = article[lang as Lang];
 
   return (
-    <article className="max-w-3xl mx-auto">
+    <article>
       {/* Header */}
-      <header className="mb-8">
-        <div className="flex items-center gap-3 mb-4">
-          <CategoryBadge category={article.category} lang={lang as Lang} />
-        </div>
-        <h1 className="text-3xl md:text-[2.5rem] font-headline leading-tight mb-4">
-          {content.title}
-        </h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          {content.summary}
-        </p>
-        <div className="flex items-center gap-4 mt-4 pt-4 border-t border-border">
-          <time className="text-sm text-muted-foreground">
-            {formatDate(article.publishedAt, lang as Lang)}
-          </time>
-          <span className="text-sm text-muted-foreground">
-            {lang === "ko" ? "다이브 저널" : "Dive Journal"}
-          </span>
+      <header className="max-w-[860px] mx-auto text-center mb-10 rise">
+        <span className="kicker justify-center"><CategoryBadge category={article.category} lang={lang as Lang} /></span>
+        <h1 className="font-headline text-[34px] md:text-[54px] leading-[1.08] mt-5">{content.title}</h1>
+        <p className="text-[19px] text-muted-foreground leading-relaxed mt-6 max-w-[720px] mx-auto">{content.summary}</p>
+        <div className="flex items-center justify-center gap-3 mt-7 text-sm text-muted-foreground">
+          <time>{formatDate(article.publishedAt, lang as Lang)}</time>
+          <span aria-hidden>·</span>
+          <span className="font-italic-serif">{lang === "ko" ? "다이브 저널" : "Dive Journal"}</span>
         </div>
       </header>
 
       {/* Image */}
       {article.imageUrl && (
-        <figure className="mb-8">
-          <div className="aspect-video overflow-hidden bg-muted">
-            <img
-              src={article.imageUrl}
-              alt={article.imageAlt || content.title}
-              className="w-full h-full object-cover"
-            />
+        <figure className="max-w-[1100px] mx-auto mb-12 rise rise-2">
+          <div className="aspect-[16/9] overflow-hidden rounded-[22px] bg-muted shadow-[var(--shadow-3)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={article.imageUrl} alt={article.imageAlt || content.title} className="w-full h-full object-cover" />
           </div>
-          {article.imageAlt && (
-            <figcaption className="text-xs text-muted-foreground mt-2 text-center">
-              {article.imageAlt}
-            </figcaption>
-          )}
+          {article.imageAlt && <figcaption className="text-xs text-muted-foreground mt-3 text-center">{article.imageAlt}</figcaption>}
         </figure>
       )}
 
+      <div className="max-w-[720px] mx-auto">
       {/* Ad: article top */}
       <AdSlot position="article-top" />
 
       {/* Body */}
       <div
-        className="prose prose-lg max-w-none prose-headings:font-headline prose-p:leading-relaxed"
+        className="prose prose-lg max-w-none dropcap prose-headings:font-headline prose-p:leading-relaxed"
         dangerouslySetInnerHTML={{ __html: content.body }}
       />
 
@@ -153,6 +138,7 @@ export default async function ArticlePage({
 
       {/* Comments */}
       <CommentSection slug={article.slug} />
+      </div>
     </article>
   );
 }
