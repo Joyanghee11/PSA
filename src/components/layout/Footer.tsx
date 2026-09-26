@@ -20,8 +20,8 @@ export function Footer({ dict, lang }: { dict: Dictionary; lang: Lang }) {
             {/* Brand + About */}
             <div className="md:col-span-5">
               <Link href={`/${lang}`}>
-                <span className="wordmark !text-white text-[30px]">{lang === "ko" ? "다이브 저널" : "Dive Journal"}</span>
-                <span className="wordmark-en ml-2 !text-[var(--lagoon)]">{lang === "ko" ? "Dive Journal" : "A magazine of the sea"}</span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/brand/logo-light-h120.png" alt="DIVE JOURNAL 다이브저널" width={215} height={120} className="h-[76px] w-auto" />
               </Link>
               <p className="text-sm leading-relaxed mt-3 text-[#aaa]">
                 {companyInfo.about[lang]}

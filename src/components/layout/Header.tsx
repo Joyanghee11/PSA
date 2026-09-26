@@ -31,10 +31,12 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
     <header className="mag-header">
       <div className="masthead-rule" />
       <div className="mag-container">
-        <div className="flex h-[68px] items-center justify-between gap-6">
-          <Link href={`/${lang}`} className="flex items-baseline gap-2.5 select-none" aria-label="다이브 저널 · Dive Journal">
-            <span className="wordmark whitespace-nowrap text-[22px] sm:text-[26px] md:text-[30px]">다이브 저널</span>
-            <span className="wordmark-en hidden sm:inline text-[15px]">Dive Journal</span>
+        <div className="flex h-[72px] items-center justify-between gap-6">
+          <Link href={`/${lang}`} className="flex items-center select-none shrink-0" aria-label="다이브 저널 · Dive Journal">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/logo-navy-h120.png" alt="DIVE JOURNAL 다이브저널" width={215} height={120} className="brand-logo brand-logo--navy h-[46px] md:h-[52px] w-auto" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/logo-light-h120.png" alt="" aria-hidden width={215} height={120} className="brand-logo brand-logo--light h-[46px] md:h-[52px] w-auto" />
           </Link>
 
           <nav className="primary-nav hidden md:flex items-center gap-7" aria-label={ko ? "주요 메뉴" : "Primary"}>
