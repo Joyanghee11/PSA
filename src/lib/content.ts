@@ -85,10 +85,14 @@ async function getAllArticlesCombined(): Promise<Article[]> {
   const local = getLocalArticles();
   const blob = await getBlobArticles();
 
-  // Merge, deduplicate by slug (blob takes priority)
+  // Merge, deduplicate by slug (newer updatedAt wins; blob wins ties)
   const slugMap = new Map<string, Article>();
   for (const a of local) slugMap.set(a.slug, a);
-  for (const a of blob) slugMap.set(a.slug, a);
+  for (const a of blob) {
+    const l = slugMap.get(a.slug);
+    if (l && new Date(l.updatedAt).getTime() > new Date(a.updatedAt).getTime()) continue;
+    slugMap.set(a.slug, a);
+  }
 
   return Array.from(slugMap.values()).sort(
     (a, b) =>
