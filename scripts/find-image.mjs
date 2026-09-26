@@ -48,10 +48,16 @@ function usedPhotoIds() {
 }
 
 const used = usedPhotoIds();
-const res = await fetch(
-  `https://unsplash.com/napi/search/photos?query=${encodeURIComponent(query)}&per_page=30`,
-  { headers: { Accept: 'application/json' } }, // 브라우저 UA 를 달면 봇 차단 페이지로 돌려보낸다
-);
+const url = `https://unsplash.com/napi/search/photos?query=${encodeURIComponent(query)}&per_page=30`;
+// 브라우저 UA 를 달면 봇 차단 페이지로 돌려보낸다. 짧은 시간에 수십 번 검색하면 429 로
+// 잠시 막히므로 1분씩 쉬며 세 번까지 다시 시도한다.
+let res;
+for (let attempt = 0; attempt < 4; attempt++) {
+  res = await fetch(url, { headers: { Accept: 'application/json' } });
+  if (res.status !== 429) break;
+  console.error(`Unsplash 가 잠시 막음(429) — 60초 뒤 다시 시도 (${attempt + 1}/3)`);
+  await new Promise((r) => setTimeout(r, 60_000));
+}
 if (!res.ok) {
   console.error(`Unsplash 검색 실패: HTTP ${res.status}`);
   process.exit(2);
