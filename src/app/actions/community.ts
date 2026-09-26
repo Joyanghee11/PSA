@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { randomUUID } from "crypto";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getSessionUser, contestPhase, type Contest } from "@/lib/community";
-import { isAuthenticated as isAdminSession } from "@/lib/auth";
+import { requireStaff } from "@/lib/staff";
 
 export type ActionResult<T = undefined> = { ok: true; data?: T } | { ok: false; error: string };
 
@@ -222,9 +222,9 @@ export async function castVote(slug: string, entryId: string): Promise<ActionRes
   }
 }
 
-// ─── 관리자(기존 /admin 비밀번호 세션) ─────────────────────────────────
+// ─── 관리자(책임 기자 이상, 또는 관리자 비밀번호 세션) ─────────────────
 async function requireAdmin() {
-  if (!(await isAdminSession())) throw new Error("관리자만 할 수 있습니다.");
+  if (!(await requireStaff("senior_reporter"))) throw new Error("책임 기자 이상만 할 수 있습니다.");
 }
 
 export async function adminReviewArtwork(id: string, decision: "approve" | "reject" | "hide", reason?: string): Promise<ActionResult> {
@@ -304,7 +304,7 @@ export async function adminReviewEntry(id: string, patch: { status?: "approved" 
   }
 }
 
-/** 관리자 콘테스트 표지 업로드용(관리자는 Supabase 로그인이 없으므로 별도 경로) */
+/** 관리자 콘테스트 표지 업로드용(편집진은 본인 폴더가 아니라 covers/ 에 올린다) */
 export async function adminRequestCoverUpload(contentType: string): Promise<ActionResult<{ path: string; token: string }>> {
   try {
     await requireAdmin();

@@ -6,6 +6,10 @@ import Link from "next/link";
 import type { Article } from "@/lib/types";
 import { getCategoryLabel, getCategoryColor } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
+import { createClient } from "@/lib/supabase/client";
+
+type Me = { role: "editor_in_chief" | "senior_reporter" | "reporter"; userId: string | null; name: string | null };
+const ROLE_LABEL: Record<Me["role"], string> = { editor_in_chief: "편집장", senior_reporter: "책임 기자", reporter: "기자" };
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -14,10 +18,18 @@ export default function AdminDashboard() {
   const [search, setSearch] = useState("");
   const [filterCategory, setFilterCategory] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
+  const [me, setMe] = useState<Me | null>(null);
+  const [denied, setDenied] = useState(false);
 
   useEffect(() => {
     fetchArticles();
+    fetch("/api/admin/me").then((r) => (r.ok ? r.json() : null)).then(setMe).catch(() => {});
+    setDenied(new URLSearchParams(window.location.search).get("denied") === "1");
   }, []);
+
+  // 책임 기자 이상: 발행·고정·삭제. 기자: 본인이 쓴 초안만 편집.
+  const senior = me?.role === "editor_in_chief" || me?.role === "senior_reporter";
+  const canEdit = (a: Article) => senior || (!!me?.userId && a.authorId === me.userId && a.status === "draft");
 
   async function fetchArticles() {
     try {
@@ -96,6 +108,7 @@ export default function AdminDashboard() {
 
   async function handleLogout() {
     await fetch("/api/admin/auth", { method: "DELETE" });
+    await createClient().auth.signOut();
     router.push("/admin/login");
   }
 
@@ -111,16 +124,22 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-4">
             <Link href="/admin" className="text-xl font-bold text-accent">다이브저널 Admin</Link>
             <Link href="/ko" className="text-sm text-muted-foreground hover:text-foreground">사이트 보기</Link>
+            {me && (
+              <span className="text-xs text-muted-foreground">
+                {me.name ? `${me.name} · ` : ""}{ROLE_LABEL[me.role]}{me.userId ? "" : " (비밀번호 로그인)"}
+              </span>
+            )}
           </div>
-          <div className="flex items-center gap-3">
-            <Link href="/admin/gallery" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">갤러리 승인</Link>
-            <Link href="/admin/contests" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">콘테스트</Link>
-            <Link href="/admin/safety" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">🎓 안전교육</Link>
-            <Link href="/admin/ads" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">광고 관리</Link>
+          <div className="flex flex-wrap items-center gap-2">
+            {senior && <Link href="/admin/gallery" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">갤러리 승인</Link>}
+            {senior && <Link href="/admin/contests" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">콘테스트</Link>}
+            {me?.role === "editor_in_chief" && <Link href="/admin/safety" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">🎓 안전교육</Link>}
+            {senior && <Link href="/admin/ads" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">광고 관리</Link>}
+            {me?.role === "editor_in_chief" && <Link href="/admin/staff" className="px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors">편집진</Link>}
             <Link href="/admin/create" className="px-4 py-2 bg-accent text-accent-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">+ 새 기사 작성</Link>
             <button onClick={handleLogout} className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">로그아웃</button>
           </div>
@@ -128,6 +147,16 @@ export default function AdminDashboard() {
       </header>
 
       <main className="max-w-6xl mx-auto px-4 py-8">
+        {denied && (
+          <div className="mb-4 px-4 py-3 rounded-lg border border-yellow-300 bg-yellow-50 text-yellow-800 text-sm dark:bg-yellow-900/20 dark:text-yellow-300 dark:border-yellow-700">
+            그 메뉴는 현재 직책으로 쓸 수 없습니다.
+          </div>
+        )}
+        {me?.role === "reporter" && (
+          <div className="mb-4 px-4 py-3 rounded-lg border border-border bg-muted text-sm text-muted-foreground">
+            기자는 기사를 초안으로 저장할 수 있고, 본인이 쓴 초안만 고칠 수 있습니다. 발행은 책임 기자 이상이 합니다.
+          </div>
+        )}
         {/* Title + Count */}
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-2xl font-bold">기사 관리</h1>
@@ -280,6 +309,8 @@ export default function AdminDashboard() {
                   <p className="text-sm text-muted-foreground truncate">{article.en.title}</p>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
+                  {senior && (
+                    <>
                   <button
                     onClick={() => handlePin(article, "top")}
                     className={`px-2 py-1.5 text-xs rounded-lg border transition-colors ${
@@ -312,18 +343,24 @@ export default function AdminDashboard() {
                   >
                     {article.status === "published" ? "비공개" : "공개"}
                   </button>
-                  <Link
-                    href={`/admin/edit/${article.slug}`}
-                    className="px-3 py-1.5 text-xs rounded-lg border border-border text-muted-foreground hover:bg-muted transition-colors"
-                  >
-                    편집
-                  </Link>
-                  <button
-                    onClick={() => handleDelete(article.slug)}
-                    className="px-3 py-1.5 text-xs rounded-lg border border-red-300 text-red-600 hover:bg-red-50 dark:border-red-700 dark:text-red-400 dark:hover:bg-red-900/20 transition-colors"
-                  >
-                    삭제
-                  </button>
+                    </>
+                  )}
+                  {canEdit(article) && (
+                    <Link
+                      href={`/admin/edit/${article.slug}`}
+                      className="px-3 py-1.5 text-xs rounded-lg border border-border text-muted-foreground hover:bg-muted transition-colors"
+                    >
+                      편집
+                    </Link>
+                  )}
+                  {senior && (
+                    <button
+                      onClick={() => handleDelete(article.slug)}
+                      className="px-3 py-1.5 text-xs rounded-lg border border-red-300 text-red-600 hover:bg-red-50 dark:border-red-700 dark:text-red-400 dark:hover:bg-red-900/20 transition-colors"
+                    >
+                      삭제
+                    </button>
+                  )}
                 </div>
               </div>
             ))}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { createDataBrowserClient } from "@/lib/supabase/data-browser";
 import { requestUpload, adminRequestCoverUpload } from "@/app/actions/community";
 
 type Item = { path: string; preview: string };
@@ -34,7 +34,7 @@ export function ImageUploader({
     if (!files?.length) return;
     setError(null);
     setBusy(true);
-    const supabase = createClient();
+    const supabase = createDataBrowserClient();
     const room = max - items.length;
     const picked = Array.from(files).slice(0, room);
     for (const file of picked) {

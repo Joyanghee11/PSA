@@ -62,6 +62,9 @@ export interface Article {
   imageAlt?: string;
   pinned?: "top" | "featured" | undefined;
   evaluation?: ArticleEvaluation;
+  /** 관리 화면에서 쓴 기사의 작성자(PSA 회원 id·이름). 기자는 본인이 쓴 초안만 고칠 수 있다. */
+  authorId?: string;
+  authorName?: string;
 }
 
 export interface RawNewsItem {

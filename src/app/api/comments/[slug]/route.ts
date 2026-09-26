@@ -1,17 +1,21 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
-// GET: 특정 기사의 댓글 목록 (공개)
+// 로그인 확인은 PSA 회원 DB(createClient), 댓글 저장은 저널 DB(createAdminClient).
+// 저널 DB 의 RLS 는 PSA 로그인을 모르므로 본인 확인은 여기서 한다.
+
+const COLUMNS = "id, display_name, body, created_at, user_id";
+
+// GET: 특정 기사의 댓글 목록 (공개). 이메일은 내보내지 않는다.
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
-  const supabase = await createClient();
-
-  const { data, error } = await supabase
+  const { data, error } = await createAdminClient()
     .from("comments")
-    .select("id, user_email, display_name, body, created_at, user_id")
+    .select(COLUMNS)
     .eq("article_slug", slug)
     .order("created_at", { ascending: false })
     .limit(200);
@@ -50,12 +54,12 @@ export async function POST(
     return NextResponse.json({ error: "댓글은 2000자 이하여야 합니다." }, { status: 400 });
   }
 
-  const displayName =
-    (user.user_metadata as { display_name?: string })?.display_name ||
-    user.email?.split("@")[0] ||
-    "사용자";
+  // 댓글에 보이는 이름: PSA 닉네임 → 한글 이름 → 이메일 앞부분
+  const { data: prof } = await supabase.from("profiles").select("handle, name_ko").eq("id", user.id).maybeSingle();
+  const p = prof as { handle?: string | null; name_ko?: string | null } | null;
+  const displayName = p?.handle || p?.name_ko || user.email?.split("@")[0] || "사용자";
 
-  const { data, error } = await supabase
+  const { data, error } = await createAdminClient()
     .from("comments")
     .insert({
       article_slug: slug,
@@ -64,7 +68,7 @@ export async function POST(
       display_name: displayName,
       body,
     })
-    .select("id, user_email, display_name, body, created_at, user_id")
+    .select(COLUMNS)
     .single();
 
   if (error) {
@@ -87,8 +91,7 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "로그인이 필요합니다." }, { status: 401 });
   }
 
-  // RLS 정책이 본인 소유 확인을 처리하므로 별도 조회 불필요
-  const { error } = await supabase.from("comments").delete().eq("id", commentId);
+  const { error } = await createAdminClient().from("comments").delete().eq("id", commentId).eq("user_id", user.id);
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });

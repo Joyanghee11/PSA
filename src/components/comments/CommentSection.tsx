@@ -6,7 +6,6 @@ import { createClient } from "@/lib/supabase/client";
 
 interface Comment {
   id: string;
-  user_email: string;
   display_name: string | null;
   body: string;
   created_at: string;
@@ -137,7 +136,7 @@ export default function CommentSection({ slug }: { slug: string }) {
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <span className="font-medium text-sm">
-                    {c.display_name || c.user_email.split("@")[0]}
+                    {c.display_name || "회원"}
                   </span>
                   <span className="text-xs text-muted-foreground">
                     {new Date(c.created_at).toLocaleString("ko")}

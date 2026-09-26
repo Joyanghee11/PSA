@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { PSA_SITE_URL } from "@/config/psa";
+import { getStaff, ROLE_LABEL } from "@/lib/staff";
+import { AuthShell, PsaMemberNote } from "@/components/auth/AuthShell";
 import LogoutButton from "./LogoutButton";
-import DeleteAccountButton from "./DeleteAccountButton";
 
 export default async function AccountPage() {
   const supabase = await createClient();
@@ -12,43 +14,46 @@ export default async function AccountPage() {
     redirect("/login?next=/account");
   }
 
-  const displayName =
-    (user.user_metadata as { display_name?: string })?.display_name ||
-    user.email?.split("@")[0] ||
-    "사용자";
+  const [{ data: prof }, staff] = await Promise.all([
+    supabase.from("profiles").select("name_ko, handle, created_at").eq("id", user.id).maybeSingle(),
+    getStaff(),
+  ]);
+  const p = prof as { name_ko?: string | null; handle?: string | null; created_at?: string | null } | null;
+
+  const rows: [string, string][] = [
+    ["이름", p?.name_ko || "-"],
+    ["닉네임", p?.handle || "-"],
+    ["이메일", user.email ?? "-"],
+    ["가입일", new Date(p?.created_at ?? user.created_at).toLocaleDateString("ko")],
+  ];
+  if (staff?.userId) rows.push(["편집진 직책", ROLE_LABEL[staff.role]]);
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-2xl mx-auto px-4 py-12">
-        <h1 className="text-2xl font-bold mb-6">내 정보</h1>
-
-        <div className="bg-card border border-border rounded-lg p-6 space-y-4">
-          <div>
-            <div className="text-xs text-muted-foreground uppercase tracking-wide">표시 이름</div>
-            <div className="text-lg font-medium">{displayName}</div>
+    <AuthShell kicker="My account" title="내 정보">
+      <dl className="spec !grid-cols-[96px_1fr]">
+        {rows.map(([k, v]) => (
+          <div key={k} className="contents">
+            <dt>{k}</dt>
+            <dd className="break-all">{v}</dd>
           </div>
-          <div>
-            <div className="text-xs text-muted-foreground uppercase tracking-wide">이메일</div>
-            <div>{user.email}</div>
-          </div>
-          <div>
-            <div className="text-xs text-muted-foreground uppercase tracking-wide">가입일</div>
-            <div>{new Date(user.created_at).toLocaleDateString("ko")}</div>
-          </div>
-        </div>
+        ))}
+      </dl>
 
-        <div className="mt-6 flex gap-3">
-          <Link
-            href="/ko"
-            className="px-4 py-2 border border-border rounded-lg text-sm hover:bg-muted transition-colors"
-          >
-            사이트로
-          </Link>
-          <LogoutButton />
-        </div>
-
-        <DeleteAccountButton />
+      <div className="mt-6">
+        <PsaMemberNote>
+          다이브 저널 계정은 PSA 회원 계정과 같습니다. 이름·연락처 수정, 비밀번호 변경, 탈퇴는{" "}
+          <a href={`${PSA_SITE_URL}/account-settings`} target="_blank" rel="noopener" className="font-semibold text-accent-blue underline underline-offset-2">
+            divepsa.com 회원 정보
+          </a>
+          에서 할 수 있습니다.
+        </PsaMemberNote>
       </div>
-    </div>
+
+      <div className="mt-6 flex flex-wrap gap-3">
+        <Link href="/ko" className="btn btn-ghost">사이트로</Link>
+        {staff && <Link href="/admin" className="btn btn-ghost">관리 화면</Link>}
+        <LogoutButton />
+      </div>
+    </AuthShell>
   );
 }

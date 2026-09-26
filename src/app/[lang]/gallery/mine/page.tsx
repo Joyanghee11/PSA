@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getSessionUser, listMyArtworks, publicUrl, formatKrw } from "@/lib/community";
 import { MyArtworkActions, MarkReadButton } from "@/components/community/MyArtworkActions";
 
@@ -19,9 +19,9 @@ export default async function MyWorksPage({ params, searchParams }: { params: Pr
   if (!user) redirect(`/login?next=/${lang}/gallery/mine`);
 
   const works = await listMyArtworks(user.id);
-  const supabase = await createClient();
+  // 본인 작품 id 로만 거른다(저널 DB 관리자 클라이언트라 RLS 가 걸러 주지 않는다).
   const { data } = works.length
-    ? await supabase
+    ? await createAdminClient()
         .from("artwork_inquiries")
         .select("id, artwork_id, sender_name, sender_contact, message, created_at, read_at, artworks(title)")
         .in("artwork_id", works.map((w) => w.id))

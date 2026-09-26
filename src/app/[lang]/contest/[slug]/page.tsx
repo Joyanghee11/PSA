@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getContest, listEntries, getSessionUser, contestPhase, publicUrl, type ContestEntry } from "@/lib/community";
 import { phaseLabel, fmtDate, AWARD_LABEL } from "@/lib/contest-format";
@@ -25,7 +24,8 @@ export default async function ContestPage({ params }: { params: Promise<{ lang: 
   const ko = lang === "ko";
   const contest = await getContest(slug);
   if (!contest) notFound();
-  const [entries, user] = await Promise.all([listEntries(contest.id), getSessionUser()]);
+  const user = await getSessionUser();
+  const entries = await listEntries(contest.id, user?.id);
   const phase = contestPhase(contest);
 
   const approved = entries.filter((e) => e.status === "approved");
@@ -33,8 +33,7 @@ export default async function ContestPage({ params }: { params: Promise<{ lang: 
 
   let myVote: string | null = null;
   if (user) {
-    const supabase = await createClient();
-    const { data } = await supabase.from("contest_votes").select("entry_id").eq("contest_id", contest.id).eq("user_id", user.id).maybeSingle();
+    const { data } = await createAdminClient().from("contest_votes").select("entry_id").eq("contest_id", contest.id).eq("user_id", user.id).maybeSingle();
     myVote = data?.entry_id ?? null;
   }
 

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isAuthenticated } from "@/lib/auth";
+import { requireStaff, roleAtLeast } from "@/lib/staff";
 import {
   getAllArticlesIncludingDrafts,
   writeArticleToBlob,
@@ -9,7 +9,7 @@ import { createSlug } from "@/lib/utils";
 import type { Article } from "@/lib/types";
 
 export async function GET() {
-  if (!(await isAuthenticated())) {
+  if (!(await requireStaff("reporter"))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -18,9 +18,12 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  if (!(await isAuthenticated())) {
+  const staff = await requireStaff("reporter");
+  if (!staff) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+  // 기자는 초안까지만. 발행은 책임 기자 이상.
+  const canPublish = roleAtLeast(staff.role, "senior_reporter");
 
   try {
     const body = await request.json();
@@ -40,7 +43,7 @@ export async function POST(request: Request) {
       slug,
       publishedAt: now,
       updatedAt: now,
-      status: body.status || "draft",
+      status: canPublish ? body.status || "draft" : "draft",
       category: body.category,
       tags: body.tags || [],
       sourceUrls: body.sourceUrls || [],
@@ -58,6 +61,8 @@ export async function POST(request: Request) {
       },
       imageUrl: body.imageUrl || undefined,
       imageAlt: body.imageAlt || undefined,
+      authorId: staff.userId ?? undefined,
+      authorName: staff.name ?? undefined,
     };
 
     await writeArticleToBlob(article);

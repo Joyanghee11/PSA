@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { isAuthenticated } from "@/lib/auth";
+import { requireStaff } from "@/lib/staff";
 import { getAllBanners, saveBanners } from "@/lib/ads";
 import type { AdBanner } from "@/lib/ads";
 
 export async function GET() {
-  if (!(await isAuthenticated())) {
+  if (!(await requireStaff("senior_reporter"))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const banners = await getAllBanners();
@@ -12,7 +12,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  if (!(await isAuthenticated())) {
+  if (!(await requireStaff("senior_reporter"))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

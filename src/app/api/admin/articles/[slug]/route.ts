@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isAuthenticated } from "@/lib/auth";
+import { requireStaff, roleAtLeast } from "@/lib/staff";
 import {
   getArticleBySlugAsync,
   writeArticleToBlob,
@@ -10,7 +10,7 @@ export async function GET(
   _request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
-  if (!(await isAuthenticated())) {
+  if (!(await requireStaff("reporter"))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -27,7 +27,8 @@ export async function PUT(
   request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
-  if (!(await isAuthenticated())) {
+  const staff = await requireStaff("reporter");
+  if (!staff) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -36,6 +37,11 @@ export async function PUT(
   if (!existing) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
+  // 기자는 본인이 쓴 초안만 고칠 수 있고, 발행·고정·평가는 바꾸지 못한다.
+  const senior = roleAtLeast(staff.role, "senior_reporter");
+  if (!senior && (existing.status !== "draft" || !staff.userId || existing.authorId !== staff.userId)) {
+    return NextResponse.json({ error: "본인이 쓴 초안만 고칠 수 있습니다." }, { status: 403 });
+  }
 
   try {
     const body = await request.json();
@@ -43,7 +49,7 @@ export async function PUT(
     const updated = {
       ...existing,
       updatedAt: new Date().toISOString(),
-      status: body.status ?? existing.status,
+      status: senior ? body.status ?? existing.status : "draft",
       category: body.category ?? existing.category,
       tags: body.tags ?? existing.tags,
       sourceUrls: body.sourceUrls ?? existing.sourceUrls,
@@ -51,8 +57,8 @@ export async function PUT(
       ko: { ...existing.ko, ...body.ko },
       imageUrl: body.imageUrl !== undefined ? body.imageUrl : existing.imageUrl,
       imageAlt: body.imageAlt !== undefined ? body.imageAlt : existing.imageAlt,
-      pinned: body.pinned !== undefined ? (body.pinned || undefined) : existing.pinned,
-      evaluation: body.evaluation !== undefined ? body.evaluation : existing.evaluation,
+      pinned: senior && body.pinned !== undefined ? (body.pinned || undefined) : existing.pinned,
+      evaluation: senior && body.evaluation !== undefined ? body.evaluation : existing.evaluation,
     };
 
     // Delete old blob, write new
@@ -73,7 +79,7 @@ export async function DELETE(
   _request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
-  if (!(await isAuthenticated())) {
+  if (!(await requireStaff("senior_reporter"))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

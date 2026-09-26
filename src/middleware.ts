@@ -2,58 +2,63 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 import { createServerClient } from "@supabase/ssr";
+import { PSA_SUPABASE_URL, PSA_SUPABASE_KEY } from "@/config/psa";
 
 function getJwtSecret() {
   const secret = process.env.JWT_SECRET || "psa-default-secret-change-me";
   return new TextEncoder().encode(secret);
 }
 
-async function refreshSupabaseSession(
-  request: NextRequest,
-  response: NextResponse
-): Promise<NextResponse> {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const RANK: Record<string, number> = { reporter: 1, senior_reporter: 2, editor_in_chief: 3 };
 
-  // Supabase env 미설정 시 그냥 통과 (로컬 개발 초기, 인증 기능 비활성)
-  if (!url || !key) return response;
+// 관리 화면별 최소 직책. 목록에 없는 /admin 경로(기사 목록·작성·수정)는 기자 이상.
+const ADMIN_MIN_ROLE: [string, string][] = [
+  ["/admin/staff", "editor_in_chief"],
+  ["/admin/safety", "editor_in_chief"],
+  ["/admin/gallery", "senior_reporter"],
+  ["/admin/contests", "senior_reporter"],
+  ["/admin/ads", "senior_reporter"],
+];
 
-  const supabase = createServerClient(url, key, {
+async function hasAdminPasswordToken(request: NextRequest): Promise<boolean> {
+  const token = request.cookies.get("psa-admin-token")?.value;
+  if (!token) return false;
+  try {
+    await jwtVerify(token, getJwtSecret());
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const response = NextResponse.next({ request });
+
+  // 1. 로그인 세션 갱신 (PSA 회원 DB, 모든 요청)
+  const supabase = createServerClient(PSA_SUPABASE_URL, PSA_SUPABASE_KEY, {
     cookies: {
       getAll() {
         return request.cookies.getAll();
       },
       setAll(cookiesToSet) {
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-        cookiesToSet.forEach(({ name, value, options }) =>
-          response.cookies.set(name, value, options)
-        );
+        cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
       },
     },
   });
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  // 세션 토큰 자동 갱신 (만료 임박 시)
-  await supabase.auth.getUser();
-  return response;
-}
-
-export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  let response = NextResponse.next({ request });
-
-  // 1. Supabase 세션 갱신 (모든 요청에 대해)
-  response = await refreshSupabaseSession(request, response);
-
-  // 2. /admin 경로 보호 (관리자 전용 — 기존 로직 유지)
+  // 2. /admin — 관리자 비밀번호 세션(편집장) 또는 PSA 로그인 + 저널 직책
   if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
-    const token = request.cookies.get("psa-admin-token")?.value;
-    if (!token) {
-      return NextResponse.redirect(new URL("/admin/login", request.url));
-    }
-    try {
-      await jwtVerify(token, getJwtSecret());
-    } catch {
-      return NextResponse.redirect(new URL("/admin/login", request.url));
+    if (!(await hasAdminPasswordToken(request))) {
+      const { data: role } = user ? await supabase.rpc("journal_my_role") : { data: null };
+      const rank = typeof role === "string" ? RANK[role] ?? 0 : 0;
+      if (!rank) return NextResponse.redirect(new URL("/admin/login", request.url));
+      const need = ADMIN_MIN_ROLE.find(([prefix]) => pathname.startsWith(prefix))?.[1] ?? "reporter";
+      if (rank < RANK[need]) return NextResponse.redirect(new URL("/admin?denied=1", request.url));
     }
   }
 
@@ -75,23 +80,8 @@ export async function middleware(request: NextRequest) {
   }
 
   // 4. /account 경로 보호 (로그인한 사용자 전용)
-  if (pathname.startsWith("/account")) {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (url && key) {
-      const supabase = createServerClient(url, key, {
-        cookies: {
-          getAll() {
-            return request.cookies.getAll();
-          },
-          setAll() {},
-        },
-      });
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        return NextResponse.redirect(new URL("/login?next=/account", request.url));
-      }
-    }
+  if (pathname.startsWith("/account") && !user) {
+    return NextResponse.redirect(new URL("/login?next=/account", request.url));
   }
 
   return response;

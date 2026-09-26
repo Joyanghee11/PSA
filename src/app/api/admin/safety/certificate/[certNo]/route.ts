@@ -2,7 +2,7 @@
 // returns the PDF. The cert number, issue date, and recipient details are
 // pulled from the persisted record (not the requesting admin's session).
 import { NextResponse } from "next/server";
-import { isAuthenticated } from "@/lib/auth";
+import { requireStaff } from "@/lib/staff";
 import { listCompletions } from "@/lib/safety/completions";
 import { buildCertificatePdf } from "@/lib/safety/certificate";
 import type { SafetySessionPayload } from "@/lib/safety/types";
@@ -13,7 +13,7 @@ export async function GET(
   _req: Request,
   ctx: { params: Promise<{ certNo: string }> }
 ) {
-  if (!(await isAuthenticated())) {
+  if (!(await requireStaff("editor_in_chief"))) {
     return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
   }
 

@@ -1,17 +1,15 @@
-// 서버 컴포넌트, Route Handler, Server Action 용 Supabase 클라이언트
+// 서버 컴포넌트, Route Handler, Server Action 용 Supabase 클라이언트 — 로그인·회원 정보(PSA 회원 DB)
+// 저널 데이터(댓글·갤러리·콘테스트)는 이 클라이언트가 아니라 admin.ts 의 저널 DB 클라이언트로 읽고 쓴다.
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
-
-// env 누락 시 정적 빌드가 깨지지 않도록 플레이스홀더 (런타임 호출 시에만 실패)
-const FALLBACK_URL = "https://placeholder.supabase.co";
-const FALLBACK_KEY = "placeholder-anon-key";
+import { PSA_SUPABASE_URL, PSA_SUPABASE_KEY } from "@/config/psa";
 
 export async function createClient() {
   const cookieStore = await cookies();
 
   return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || FALLBACK_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || FALLBACK_KEY,
+    PSA_SUPABASE_URL,
+    PSA_SUPABASE_KEY,
     {
       cookies: {
         getAll() {

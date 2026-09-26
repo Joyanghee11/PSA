@@ -21,9 +21,6 @@ export function AuthMenu({ lang }: { lang: string }) {
     return () => sub.subscription.unsubscribe();
   }, [supabase]);
 
-  // Supabase 미설정 시 (env 없음) — 메뉴 자체를 숨김
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return null;
-
   // 첫 렌더 깜빡임 방지: 준비 전엔 자리만 차지
   if (!ready) return <span className="w-20" />;
 

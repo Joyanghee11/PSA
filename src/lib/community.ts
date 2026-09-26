@@ -1,7 +1,9 @@
 // 갤러리·콘테스트 공용 타입과 조회 함수 (서버 전용)
-// 읽기는 사용자 세션(RLS)으로 한다. 공개된 것과 본인 것만 보인다.
+// 로그인은 PSA 회원 DB, 데이터는 저널 DB 라서 저널 DB 의 RLS(auth.uid)로는 본인을 알 수 없다.
+// 그래서 읽기도 서버에서 저널 DB 관리자 클라이언트로 하고, 공개된 것과 본인 것만 골라 돌려준다.
 import "server-only";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 export type ArtworkStatus = "pending" | "approved" | "rejected" | "sold" | "hidden";
 
@@ -90,8 +92,8 @@ export function formatSize(a: Pick<Artwork, "width_cm" | "height_cm" | "depth_cm
   return `${parts.join(" × ")} cm`;
 }
 
+/** 로그인한 PSA 회원(없으면 null) */
 export async function getSessionUser() {
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return null;
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
   return data.user ?? null;
@@ -99,8 +101,7 @@ export async function getSessionUser() {
 
 export async function listPublicArtworks(limit = 60): Promise<Artwork[]> {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return [];
-  const supabase = await createClient();
-  const { data } = await supabase
+  const { data } = await createAdminClient()
     .from("artworks")
     .select("*")
     .in("status", ["approved", "sold"])
@@ -111,43 +112,42 @@ export async function listPublicArtworks(limit = 60): Promise<Artwork[]> {
 
 export async function getArtwork(id: string): Promise<Artwork | null> {
   if (!/^[0-9a-f-]{36}$/i.test(id)) return null;
-  const supabase = await createClient();
-  const { data } = await supabase.from("artworks").select("*").eq("id", id).maybeSingle();
-  return (data as Artwork | null) ?? null;
+  const { data } = await createAdminClient().from("artworks").select("*").eq("id", id).maybeSingle();
+  const art = (data as Artwork | null) ?? null;
+  if (!art || art.status === "approved" || art.status === "sold") return art;
+  const user = await getSessionUser();
+  return user && user.id === art.user_id ? art : null;
 }
 
 export async function listMyArtworks(userId: string): Promise<Artwork[]> {
-  const supabase = await createClient();
-  const { data } = await supabase.from("artworks").select("*").eq("user_id", userId).order("created_at", { ascending: false });
+  const { data } = await createAdminClient().from("artworks").select("*").eq("user_id", userId).order("created_at", { ascending: false });
   return (data as Artwork[] | null) ?? [];
 }
 
 export async function listPublishedContests(): Promise<Contest[]> {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return [];
-  const supabase = await createClient();
-  const { data } = await supabase.from("contests").select("*").eq("status", "published").order("submit_starts_at", { ascending: false });
+  const { data } = await createAdminClient().from("contests").select("*").eq("status", "published").order("submit_starts_at", { ascending: false });
   return (data as Contest[] | null) ?? [];
 }
 
 export async function getContest(slug: string): Promise<Contest | null> {
-  const supabase = await createClient();
-  const { data } = await supabase.from("contests").select("*").eq("slug", slug).eq("status", "published").maybeSingle();
+  const { data } = await createAdminClient().from("contests").select("*").eq("slug", slug).eq("status", "published").maybeSingle();
   return (data as Contest | null) ?? null;
 }
 
-export async function listEntries(contestId: string): Promise<ContestEntry[]> {
-  const supabase = await createClient();
-  const { data } = await supabase
+/** 승인된 응모작 + (로그인했다면) 본인 응모작 */
+export async function listEntries(contestId: string, viewerId?: string | null): Promise<ContestEntry[]> {
+  const { data } = await createAdminClient()
     .from("contest_entries")
     .select("*")
     .eq("contest_id", contestId)
     .order("created_at", { ascending: false });
-  return (data as ContestEntry[] | null) ?? [];
+  const rows = (data as ContestEntry[] | null) ?? [];
+  return rows.filter((e) => e.status === "approved" || (!!viewerId && e.user_id === viewerId));
 }
 
 export async function countPublicArtworks(): Promise<number> {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return 0;
-  const supabase = await createClient();
-  const { count } = await supabase.from("artworks").select("id", { count: "exact", head: true }).eq("status", "approved");
+  const { count } = await createAdminClient().from("artworks").select("id", { count: "exact", head: true }).eq("status", "approved");
   return count ?? 0;
 }

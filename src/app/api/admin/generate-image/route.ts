@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
-import { isAuthenticated } from "@/lib/auth";
+import { requireStaff } from "@/lib/staff";
 
 export async function POST(request: Request) {
-  if (!(await isAuthenticated())) {
+  if (!(await requireStaff("reporter"))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
