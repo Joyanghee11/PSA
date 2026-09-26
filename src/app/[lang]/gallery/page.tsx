@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { listPublicArtworks } from "@/lib/community";
+import { listPublicArtworks, publicUrl } from "@/lib/community";
+import { DeepHero } from "@/components/layout/DeepHero";
 import { ArtworkCard } from "@/components/community/ArtworkCard";
 
 export const dynamic = "force-dynamic";
@@ -20,26 +21,28 @@ export default async function GalleryPage({ params }: { params: Promise<{ lang: 
 
   return (
     <div>
-      <section className="bleed abyss -mt-8 mb-14">
-        <div className="mag-container py-16 md:py-24 grid md:grid-cols-12 gap-8 items-end">
-          <div className="md:col-span-8 rise">
-            <span className="kicker">{ko ? "The Gallery" : "The Gallery"}</span>
-            <h1 className="font-headline !text-white text-[40px] md:text-[64px] leading-[1.02] mt-4">
-              {ko ? <>바다를 걸어 두는 일</> : <>Hang the ocean on your wall</>}
-            </h1>
-            <p className="muted mt-5 text-[17px] max-w-[560px] leading-relaxed">
-              {ko
-                ? "수중 사진작가의 작품을 소개합니다. 작품 크기와 재료, 에디션을 확인하고 작가에게 바로 문의하세요. 다이브 저널은 소개와 연결만 하며, 거래는 작가와 구매자가 직접 합니다."
-                : "Original underwater photography. Check size, medium and edition, then message the artist directly. Dive Journal introduces and connects; the sale is between you and the artist."}
-            </p>
-          </div>
-          <div className="md:col-span-4 flex md:justify-end gap-3 rise rise-2">
-            <Link href={`/${lang}/gallery/new`} className="btn btn-lagoon">{ko ? "작품 등록하기" : "Submit your work"}</Link>
-            <Link href={`/${lang}/gallery/mine`} className="btn btn-ghost !text-white !border-white/30 hover:!border-white">{ko ? "내 작품" : "My works"}</Link>
-          </div>
-        </div>
-      </section>
+      <DeepHero
+        image={publicUrl("artworks", artworks[0]?.images[0])}
+        kicker="The Gallery · Dive Journal"
+        displayTop={ko ? "Hang the" : "Hang the"}
+        displayEm="ocean."
+        name={ko ? "바다를 걸어 두는 일" : "Collect the artist's ocean"}
+        lead={ko
+          ? "수중 사진작가의 작품을 소개합니다. 크기와 재료, 에디션을 확인하고 작가에게 바로 문의하세요. 거래는 작가와 구매자가 직접 합니다."
+          : "Original underwater photography. Check size, medium and edition, then message the artist directly."}
+        primary={{ href: `/${lang}/gallery/new`, label: ko ? "작품 등록하기" : "Submit your work" }}
+        secondary={{ href: `/${lang}/gallery/mine`, label: ko ? "내 작품" : "My works" }}
+        stats={[
+          artworks.some((a) => a.status === "approved")
+            ? { value: String(artworks.filter((a) => a.status === "approved").length), unit: ko ? "점" : "", eyebrow: "On view", label: ko ? "지금 전시 중인 작품" : "works on view" }
+            : { value: ko ? "작가 모집" : "Open call", word: true, eyebrow: "First exhibition", label: ko ? "첫 전시를 함께할 작가를 찾습니다" : "Looking for our first artists" },
+          { value: ko ? "직거래" : "Direct", word: true, eyebrow: "No commission", label: ko ? "작가와 구매자가 직접 약속합니다" : "Artist and buyer deal directly" },
+          { value: ko ? "검수" : "Curated", word: true, eyebrow: "Reviewed", label: ko ? "편집부 확인 후 게시됩니다" : "Every work is reviewed" },
+        ]}
+        scrollCue={artworks.length > 0}
+      />
 
+      <div className="mt-16" />
       {artworks.length === 0 ? (
         <div className="text-center py-24">
           <p className="font-headline text-2xl">{ko ? "첫 전시를 준비하고 있습니다" : "The first exhibition is being hung"}</p>

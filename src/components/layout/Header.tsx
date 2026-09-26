@@ -33,7 +33,7 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
       <div className="mag-container">
         <div className="flex h-[68px] items-center justify-between gap-6">
           <Link href={`/${lang}`} className="flex items-baseline gap-2.5 select-none" aria-label="다이브 저널 · Dive Journal">
-            <span className="wordmark text-[26px] md:text-[30px]">다이브 저널</span>
+            <span className="wordmark whitespace-nowrap text-[22px] sm:text-[26px] md:text-[30px]">다이브 저널</span>
             <span className="wordmark-en hidden sm:inline text-[15px]">Dive Journal</span>
           </Link>
 
@@ -45,7 +45,7 @@ export function Header({ lang, dict }: { lang: Lang; dict: Dictionary }) {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3 text-xs">
+          <div className="flex items-center gap-2 sm:gap-3 text-xs shrink-0">
             <span className="hidden lg:inline dateline">{issue}</span>
             <Link href={`/${lang}/search`} aria-label={dict.nav.search} className="grid place-items-center w-9 h-9 rounded-full hover:bg-muted transition-colors">
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>

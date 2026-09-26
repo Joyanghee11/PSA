@@ -3,13 +3,13 @@ import type { Lang } from "@/lib/types";
 import Link from "next/link";
 import { getDictionary } from "@/config/i18n";
 import { getAllArticlesAsync } from "@/lib/content";
-import { FeaturedArticle } from "@/components/article/FeaturedArticle";
+import { DeepHero } from "@/components/layout/DeepHero";
 import { ArticleCard } from "@/components/article/ArticleCard";
 import { AdSlot } from "@/components/ads/AdBanner";
 import { VideoCarousel } from "@/components/article/VideoCarousel";
 import { ArtworkCard } from "@/components/community/ArtworkCard";
-import { listPublicArtworks, listPublishedContests, publicUrl } from "@/lib/community";
-import { phaseLabel, fmtDate } from "@/lib/contest-format";
+import { listPublicArtworks, listPublishedContests, publicUrl, countPublicArtworks } from "@/lib/community";
+import { phaseLabel, fmtDate, contestPhaseOf } from "@/lib/contest-format";
 
 export const dynamic = "force-dynamic";
 
@@ -26,10 +26,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   const ko = lang === "ko";
   const dict = getDictionary(lang);
 
-  const [allArticles, artworks, contests] = await Promise.all([
+  const [allArticles, artworks, contests, artworkCount] = await Promise.all([
     getAllArticlesAsync(),
     listPublicArtworks(4).catch(() => []),
     listPublishedContests().catch(() => []),
+    countPublicArtworks().catch(() => 0),
   ]);
   const nonVideo = allArticles.filter((a) => a.category !== "video");
   const videos = allArticles.filter((a) => a.category === "video");
@@ -60,11 +61,27 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   }
 
   return (
-    <div className="space-y-20">
-      {/* 커버 스토리 */}
-      <section>
-        <FeaturedArticle article={cover} lang={lang} />
-      </section>
+    <div className="space-y-20 [&>*:first-child+*]:!mt-16">
+      {/* 커버 스토리 히어로 */}
+      <DeepHero
+        image={cover.imageUrl}
+        kicker={`${new Date().toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "Asia/Seoul" })} · Cover Story`}
+        displayTop="Into the"
+        displayEm="deep blue."
+        name={cover[lang].title}
+        lead={cover[lang].summary || (ko ? "프리다이빙과 스쿠버, 수중 사진을 읽는 웹 매거진. 이번 호의 커버 스토리부터 시작하세요." : "A web magazine of freediving, scuba and underwater photography. Start with this issue's cover story.")}
+        primary={{ href: `/${lang}/article/${cover.slug}`, label: ko ? "커버 스토리 읽기" : "Read the cover story" }}
+        secondary={{ href: `/${lang}/gallery`, label: ko ? "갤러리 둘러보기" : "Visit the gallery" }}
+        stats={[
+          { value: String(nonVideo.length), unit: ko ? "편" : "", eyebrow: "The Journal", label: ko ? "프리다이빙·스쿠버 기사" : "stories on freediving & scuba", href: `/${lang}/search` },
+          contest
+            ? { value: phaseLabel(contest, ko), word: true, eyebrow: "Photo Contest", strong: ko ? contest.title_ko : contest.title_en || contest.title_ko, label: contestPhaseOf(contest) === "closed" ? (ko ? "수상작 보기" : "See the winners") : `~ ${fmtDate(contestPhaseOf(contest) === "submitting" ? contest.submit_ends_at : contest.vote_ends_at, ko)}`, href: `/${lang}/contest/${contest.slug}` }
+            : { value: ko ? "준비 중" : "Soon", word: true, eyebrow: "Photo Contest", label: ko ? "온라인 수중 사진 콘테스트" : "Online underwater photo contest", href: `/${lang}/contest` },
+          artworkCount > 0
+            ? { value: String(artworkCount), unit: ko ? "점" : "", eyebrow: "The Gallery", label: ko ? "작가와 직접 연결되는 작품" : "works, direct from the artist", href: `/${lang}/gallery` }
+            : { value: ko ? "작가 모집" : "Open", word: true, eyebrow: "The Gallery", label: ko ? "수중 사진작가의 작품을 기다립니다" : "Calling underwater photographers", href: `/${lang}/gallery/new` },
+        ]}
+      />
 
       {/* 이번 호 */}
       {issue.length > 0 && (

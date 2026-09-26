@@ -453,3 +453,82 @@ textarea.input { height: auto; min-height: 120px; padding: 12px 14px; line-heigh
 /* 본문 폭 안에서 화면 가장자리까지 넓히는 띠(심해 판 등) */
 .bleed { width: 100vw; margin-left: calc(50% - 50vw); }
 html, body { overflow-x: clip; }
+
+/* =========================================================
+   Deep hero — 사진 위 심해 그라데이션 + 금빛 세리프 + 기울어진 유리 카드
+   ========================================================= */
+.deep-hero {
+  --deep: 7, 14, 30; --gold-rgb: 214, 178, 116; --gold-c: #d6b274; --on-deep: #f5f0e7; --on-deep-2: rgba(245,240,231,.72);
+  position: relative; isolation: isolate; overflow: hidden; background: rgb(var(--deep)); color: var(--on-deep);
+  min-height: max(580px, min(calc(100vh - 70px), 880px)); display: flex; align-items: center;
+}
+.deep-hero__bg { position: absolute; inset: -8% 0; z-index: -3; transform: translate3d(0, var(--par, 0px), 0); will-change: transform; }
+.deep-hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; filter: saturate(.6) contrast(1.06); }
+.deep-hero::before { content: ""; position: absolute; inset: 0; z-index: -2;
+  background:
+    linear-gradient(96deg, rgba(var(--deep), .95) 0%, rgba(var(--deep), .82) 34%, rgba(var(--deep), .32) 68%, rgba(var(--deep), .14) 100%),
+    linear-gradient(180deg, rgba(var(--deep), .55) 0%, transparent 24%, transparent 66%, rgba(var(--deep), .9) 100%); }
+.deep-hero::after { content: ""; position: absolute; z-index: -1; pointer-events: none; width: 780px; height: 780px; left: -300px; bottom: -440px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--gold-rgb), .22) 0%, transparent 64%); }
+.deep-hero__in { width: 100%; display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr); gap: 56px; align-items: center; padding-block: 104px 88px; }
+.deep-hero__kicker { display: inline-flex; align-items: center; gap: 14px; font-family: var(--font-sans), sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-c); }
+.deep-hero__kicker::before { content: ""; width: 40px; height: 1px; background: currentColor; }
+.deep-hero__display { margin-top: 26px; font-family: var(--font-serif), "Iowan Old Style", Palatino, Georgia, serif; font-weight: 400; font-size: clamp(46px, 2rem + 4.2vw, 96px); line-height: 1.02; letter-spacing: -0.02em; color: var(--on-deep); }
+.deep-hero__display em { display: block; font-style: italic; color: var(--gold-c); }
+.deep-hero__name { display: flex; align-items: center; gap: 18px; margin-top: 34px; }
+.deep-hero__name::before { content: ""; width: 48px; height: 1px; background: var(--gold-c); flex: none; }
+.deep-hero__name h1, .deep-hero__name p { font-family: var(--font-serif-kr), serif; font-weight: 800; font-size: clamp(22px, 1rem + .8vw, 30px); letter-spacing: -0.02em; color: var(--on-deep) !important; line-height: 1.25; }
+.deep-hero__lead { margin-top: 14px; max-width: 46ch; font-size: 17px; line-height: 1.7; color: var(--on-deep-2); }
+.deep-hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+.btn-gold { background: var(--gold-c); color: #1a1409; box-shadow: 0 14px 34px -12px rgba(var(--gold-rgb), .7); border-radius: 10px; height: 52px; padding: 0 26px; }
+.btn-gold:hover { background: #e3c48d; }
+.btn-deep-ghost { border: 1px solid rgba(245,240,231,.35); color: var(--on-deep); border-radius: 10px; height: 52px; padding: 0 26px; background: rgba(255,255,255,.03); }
+.btn-deep-ghost:hover { border-color: rgba(245,240,231,.8); background: rgba(255,255,255,.08); }
+
+/* 기울어진 유리 카드 묶음 */
+.deep-stack { justify-self: end; width: min(100%, 470px); perspective: 1400px; }
+.deep-stack__in { display: grid; gap: 22px; transform-style: preserve-3d; transform: rotateY(-18deg) rotateX(7deg); transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+.deep-hero:hover .deep-stack__in { transform: rotateY(-11deg) rotateX(4deg); }
+.deep-stack__in > * { transform: translateZ(0); }
+.deep-stack__in > :nth-child(1) { margin-left: 18%; }
+.deep-stack__in > :nth-child(2) { margin-left: 9%; margin-right: 9%; }
+.deep-stack__in > :nth-child(3) { margin-right: 18%; }
+.deep-stat { position: relative; display: grid; grid-template-columns: minmax(3.2ch, auto) 1fr; align-items: center; gap: 20px; padding: 22px 26px; border-radius: 16px; color: var(--on-deep);
+  background: linear-gradient(135deg, rgba(255,255,255,.16) 0%, rgba(var(--deep), .55) 100%);
+  border: 1px solid rgba(var(--gold-rgb), .42); backdrop-filter: blur(18px) saturate(80%); -webkit-backdrop-filter: blur(18px) saturate(80%);
+  box-shadow: 0 30px 60px -24px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.18); transition: transform .5s cubic-bezier(.2,.7,.2,1), border-color .3s; }
+.deep-stat::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(180deg, rgba(255,255,255,.16) 0%, transparent 42%); }
+a.deep-stat:hover { transform: translateZ(26px) translateX(-4px); border-color: rgba(var(--gold-rgb), .9); }
+.deep-stat__v { font-family: var(--font-serif), Georgia, serif; font-size: 48px; line-height: 1; color: var(--gold-c); white-space: nowrap; }
+.deep-stat__v small { margin-left: 3px; font-family: var(--font-sans-kr), sans-serif; font-size: 14px; color: var(--on-deep-2); }
+.deep-stat__v--word { font-family: var(--font-serif-kr), serif; font-weight: 800; font-size: 36px; }
+.deep-stat__k { font-size: 14.5px; line-height: 1.5; color: var(--on-deep); word-break: keep-all; }
+.deep-stat__k b { display: block; font-family: var(--font-serif-kr), serif; font-weight: 700; font-size: 16px; line-height: 1.4; margin-top: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.deep-stat__k { display: grid; gap: 3px; }
+.deep-stat__l { font-size: inherit; color: inherit; }
+.deep-stat__k span { display: block; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-c); font-family: var(--font-sans), sans-serif; }
+
+.deep-cue { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); display: grid; justify-items: center; gap: 10px; font-family: var(--font-sans), sans-serif; font-size: 10px; letter-spacing: .32em; color: rgba(245,240,231,.6); }
+.deep-cue i { position: relative; width: 1px; height: 38px; background: rgba(245,240,231,.2); overflow: hidden; }
+.deep-cue i::after { content: ""; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--gold-c); animation: cue 2.2s ease-in-out infinite; }
+@keyframes cue { to { top: 100%; } }
+.deep-credit { position: absolute; right: 24px; bottom: 18px; font-size: 11px; color: rgba(245,240,231,.5); }
+
+@media (max-width: 900px) {
+  .deep-hero { min-height: 0; }
+  .deep-hero__in { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-block: 72px 64px; }
+  .deep-stack { justify-self: stretch; width: 100%; perspective: none; }
+  .deep-stack__in { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; transform: none !important; }
+  .deep-stack__in > * { margin: 0 !important; }
+  .deep-stat { grid-template-columns: 1fr; gap: 6px; padding: 14px; text-align: left; }
+  .deep-stat__v { font-size: 30px; } .deep-stat__v--word { font-size: 22px; }
+  .deep-stat__k { font-size: 12px; } .deep-stat__k b, .deep-stat__l { display: none !important; }
+  .deep-stat__k span { font-size: 9.5px; letter-spacing: .14em; }
+  .deep-hero__name::before { display: none; }
+  .deep-hero__kicker { letter-spacing: .18em; font-size: 11px; }
+  .deep-hero__kicker::before { width: 24px; }
+  .deep-cue { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .deep-hero__bg { transform: none; } .deep-stack__in { transition: none; } .deep-cue i::after { animation: none; }
+}

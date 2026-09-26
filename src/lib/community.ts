@@ -144,3 +144,10 @@ export async function listEntries(contestId: string): Promise<ContestEntry[]> {
     .order("created_at", { ascending: false });
   return (data as ContestEntry[] | null) ?? [];
 }
+
+export async function countPublicArtworks(): Promise<number> {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return 0;
+  const supabase = await createClient();
+  const { count } = await supabase.from("artworks").select("id", { count: "exact", head: true }).eq("status", "approved");
+  return count ?? 0;
+}
