@@ -1,0 +1,46 @@
+{
+  "slug": "deep-ddrc-diver-medic-technician-course",
+  "publishedAt": "2026-09-28T23:14:00.000Z",
+  "updatedAt": "2026-09-28T23:14:00.000Z",
+  "status": "published",
+  "evaluation": {
+    "score": 100,
+    "gate": "pass",
+    "evaluatedAt": "2026-09-28T23:14:00.000Z",
+    "notes": "Round 2 pass. Round 1: KO body under 300 eojeol, added contact details from the source and a practical readiness paragraph (mirrored in EN); an unsourced description of the Closed Bell course removed. Dates, price, eligibility and accreditation from the DeeperBlue report.",
+    "breakdown": {
+      "contentIntegrity": 30,
+      "languageQuality": 25,
+      "structureFormat": 15,
+      "seoMetadata": 10,
+      "domainValue": 10,
+      "safetyEthics": 10
+    }
+  },
+  "category": "scuba-news",
+  "tags": [
+    "diver medic",
+    "DDRC Healthcare",
+    "DEEP",
+    "dive medicine",
+    "training",
+    "IMCA"
+  ],
+  "sourceUrls": [
+    "https://www.deeperblue.com/deep-and-ddrc-healthcare-launch-diver-medic-technician-program/"
+  ],
+  "imageUrl": "https://images.unsplash.com/photo-1755549746563-a7c0a391af36?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "A person wearing a dive watch practicing chest compressions on a CPR training manikin",
+  "en": {
+    "title": "DEEP and DDRC Launch a Diver Medic Technician Course",
+    "summary": "A 10-day diver medic course in England, open to commercial and recreational divers, runs from November 30 to December 11, 2026.",
+    "body": "<p>Subsea technology company DEEP and DDRC Healthcare, a specialist in diving and hyperbaric medicine training, have launched a joint Diver Medic Technician program. DeeperBlue reports that the first course will run for 10 days, from November 30 to December 11, 2026, at DEEP's campus in the Wye Valley in south-west England.</p><h3>Who can take it</h3><p>The course is open to both commercial and recreational divers, and there are no prerequisites. That openness is notable. Diver medic training has traditionally been aimed at people working in the commercial sector, where dive teams are expected to include someone able to give first-line medical care until a doctor can take over.</p><p>What participants walk away with depends on their track. Commercial divers receive accreditation from IMCA, the International Marine Contractors Association, along with direct entry to DEEP's UK HSE Closed Bell Diver course. Recreational divers receive a dedicated qualification certificate from DDRC.</p><p>The fee is £1,800 per person including VAT, roughly US$2,384 or €2,093.</p><h3>Why it matters</h3><p>Paul Nelson, DEEP's training director, stressed that working safely underwater depends on having people who can respond competently to diving-specific emergencies. Tim Mockridge, professional services manager at DDRC, described giving divers medical knowledge and practical skills for managing diving injuries as fundamental to safe diving.</p><p>For recreational divers, most emergency training stops at first aid, CPR and emergency oxygen. A course of this length goes further into the injuries that are specific to diving, and it may appeal to instructors, dive centre staff, expedition leaders and technical divers who spend time far from medical help. At £1,800 plus travel it is a real investment, so it is likely to attract divers who already carry some responsibility for others in the water.</p><h3>Keeping it in perspective</h3><p>Advanced medical training does not replace the basics. Diving injuries still need professional medical assessment and, in many cases, a hyperbaric chamber. For most divers, a current first aid and oxygen provider certification, a clear emergency plan for every site and knowing how to contact the nearest chamber remain the most useful preparation. Anyone considering the course can find details through DEEP's training team at training@deep.com.</p><p>For instructors and dive centres, the launch is also a good prompt to check their own readiness: whether the emergency oxygen kit is full, whether staff have actually practiced with it, and whether everyone knows who does what when something goes wrong.</p>",
+    "metaDescription": "DEEP and DDRC Healthcare launch a 10-day Diver Medic Technician course in England for commercial and recreational divers, with IMCA accreditation."
+  },
+  "ko": {
+    "title": "영국 DEEP·DDRC, 잠수 의료 기술자 과정 개설",
+    "summary": "영국에서 상업 다이버와 레저 다이버 모두 들을 수 있는 10일짜리 잠수 의료 기술자 과정이 2026년 11월 30일부터 12월 11일까지 열린다.",
+    "body": "<p>수중 기술 기업 DEEP와 잠수·고압 의학 교육 전문 기관 DDRC 헬스케어가 함께 잠수 의료 기술자(Diver Medic Technician) 과정을 열었다. 딥퍼블루에 따르면 첫 과정은 2026년 11월 30일부터 12월 11일까지 10일 동안 잉글랜드 남서부 와이 밸리에 있는 DEEP 캠퍼스에서 진행된다.</p><h3>누가 들을 수 있나</h3><p>상업 다이버와 레저 다이버 모두 수강할 수 있고, 선수 조건은 없다. 눈여겨볼 대목이다. 잠수 의료 기술자 교육은 원래 상업 잠수 분야 종사자를 위한 것이었다. 상업 잠수 팀에는 의사가 올 때까지 1차 응급 의료를 맡을 사람이 있어야 하기 때문이다.</p><p>수료 후 받는 자격은 과정에 따라 다르다. 상업 다이버는 국제해양건설협회(IMCA) 인증을 받고, DEEP의 영국 보건안전청(HSE) 폐쇄형 벨 다이버 과정에 바로 들어갈 수 있다. 레저 다이버는 DDRC가 발급하는 별도 수료증을 받는다.</p><p>수강료는 부가세를 포함해 1인당 1,800파운드다. 미화로 약 2,384달러, 유로로 약 2,093유로다.</p><h3>왜 중요한가</h3><p>DEEP의 폴 넬슨 교육 이사는 물속에서 안전하게 일하려면 잠수 특유의 응급 상황에 제대로 대응할 줄 아는 사람이 있어야 한다고 강조했다. DDRC의 팀 모크리지 전문서비스 매니저는 다이버에게 잠수 부상을 다룰 의학 지식과 실전 기술을 갖추게 하는 것이 안전한 다이빙의 기본이라고 말했다.</p><p>레저 다이빙에서 받는 응급 교육은 대개 응급처치, 심폐소생술, 응급 산소 공급에서 멈춘다. 열흘짜리 과정이라면 잠수에만 나타나는 부상을 그보다 더 깊이 다룰 것으로 보인다. 강사, 다이빙 센터 직원, 원정 리더, 의료 시설과 멀리 떨어진 곳에서 잠수하는 테크니컬 다이버에게 관심을 끌 만하다. 다만 수강료에 교통비와 체류비까지 생각하면 부담이 적지 않다. 물속에서 이미 다른 사람의 안전을 책임지는 다이버가 주로 찾을 가능성이 크다.</p><h3>기본이 먼저다</h3><p>고급 의료 교육이 기본을 대신하지는 않는다. 잠수 부상은 여전히 의료진의 진찰이 필요하고, 고압 산소 치료실(챔버)로 옮겨야 하는 경우도 많다. 대부분의 다이버에게는 유효한 응급처치·산소 공급 자격, 포인트마다 세워 둔 비상 계획, 가장 가까운 챔버 연락처를 알아 두는 것이 가장 실용적인 준비다. 과정에 관심이 있다면 DEEP 교육팀을 통해 자세한 내용을 확인할 수 있다. 교육팀은 이메일(training@deep.com)로 문의를 받는다.</p><p>강사나 다이빙 센터라면 이번 과정을 계기로 현장의 응급 준비를 점검해 볼 만하다. 응급 산소 키트가 제대로 채워져 있는지, 직원들이 실제로 써 본 적이 있는지, 사고가 났을 때 누가 무엇을 맡는지 미리 정해 두는 것만으로도 대응 속도는 크게 달라진다.</p>",
+    "metaDescription": "DEEP와 DDRC 헬스케어가 영국에서 상업·레저 다이버 대상 10일 잠수 의료 기술자 과정을 연다. 상업 다이버는 IMCA 인증을 받는다."
+  }
+}

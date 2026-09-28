@@ -1,0 +1,45 @@
+{
+  "slug": "perovskite-solar-cells-10-meters-underwater",
+  "publishedAt": "2026-09-28T23:02:00.000Z",
+  "updatedAt": "2026-09-28T23:02:00.000Z",
+  "status": "published",
+  "evaluation": {
+    "score": 100,
+    "gate": "pass",
+    "evaluatedAt": "2026-09-28T23:02:00.000Z",
+    "notes": "Round 1 pass. Figures (10 m, 2 m, 324 mWh over two hours, about 5.5 years) and remarks from the DeeperBlue report on the Joule study; forward-looking claims hedged.",
+    "breakdown": {
+      "contentIntegrity": 30,
+      "languageQuality": 25,
+      "structureFormat": 15,
+      "seoMetadata": 10,
+      "domainValue": 10,
+      "safetyEthics": 10
+    }
+  },
+  "category": "science",
+  "tags": [
+    "solar cells",
+    "perovskite",
+    "ocean technology",
+    "underwater sensors",
+    "light at depth"
+  ],
+  "sourceUrls": [
+    "https://www.deeperblue.com/scientists-develop-deep-water-solar-cells/"
+  ],
+  "imageUrl": "https://images.unsplash.com/photo-1668110648714-1070e851f855?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Soft sunlight filtering down through hazy turquoise water full of tiny particles",
+  "en": {
+    "title": "Solar Cells Generate Power 10 Meters Underwater",
+    "summary": "Chinese researchers ran perovskite solar cells at 10 meters in the South China Sea, far deeper than earlier tests, to power sensors and cameras.",
+    "body": "<p>Any diver who has watched the colors drain out of a reef on the way down knows that sunlight changes fast with depth. A team of researchers in China has now shown that solar cells can still produce useful power in that dimmer, bluer light. As DeeperBlue reports, perovskite solar cells tested at sea generated electricity at 10 meters (33 feet).</p><h3>Tuned to the light that survives</h3><p>The work, published in the journal <em>Joule</em>, was carried out by researchers from Yunnan University and the Southwest United Graduate School, with Wen-Hua Zhang as lead author. Water soaks up the red end of the spectrum first, so the team designed wide-bandgap perovskite cells that capture the blue-to-orange wavelengths still present below the surface.</p><p>Field trials took place off the Weizhou Islands in the South China Sea. According to the report, previous studies of submerged solar cells had been limited to around 2 meters. In this trial, the cells produced 324 mWh of energy during two hours underwater, enough to recharge lithium-ion batteries. The researchers estimate that such a system could keep running on its own at depth for about 5.5 years.</p><p>Zhang said the result greatly broadens where the technology can be used compared with shallow-water setups, and that the team had moved from small laboratory cells to large modules. The group plans to test the cells at greater depths next.</p><h3>What it could power</h3><p>The target uses are equipment that needs to sit underwater for long periods without a cable to shore: environmental sensors, submerged cameras and offshore aquaculture systems. For divers, that could eventually mean more long-term monitoring on reefs and dive sites, from temperature loggers to cameras recording marine life, without regular trips to swap batteries.</p><p>It is still early. A two-hour trial at a single site says little yet about how the cells cope with months of <strong>biofouling</strong>, as algae and barnacles grow on any surface left in the sea, or with storms, murky water and seasonal changes in light. The 5.5-year figure is a projection rather than a measured lifetime, and it will likely take longer deployments before the technology proves itself.</p><h3>A lesson divers already know</h3><p>The study also puts a number on something divers experience on every descent. By 10 meters much of the red light is gone, which is why reefs look blue-green and why underwater photographers carry strobes or use filters. The researchers did not fight that physics; they designed around it.</p>",
+    "metaDescription": "Perovskite solar cells tuned to blue-green light produced power at 10 meters in the South China Sea, a step toward self-powered underwater sensors."
+  },
+  "ko": {
+    "title": "수심 10m에서도 전기 만든 태양전지",
+    "summary": "중국 연구진이 남중국해 수심 10m에서 페로브스카이트 태양전지로 전기를 만드는 데 성공했다. 기존 실험보다 훨씬 깊은 수심이다.",
+    "body": "<p>하강하면서 산호초의 색이 빠져나가는 것을 본 다이버라면 햇빛이 수심에 따라 얼마나 빨리 달라지는지 안다. 중국 연구진이 그렇게 어둡고 푸르러진 빛에서도 태양전지가 쓸 만한 전력을 낼 수 있다는 것을 보여 줬다. 딥퍼블루에 따르면 바다에서 시험한 페로브스카이트 태양전지가 수심 10m에서 전기를 만들어 냈다.</p><h3>물속에 남는 빛에 맞춘 설계</h3><p>이 연구는 학술지 <em>줄(Joule)</em>에 실렸다. 윈난대학교와 서남연합대학원 연구진이 참여했고, 논문의 주저자는 장원화다. 물은 빨간빛부터 먼저 흡수한다. 그래서 연구진은 수면 아래에 남는 파란빛에서 주황빛 사이의 파장을 잡아내도록 밴드갭이 넓은 페로브스카이트 전지를 설계했다.</p><p>현장 실험은 남중국해 웨이저우섬 앞바다에서 진행됐다. 보도에 따르면 지금까지 물에 잠긴 태양전지 연구는 수심 2m 안팎에 머물렀다. 이번 실험에서 전지는 물속 두 시간 동안 324mWh의 에너지를 만들었고, 이는 리튬이온 배터리를 충전하기에 충분한 양이다. 연구진은 이런 장치가 그 수심에서 약 5.5년 동안 스스로 작동할 수 있을 것으로 내다봤다.</p><p>장원화는 얕은 물에 머물던 기존 방식에 비해 이 기술을 쓸 수 있는 범위가 크게 넓어졌고, 실험실의 작은 전지에서 대형 모듈로 규모를 키우는 데도 성공했다고 설명했다. 연구진은 다음 단계로 더 깊은 수심에서 성능을 시험할 계획이다.</p><h3>어디에 쓰일 수 있나</h3><p>연구진이 겨냥하는 곳은 육지와 전선을 잇지 않고 오래 물속에 머물러야 하는 장비다. 해양 환경 센서, 수중 카메라, 먼바다 양식 시설 등이 여기에 해당한다. 다이버 입장에서는 배터리를 갈러 자주 들어가지 않아도 수온 기록계나 해양생물 관찰 카메라가 산호초와 다이빙 포인트를 오래 지켜보는 모습을 기대해 볼 수 있다.</p><p>아직은 초기 단계다. 한 장소에서 두 시간 진행한 실험만으로는 몇 달 동안 바다에 두면 표면에 조류와 따개비가 달라붙는 <strong>생물 부착</strong> 문제나 폭풍, 탁한 물, 계절에 따른 빛의 변화를 어떻게 견딜지 알기 어렵다. 5.5년이라는 수치도 실제로 잰 수명이 아니라 추정치다. 이 기술이 제 몫을 한다는 것이 확인되려면 더 긴 기간의 실전 설치가 필요할 것으로 보인다.</p><h3>다이버는 이미 아는 이야기</h3><p>이 연구는 다이버가 하강할 때마다 겪는 현상을 숫자로 보여 주기도 한다. 수심 10m쯤이면 빨간빛이 상당 부분 사라진다. 산호초가 푸르스름하게 보이고 수중 사진가가 스트로브나 필터를 챙기는 이유다. 연구진은 이 물리 법칙과 싸우는 대신 그에 맞춰 전지를 설계했다.</p>",
+    "metaDescription": "푸른빛에 맞춘 페로브스카이트 태양전지가 남중국해 수심 10m에서 전기를 만들었다. 스스로 전력을 얻는 수중 센서로 가는 한 걸음이다."
+  }
+}

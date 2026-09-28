@@ -1,0 +1,46 @@
+{
+  "slug": "taiwan-tourism-administration-diving-safety-guidelines",
+  "publishedAt": "2026-09-28T22:34:00.000Z",
+  "updatedAt": "2026-09-28T22:34:00.000Z",
+  "status": "published",
+  "evaluation": {
+    "score": 100,
+    "gate": "pass",
+    "evaluatedAt": "2026-09-28T22:34:00.000Z",
+    "notes": "Round 2 pass. Round 1: EN summary over 160 characters, shortened. Incidents, requirements, fines and advisory status taken from the Taipei Times report; victim not named, tone kept factual.",
+    "breakdown": {
+      "contentIntegrity": 30,
+      "languageQuality": 25,
+      "structureFormat": 15,
+      "seoMetadata": 10,
+      "domainValue": 10,
+      "safetyEthics": 10
+    }
+  },
+  "category": "scuba-news",
+  "tags": [
+    "Taiwan",
+    "dive safety",
+    "regulation",
+    "freediving",
+    "scuba diving",
+    "snorkeling"
+  ],
+  "sourceUrls": [
+    "https://www.taipeitimes.com/News/taiwan/archives/2026/09/28/2003865018"
+  ],
+  "imageUrl": "https://images.unsplash.com/photo-1699292352199-35e0b930c7b6?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "Waves crashing and spraying white foam over brown rocks on a sunny coastline",
+  "en": {
+    "title": "Taiwan Issues Safety Guidelines for Scuba and Freediving",
+    "summary": "After a fatal training dive and a wave rescue, Taiwan's Tourism Administration issued advisory rules on certification, gear and supervision.",
+    "body": "<p>Taiwan's Tourism Administration has published new guidelines covering snorkeling, scuba diving and freediving, in response to a run of recent incidents along the island's coast. The Taipei Times reported the move on September 28, citing the administration and the Central News Agency.</p><h3>What prompted the rules</h3><p>Earlier this month, a diving student died of hypoxia during a training dive at a bat cave in Rueifang, New Taipei City, after sea conditions worsened. And on a recent Sunday, six divers were caught by high waves off Longdong in Gongliao District. The Coast Guard brought all six back, and no injuries were reported.</p><h3>What the guidelines say</h3><p>For <strong>scuba diving and freediving</strong>, participants should hold a qualification certificate from a Taiwanese or international diving organization and meet internationally recognized training standards. Those standards cover age, health, basic swimming ability and awareness of marine safety.</p><p>The guidelines also list the expected equipment. Scuba divers should carry a complete breathing system, meaning a regulator, a buoyancy compensator and a tank. Freedivers are expected to use a mask, snorkel and wetsuit, along with a <em>surface identification device</em> such as a buoy, which lets boats and rescuers see where a diver is. Snorkelers need a mask, fins or a snorkel. Across all three activities, the guidelines call for proper supervision and a buddy or companion arrangement.</p><h3>Advisory, but with existing penalties behind it</h3><p>The guidelines themselves are advisory. They are meant as a reference for government agencies, site managers, diving organizations and divers rather than binding law. Penalties already on the books still apply: under the Act for the Development of Tourism, individuals who, for example, enter the water in a prohibited area can be fined up to NT$50,000, and commercial operators up to NT$200,000.</p><p>Wu Ping-yu, secretary-general of the Taiwan Freediving Development Association, called the guidelines an important first step in clarifying who is responsible for what. Wu also pointed out that compliance is still limited and suggested simplified guides so that ordinary divers actually learn the rules.</p><h3>Why it matters beyond Taiwan</h3><p>None of the requirements is exotic. Training from a recognized agency, a buoy on the surface, a buddy in the water and a willingness to cancel when the sea turns are standard practice in most dive communities. What the Taiwan cases show is how quickly conditions can change on an exposed coast. Divers visiting any rocky shoreline should check forecasts, agree on an abort plan before entering and dive with a certified instructor or guide who knows the site.</p>",
+    "metaDescription": "Taiwan's Tourism Administration issues advisory safety guidelines for scuba, freediving and snorkeling covering certification, gear and supervision."
+  },
+  "ko": {
+    "title": "대만, 스쿠버·프리다이빙 안전 지침 발표",
+    "summary": "훈련 중 사망 사고와 높은 파도 속 구조가 잇따르자 대만 교통부 관광서가 자격증·장비·감독에 관한 권고 지침을 내놨다.",
+    "body": "<p>대만 교통부 관광서가 스노클링, 스쿠버다이빙, 프리다이빙에 관한 안전 지침을 새로 발표했다. 최근 대만 해안에서 다이빙 사고가 잇따른 데 따른 조치다. 타이베이타임스는 9월 28일 관광서와 중앙통신사를 인용해 이 소식을 전했다.</p><h3>지침이 나온 배경</h3><p>이달 초 신베이시 루이팡의 한 박쥐 동굴에서 훈련 다이빙을 하던 교육생이 바다 상황이 나빠진 가운데 저산소증으로 숨졌다. 또 최근 한 일요일에는 궁랴오구 룽둥 앞바다에서 다이버 6명이 높은 파도에 고립됐다. 해안경비대가 6명을 모두 구조했고, 다친 사람은 없는 것으로 알려졌다.</p><h3>지침의 주요 내용</h3><p><strong>스쿠버다이빙과 프리다이빙</strong>을 하려는 사람은 대만 또는 국제 다이빙 단체가 발급한 자격증을 갖추고, 국제적으로 인정되는 교육 기준을 충족해야 한다. 이 기준에는 나이, 건강 상태, 기본 수영 능력, 해양 안전 의식이 포함된다.</p><p>갖춰야 할 장비도 제시했다. 스쿠버 다이버는 호흡기, 부력조절기, 공기통으로 이뤄진 완전한 호흡 장비를 갖춰야 한다. 프리다이버는 마스크와 스노클, 웻슈트에 더해 <em>수면 표지 장비</em>를 써야 한다. 부이처럼 선박과 구조대가 다이버의 위치를 알아볼 수 있게 해 주는 장비다. 스노클링은 마스크, 핀 또는 스노클을 갖추도록 했다. 세 활동 모두 적절한 감독과 버디 또는 동행 체계를 요구한다.</p><h3>권고 지침이지만 처벌 조항은 그대로</h3><p>이번 지침 자체는 권고 성격이다. 강제력 있는 법규가 아니라 정부 기관, 현장 관리자, 다이빙 단체, 다이버가 참고할 기준이라는 뜻이다. 다만 기존 처벌 규정은 그대로 적용된다. 관광발전조례에 따라 금지 구역에서 물에 들어가는 등 규정을 어긴 개인은 최대 5만 대만달러, 영업 사업자는 최대 20만 대만달러의 과태료를 물 수 있다.</p><p>대만프리다이빙발전협회 우빙위 사무총장은 이번 지침이 책임과 의무를 분명히 하는 중요한 첫걸음이라고 평가했다. 그러면서도 아직 지침을 지키는 사람이 많지 않다며, 일반 다이버가 쉽게 익힐 수 있도록 간단한 안내서를 만들자고 제안했다.</p><h3>대만만의 이야기가 아닌 이유</h3><p>지침에 담긴 요구 사항은 특별하지 않다. 공인 단체의 교육, 수면 부이, 물속의 버디, 바다가 험해지면 잠수를 접는 판단은 대부분의 다이빙 현장에서 이미 기본으로 여기는 것들이다. 대만 사례가 보여 주는 것은 바람과 파도에 그대로 노출된 해안에서 상황이 얼마나 빨리 바뀌는가 하는 점이다. 한국의 동해안이나 제주처럼 바위 해안에서 다이빙할 때도 기상 예보를 확인하고, 입수 전에 중단 기준을 정해 두고, 현장을 잘 아는 공인 강사나 가이드와 함께 들어가는 것이 안전하다.</p>",
+    "metaDescription": "대만 교통부 관광서가 스쿠버다이빙·프리다이빙·스노클링 안전 지침을 발표했다. 자격증과 장비, 감독 체계를 권고하고 기존 과태료는 그대로 적용된다."
+  }
+}
