@@ -1,0 +1,46 @@
+{
+  "slug": "deep-vanguard-habitat-dnv-interim-classification",
+  "publishedAt": "2026-10-03T00:15:00.000Z",
+  "updatedAt": "2026-10-03T00:15:00.000Z",
+  "status": "published",
+  "evaluation": {
+    "score": 100,
+    "gate": "pass",
+    "evaluatedAt": "2026-10-03T00:15:00.000Z",
+    "notes": "Round 1 pass. Depth, location, certificate name, ruleset reference and quotes paraphrased from DeeperBlue. The 2027 goal is attributed to DEEP as a stated aim, not a fact.",
+    "breakdown": {
+      "contentIntegrity": 30,
+      "languageQuality": 25,
+      "structureFormat": 15,
+      "seoMetadata": 10,
+      "domainValue": 10,
+      "safetyEthics": 10
+    }
+  },
+  "category": "scuba-news",
+  "tags": [
+    "DEEP",
+    "Vanguard",
+    "underwater habitat",
+    "saturation diving",
+    "DNV",
+    "Florida Keys"
+  ],
+  "sourceUrls": [
+    "https://www.deeperblue.com/deeps-vanguard-is-now-certified-to-move-into-next-phase-of-operations/"
+  ],
+  "imageUrl": "https://images.unsplash.com/photo-1747762658850-8a9e36aceb9d?w=800&h=450&fit=crop&q=80",
+  "imageAlt": "A scuba diver with yellow fins swimming over a pale sandy seabed in clear blue water, a column of bubbles rising above",
+  "en": {
+    "title": "DEEP's Vanguard Habitat Cleared to Start Living at Depth",
+    "summary": "DNV has issued an interim classification certificate to DEEP's Vanguard habitat off the Florida Keys, letting crews begin saturation stays underwater.",
+    "body": "<p>An undersea habitat sitting on the seabed off the Florida Keys has passed a key regulatory milestone. Maritime classification society <strong>DNV</strong> has awarded <strong>DEEP's Vanguard</strong> an <em>Interim Classification Certificate</em>, which moves the system into what the company calls its initial operating capability phase.</p><h3>What the certificate allows</h3><p>Vanguard was installed in June at <strong>Tennessee Reef</strong>, at a depth of <strong>17 meters (56 feet)</strong>. With the interim certificate in hand, DEEP crews can now start living in the habitat in saturation. In practical terms, that means divers stay at pressure for extended periods rather than returning to the surface after each dive, and DEEP intends to use those stays for marine science, human performance research and training for extreme environments.</p><p>DNV has followed the project from design through construction and installation, independently checking it against DNV class rules and relevant international safety standards. According to DEEP and DNV, Vanguard is the first habitat to seek classification under DNV's newly published rules for crewed underwater habitats.</p><p>DEEP chief technology officer Norman Smith said the certificate validates the engineering behind Vanguard and opens the door to extended-stay saturation operations. Jonathan Struwe, head of underwater technology at DNV, called it a pioneering step and said DNV would keep working with DEEP toward full classification.</p><h3>Not the finish line</h3><p>The interim certificate is a stage, not the end of the process. DEEP says full DNV classification will only follow after a period of saturation dives, further system testing and any upgrades that this work reveals.</p><h3>A long gap in ocean living</h3><p>When DEEP unveiled Vanguard last year, DeeperBlue described it as the first new subsea habitat in about 40 years. The company has framed the project as building on earlier efforts such as Jacques Cousteau's Conshelf stations and the Aquarius Reef Base, and its stated aim is a permanent human presence under the sea by 2027.</p><p>The scientific case is straightforward. Living at depth lets researchers observe marine life in its own setting instead of through cameras and remotely operated vehicles. It also allows samples to be handled before the chemical changes that can happen when they are brought to the surface, and it offers far more working time on the bottom with less time lost to decompression.</p><h3>What it means for divers</h3><p>For recreational divers, saturation diving remains a specialist field with its own equipment, training and medical oversight. Vanguard is worth watching less as something to try and more as a test of whether long underwater stays can be made routine, certified and safe. Any move toward deeper or longer diving should go through recognised training agencies and qualified instructors.</p>",
+    "metaDescription": "DNV grants DEEP's Vanguard undersea habitat in the Florida Keys an interim classification certificate, clearing crews to begin saturation diving stays."
+  },
+  "ko": {
+    "title": "해저 거주시설 '뱅가드', 포화잠수 운영 승인 받아",
+    "summary": "선급 기관 DNV가 미국 플로리다키스 해저에 설치된 DEEP의 거주시설 뱅가드에 임시 선급 증서를 발급해, 승무원들이 물속에서 포화 상태로 머물 수 있게 됐다.",
+    "body": "<p>미국 플로리다키스 앞바다 해저에 자리 잡은 수중 거주시설이 중요한 관문을 넘었다. 해양 선급 기관 <strong>DNV</strong>가 <strong>DEEP</strong>의 해저 거주시설 <strong>뱅가드(Vanguard)</strong>에 <em>임시 선급 증서</em>를 내주면서, 회사가 말하는 초기 운영 단계에 들어설 수 있게 됐다.</p><h3>증서로 달라지는 점</h3><p>뱅가드는 지난 6월 <strong>테네시 리프</strong>의 수심 <strong>17m</strong> 지점에 설치됐다. 이번 임시 증서로 DEEP 승무원들은 시설 안에서 포화 상태로 생활하는 단계를 시작할 수 있다. 다이빙을 마칠 때마다 수면으로 올라오지 않고 높은 압력 속에 오랫동안 머문다는 뜻이다. DEEP은 이 체류를 해양 과학 연구, 인체 수행 능력 연구, 극한 환경 훈련에 활용할 계획이다.</p><p>DNV는 설계와 건조, 설치 전 과정에 선급 파트너로 참여해 뱅가드가 DNV 선급 규칙과 관련 국제 안전 기준을 충족하는지 독립적으로 확인해 왔다. DEEP과 DNV에 따르면 뱅가드는 DNV가 새로 내놓은 유인 수중 거주시설 규칙에 따라 선급 인증을 추진하는 첫 사례다.</p><p>DEEP의 최고기술책임자 노먼 스미스는 이번 증서가 뱅가드의 설계와 공학적 완성도를 입증한 것이며 장기 포화잠수 운영의 문을 열어 준다고 말했다. DNV 수중기술 책임자 요나탄 슈트루베는 선구적인 한 걸음이라고 평가하며, 정식 선급 인증까지 DEEP과 계속 협력하겠다고 밝혔다.</p><h3>아직 끝이 아니다</h3><p>임시 증서는 한 단계일 뿐 최종 결과가 아니다. DEEP은 일정 기간의 포화잠수 운영과 추가 시스템 시험, 그리고 이 과정에서 드러나는 개선 작업을 마친 뒤에야 DNV 정식 선급을 받게 된다고 설명했다.</p><h3>40년 만의 해저 거주 시도</h3><p>지난해 DEEP이 뱅가드를 처음 공개했을 때 DeeperBlue는 이를 약 40년 만에 나온 새 해저 거주시설이라고 소개했다. DEEP은 자크 쿠스토의 콘셸프 기지와 아쿠아리우스 리프 베이스 같은 앞선 시도를 이어받는 사업이라고 설명하며, 2027년까지 바닷속에 사람이 늘 머무는 상태를 만드는 것을 목표로 내걸었다.</p><p>과학적 이점은 분명하다. 수중에서 생활하면 카메라나 원격 조종 장비를 거치지 않고 해양 생물을 그 서식 환경에서 직접 관찰할 수 있다. 시료를 수면으로 끌어올릴 때 생길 수 있는 화학적 변화 전에 다룰 수 있고, 감압에 쓰는 시간을 줄이면서 해저 작업 시간은 크게 늘릴 수 있다.</p><h3>다이버에게 주는 의미</h3><p>레저 다이버에게 포화잠수는 전용 장비와 훈련, 의료 관리가 필요한 전문 분야다. 뱅가드는 직접 해 볼 대상이라기보다 긴 수중 체류를 일상적이고 인증된, 안전한 방식으로 만들 수 있는지 시험하는 사례로 지켜볼 만하다. 더 깊거나 더 오래 머무는 다이빙에 도전하려면 공인 교육 단체와 자격을 갖춘 강사를 거쳐야 한다.</p>",
+    "metaDescription": "DNV가 플로리다키스 해저 거주시설 DEEP 뱅가드에 임시 선급 증서를 발급해 승무원들의 포화잠수 체류가 시작된다."
+  }
+}
