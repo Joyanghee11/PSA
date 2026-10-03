@@ -92,7 +92,7 @@ export default async function MyWorksPage({ params, searchParams }: { params: Pr
               const cover = publicUrl("artworks", w.images[0]);
               return (
                 <li key={w.id} className="lift p-4 flex gap-5 items-center flex-wrap sm:flex-nowrap">
-                  <Link href={`/${lang}/gallery/${w.id}`} className="shrink-0 w-24 h-24 rounded-xl overflow-hidden bg-muted">
+                  <Link href={`/${lang}/gallery/${w.id}`} className="shrink-0 w-24 h-24 overflow-hidden bg-muted">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     {cover && <img src={cover} alt="" className="w-full h-full object-cover" />}
                   </Link>

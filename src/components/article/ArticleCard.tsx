@@ -30,7 +30,7 @@ export function ArticleCard({
     return (
       <article className={`group grid ${article.imageUrl ? "grid-cols-[112px_1fr] sm:grid-cols-[200px_1fr] md:grid-cols-[240px_1fr]" : "grid-cols-1"} gap-4 sm:gap-6 items-start py-5 sm:py-6 border-b border-border first:pt-0 last:border-b-0`}>
         {article.imageUrl && (
-          <Link href={href} className="block aspect-[4/3] rounded-xl overflow-hidden bg-muted shadow-[var(--shadow-1)] group-hover:shadow-[var(--shadow-2)] transition-shadow">
+          <Link href={href} className="block aspect-[4/3] overflow-hidden bg-muted shadow-[var(--shadow-2)] group-hover:shadow-[var(--shadow-3)] group-hover:-translate-y-1 transition-[box-shadow,transform] duration-500">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={article.imageUrl} alt={article.imageAlt || content.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </Link>

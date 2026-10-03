@@ -78,7 +78,7 @@ export default async function ArticlePage({
       {/* Image */}
       {article.imageUrl && (
         <figure className="max-w-[1100px] mx-auto mb-12 rise rise-2">
-          <div className="aspect-[16/9] overflow-hidden rounded-[22px] bg-muted shadow-[var(--shadow-3)]">
+          <div className="aspect-[16/9] overflow-hidden bg-muted shadow-[var(--shadow-3)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={article.imageUrl} alt={article.imageAlt || content.title} className="w-full h-full object-cover" />
           </div>

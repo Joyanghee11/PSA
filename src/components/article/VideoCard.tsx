@@ -12,7 +12,7 @@ export function VideoCard({ article, lang }: { article: Article; lang: Lang }) {
 
   return (
     <div className="flex-shrink-0 w-[280px] md:w-[300px]">
-      <div className="relative aspect-video bg-black overflow-hidden rounded">
+      <div className="relative aspect-video bg-black overflow-hidden">
         {playing ? (
           <iframe
             src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}

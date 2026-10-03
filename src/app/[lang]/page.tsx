@@ -20,6 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     : { title: "Dive Journal - A magazine of the sea", description: "Freediving, scuba and underwater photography. Journal, gallery and photo contests." };
 }
 
+/** 한국 날짜 기준 일련번호. 자정(KST)마다 1씩 오른다. */
+function kstDayNumber() {
+  return Math.floor((Date.now() + 9 * 3_600_000) / 86_400_000);
+}
+
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang: l } = await params;
   const lang = (l === "en" ? "en" : "ko") as Lang;
@@ -42,7 +47,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
     return Date.parse(b.publishedAt) - Date.parse(a.publishedAt);
   });
 
-  const [cover, ...rest] = sorted;
+  // 커버 스토리는 한국 날짜가 바뀔 때마다 최근 사진 기사 10편 중 다음 편으로 넘어간다. 편집자가 맨 위로 고정한 기사가 있으면 그것이 우선.
+  const kstDay = kstDayNumber();
+  const pool = sorted.filter((a) => a.imageUrl).slice(0, 10);
+  const cover = sorted[0]?.pinned === "top" || pool.length === 0 ? sorted[0] : pool[kstDay % pool.length];
+  const rest = sorted.filter((a) => a !== cover);
   const trending = rest.slice(0, 3);
   const main = rest.slice(3, 8);
   const latest = rest.slice(8, 14);
@@ -143,7 +152,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       {/* 콘테스트 */}
       {contest && (
         <section>
-          <Link href={`/${lang}/contest/${contest.slug}`} className="group grid md:grid-cols-12 rounded-[22px] overflow-hidden lift !rounded-[22px]">
+          <Link href={`/${lang}/contest/${contest.slug}`} className="group grid md:grid-cols-12 overflow-hidden lift">
             <div className="md:col-span-6 aspect-[16/10] md:aspect-auto overflow-hidden bg-muted">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               {contest.cover_path && <img src={publicUrl("contest", contest.cover_path)!} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />}
