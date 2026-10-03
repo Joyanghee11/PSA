@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 /** 한국 날짜 기준 일련번호. 자정(KST)마다 1씩 오른다. */
-function kstDayNumber() {
-  return Math.floor((Date.now() + 9 * 3_600_000) / 86_400_000);
+function kstDayNumber(time = Date.now()) {
+  return Math.floor((time + 9 * 3_600_000) / 86_400_000);
 }
 
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
@@ -47,10 +47,15 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
     return Date.parse(b.publishedAt) - Date.parse(a.publishedAt);
   });
 
-  // 커버 스토리는 한국 날짜가 바뀔 때마다 최근 사진 기사 5편 중 다음 편으로 넘어간다. 편집자가 맨 위로 고정한 기사가 있으면 그것이 우선.
+  // 커버 스토리는 한국 날짜가 바뀔 때마다 최신 사진 기사 5편 중 다음 편으로 넘어간다.
+  // 편집자가 맨 위로 고정한 기사는 고정한 그날(updatedAt 기준)에만 커버를 차지한다.
   const kstDay = kstDayNumber();
-  const pool = sorted.filter((a) => a.imageUrl).slice(0, 5);
-  const cover = sorted[0]?.pinned === "top" || pool.length === 0 ? sorted[0] : pool[kstDay % pool.length];
+  const pool = nonVideo
+    .filter((a) => a.imageUrl)
+    .sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt))
+    .slice(0, 5);
+  const top = sorted[0]?.pinned === "top" ? sorted[0] : undefined;
+  const cover = (top && kstDayNumber(Date.parse(top.updatedAt)) === kstDay) || pool.length === 0 ? sorted[0] : pool[kstDay % pool.length];
   const rest = sorted.filter((a) => a !== cover);
   const trending = rest.slice(0, 3);
   const main = rest.slice(3, 8);
