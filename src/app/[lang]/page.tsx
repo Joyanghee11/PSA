@@ -47,9 +47,9 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
     return Date.parse(b.publishedAt) - Date.parse(a.publishedAt);
   });
 
-  // 커버 스토리는 한국 날짜가 바뀔 때마다 최근 사진 기사 10편 중 다음 편으로 넘어간다. 편집자가 맨 위로 고정한 기사가 있으면 그것이 우선.
+  // 커버 스토리는 한국 날짜가 바뀔 때마다 최근 사진 기사 5편 중 다음 편으로 넘어간다. 편집자가 맨 위로 고정한 기사가 있으면 그것이 우선.
   const kstDay = kstDayNumber();
-  const pool = sorted.filter((a) => a.imageUrl).slice(0, 10);
+  const pool = sorted.filter((a) => a.imageUrl).slice(0, 5);
   const cover = sorted[0]?.pinned === "top" || pool.length === 0 ? sorted[0] : pool[kstDay % pool.length];
   const rest = sorted.filter((a) => a !== cover);
   const trending = rest.slice(0, 3);
